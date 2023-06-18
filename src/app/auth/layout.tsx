@@ -4,6 +4,8 @@ import BG from "./BG";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import Footer from "@/components/constants/Footer";
+import Image from "next/image";
+import PText from "@/components/shared/PoppinText";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   const [isLogin, setIsLogin] = React.useState(true);
@@ -18,7 +20,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   }, [pathname]);
 
   return (
-    <div className="flex w-full bg-white max-h-screen">
+    <div className="flex overflow-hidden w-full bg-white max-h-screen">
       <div className="w-[45%] relative flex bg-black h-screen object-cover">
         <BG />
         <div className=" absolute right-0 flex flex-col bg-white trun -translate-y-[50%] top-[50%]">
@@ -55,9 +57,15 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
           ></div>
         </div>
       </div>
-      <div className="relative flex flex-col justify-between items-center w-[55%]">
-        {children}
-        <div className="max-w-[500px] w-full">
+      <div className="relative flex flex-col justify-center items-center w-[55%]">
+        <div className="flex flex-col w-full max-w-[400px] gap-y-9 items-center">
+          <div className="flex flex-col items-center">
+            <Image src="/rael.svg" alt="RAEL" width={100} height={100} />
+            <PText noDark>The book of Rwanda Coding Academy</PText>
+          </div>
+          {children}
+        </div>
+        <div className="max-w-[500px] absolute bottom-0 w-full">
           <Footer />
         </div>
       </div>
