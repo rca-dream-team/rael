@@ -31,7 +31,7 @@ export default function RootLayout({
       <head>
         <link rel="shortcut icon" href="rael.svg" type="image/x-icon" />
       </head>
-      <body className={""}>
+      <body className={righteous.className}>
         <Providers>{children}</Providers>
       </body>
     </html>
