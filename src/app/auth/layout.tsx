@@ -3,6 +3,7 @@ import React from "react";
 import BG from "./BG";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import Footer from "@/components/constants/Footer";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   const [isLogin, setIsLogin] = React.useState(true);
@@ -54,8 +55,11 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
           ></div>
         </div>
       </div>
-      <div className="relative flex flex-col items-center w-[55%]">
+      <div className="relative flex flex-col justify-between items-center w-[55%]">
         {children}
+        <div className="max-w-[500px] w-full">
+          <Footer />
+        </div>
       </div>
     </div>
   );
