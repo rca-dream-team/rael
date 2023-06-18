@@ -59,7 +59,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
       </div>
       <div className="relative flex flex-col justify-center items-center w-[55%]">
         <div className="flex flex-col w-full max-w-[400px] gap-y-9 items-center">
-          <div className="flex flex-col items-center">
+          <div className="flex gap-y-4 flex-col items-center">
             <Image src="/rael.svg" alt="RAEL" width={100} height={100} />
             <PText noDark>The book of Rwanda Coding Academy</PText>
           </div>
