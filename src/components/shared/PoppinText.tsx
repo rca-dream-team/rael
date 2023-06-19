@@ -1,4 +1,3 @@
-
 import { poppins } from "@/app/layout"
 import Text, { TextProps } from "./Text"
 

@@ -1,4 +1,5 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# RAEL
+Rael website will be a website designed to contain RCA news, classified, a timeline, and a student list profile. It will have all the possible news any newbie in RCA can need to know about RCA in the past and present.
 
 ## Getting Started
 
@@ -17,6 +18,17 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+## Guidelines
+### General
+- Use `yarn` to install packages.
+
+### Components
+- Use `Text` component for all text. `RText` is a wrapper around `Text` that sets the font to Righteous. `PText` is a wrapper around `Text` that sets the font to Poppins.
+
+### Styling
+- Use `tailwindcss` for styling. You can use `className` prop to add classes to components.
+- Add `dark` class to the specific component to make it dark. This will be used to toggle between light and dark mode.
 
 ## Learn More
 

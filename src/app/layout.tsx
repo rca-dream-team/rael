@@ -1,8 +1,13 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
-import { Metadata } from 'next';
+import { Metadata } from "next";
+import "./globals.css";
+import { Poppins, Righteous } from "next/font/google";
+import Providers from "./providers";
 
-const inter = Inter({ subsets: ['latin'] })
+export const poppins = Poppins({
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+});
+export const righteous = Righteous({ weight: ["400"], subsets: ["latin"] });
 
 const metadata: Metadata = {
   title: "RAEL",
@@ -19,11 +24,16 @@ const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <link rel="shortcut icon" href="rael.svg" type="image/x-icon" />
+      </head>
+      <body className={righteous.className}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
-  )
+  );
 }
