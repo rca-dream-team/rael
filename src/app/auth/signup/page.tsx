@@ -43,7 +43,7 @@ const SignuPage = () => {
       type="text"
       placeholder={'Name or Student ID'}
   />
-  <button className="bg-black border-2 border-white hover:border-black truncate stylbtn text-white rounded-[3em] py-3 px-8" onClick={()=>{setNext(!next)}}>
+  <button className="bg-black border-2 border-white hover:border-black truncate stylbtn text-white rounded-[3em] py-3 px-8">
       <p className="z-50 relative">Signup</p>
     </button>
 
