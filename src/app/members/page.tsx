@@ -1,9 +1,12 @@
-import React from 'react'
+import MainAppLayout from "@/components/layouts/MainAppLayout";
+import React from "react";
 
 const MembersPage = () => {
   return (
-    <div>MembersPage</div>
-  )
-}
+    <MainAppLayout>
+      <div>MembersPage</div>
+    </MainAppLayout>
+  );
+};
 
-export default MembersPage
+export default MembersPage;

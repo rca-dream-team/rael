@@ -56,8 +56,8 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         style={{
           width: 20,
           position: "absolute",
-          top: 20,
-          right: 20,
+          bottom: 20,
+          left: 20,
           cursor: "pointer",
         }}
         className=" w-16 absolute  rounded-full items-center justify-center flex p-2"

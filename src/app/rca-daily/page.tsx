@@ -1,9 +1,12 @@
-import React from 'react'
+import MainAppLayout from "@/components/layouts/MainAppLayout";
+import React from "react";
 
 const RcaDailyPage = () => {
   return (
-    <div>RcaDailyPage</div>
-  )
-}
+    <MainAppLayout>
+      <div>RcaDailyPage</div>
+    </MainAppLayout>
+  );
+};
 
-export default RcaDailyPage
+export default RcaDailyPage;

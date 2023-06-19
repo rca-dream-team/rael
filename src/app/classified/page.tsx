@@ -1,9 +1,12 @@
-import React from 'react'
+import MainAppLayout from "@/components/layouts/MainAppLayout";
+import React from "react";
 
 const ClassifiedPage = () => {
   return (
-    <div>ClassifiedPage</div>
-  )
-}
+    <MainAppLayout>
+      <div>ClassifiedPage</div>
+    </MainAppLayout>
+  );
+};
 
-export default ClassifiedPage
+export default ClassifiedPage;
