@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 
@@ -14,15 +15,15 @@ const AppContext = React.createContext<AppContextProps>(
 );
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isDarkTheme, setIsDarkTheme] = React.useState<boolean>(
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  );
+  const [isDarkTheme, setIsDarkTheme] = React.useState<boolean | null>(null);
 
   const toggleTheme = () => {
     setIsDarkTheme(!isDarkTheme);
   };
 
   React.useEffect(() => {
+    console.log("isDark", isDarkTheme);
+    if (isDarkTheme === null) return;
     const htmlElement = document.querySelector("html");
     if (isDarkTheme) {
       htmlElement?.classList.add("dark");
@@ -35,10 +36,17 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   // set theme saved in local storage
   React.useEffect(() => {
     const theme = window.localStorage.getItem("theme");
+    console.log("theme", theme);
+
     if (theme === "dark") {
+      console.log("isDark saved");
       setIsDarkTheme(true);
-    } else {
+    } else if (theme === "light") {
+      console.log("light saved");
       setIsDarkTheme(false);
+    } else {
+      console.log("syatem");
+      setIsDarkTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
     }
   }, []);
 
