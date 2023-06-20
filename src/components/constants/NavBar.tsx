@@ -34,7 +34,7 @@ const NavBar = () => {
     setPath(pathname ?? "");
   }, [pathname]);
   return (
-    <div className=" border-2 sticky top-0 overflow-hidden flex items-center rounded-[2em] max-w-[800px] w-fit">
+    <div className=" border-2 sticky top-0 dark:border-slate-500 overflow-hidden flex items-center rounded-[2em] max-w-[800px] w-fit">
       {/* <Link
         href={"#"}
         className="py-3 w-36 dark:bg-white dark:text-black flex justify-center items-center bg-black rounded-[3em] text-white"
@@ -44,6 +44,7 @@ const NavBar = () => {
       {links.map((link) => {
         return (
           <Link
+            // @ts-ignore
             href={link.href[0]}
             key={link.name}
             className={`py-3 rounded-[3em] px-5 ${
