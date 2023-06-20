@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 
 interface AppContextProps {
   toggleTheme?: () => void;
+  isDarkTheme?: boolean | null;
 }
 
 const appContextDefaultValues: AppContextProps = {
@@ -13,6 +14,8 @@ const appContextDefaultValues: AppContextProps = {
 const AppContext = React.createContext<AppContextProps>(
   appContextDefaultValues
 );
+
+export const useApp = () => useContext(AppContext);
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [isDarkTheme, setIsDarkTheme] = React.useState<boolean | null>(null);
@@ -51,7 +54,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <AppContext.Provider value={{ toggleTheme }}>
+    <AppContext.Provider value={{ toggleTheme, isDarkTheme }}>
       <div
         style={{
           width: 20,

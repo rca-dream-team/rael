@@ -34,3 +34,7 @@
 .stylbtn:hover{
   color: black;
 }
+.card-description{
+  margin: 0 !important;
+  padding: 0.4em 0.6em !important;
+}
