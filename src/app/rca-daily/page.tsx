@@ -1,4 +1,5 @@
-import React from 'react'
+import MainAppLayout from "@/components/layouts/MainAppLayout";
+import React from "react";
 
 import PText from '@/components/shared/PoppinText'
 import RText from '@/components/shared/RighteousText'

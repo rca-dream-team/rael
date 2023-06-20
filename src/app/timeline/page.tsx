@@ -1,9 +1,15 @@
-import React from 'react'
+import MainAppLayout from "@/components/layouts/MainAppLayout";
+import React from "react";
+import MantineTimeline from "./mantine-timeline";
+import ChronoTimeline from "./chrono-timeline";
 
 const TimelinePage = () => {
   return (
-    <div>TimelinePage</div>
-  )
-}
+    <MainAppLayout>
+      {/* <MantineTimeline /> */}
+      {<ChronoTimeline />}
+    </MainAppLayout>
+  );
+};
 
-export default TimelinePage
+export default TimelinePage;
