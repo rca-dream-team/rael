@@ -21,7 +21,7 @@ const MembersPage = async () => {
               alt="member"
             />
             <p className="text-md font-bold mt-1">SINGIZWA Nick</p>
-            <span>Football Captain</span>
+            <span className="text-sm text-gray-600">Football Captain</span>
             </div>
           </Link>
         ))}
