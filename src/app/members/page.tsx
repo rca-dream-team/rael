@@ -12,7 +12,7 @@ const MembersPage = async () => {
         
         {new Array(10).fill(0).map((_, i) => (
           <Link key={i} href={`/members/${i + 1}`}>
-            <div className="mt-4 bg-gray-100 w-[200px] h-[200px] rounded-xl border border-slate-600 p-2 text-center">
+            <div className="mt-4 bg-gray-100 w-[200px] h-fit rounded-xl border border-slate-600 p-2 text-center">
             <Image
               src={"/images/mem3.png"}
               width={200}
