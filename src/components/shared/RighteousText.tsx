@@ -1,5 +1,4 @@
-import { righteous } from "@/app/layout"
-import Text, { TextProps } from "./Text"
+import Text, { TextProps } from "./Text";
 
 /**
  * @description RText is a component that uses the Righteous font
@@ -7,11 +6,11 @@ import Text, { TextProps } from "./Text"
  * @returns {JSX.Element}
  */
 const RText = (props: TextProps): JSX.Element => {
-    return (
-        <Text {...props} className={
-            `${righteous.className} ${props.className}`
-        }>{props.children}</Text>
-    )
-}
+  return (
+    <Text {...props} className={`font-righteous ${props.className}`}>
+      {props.children}
+    </Text>
+  );
+};
 
-export default RText
+export default RText;

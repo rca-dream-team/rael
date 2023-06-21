@@ -1,15 +1,14 @@
 import { Metadata } from "next";
 import "./globals.css";
-import { Poppins, Righteous } from "next/font/google";
 import Providers from "./providers";
 
-export const poppins = Poppins({
-  weight: ["400", "500", "600", "700", "800"],
-  subsets: ["latin"],
-});
-export const righteous = Righteous({ weight: ["400"], subsets: ["latin"] });
+// export const poppins = Poppins({
+//   weight: ["400", "500", "600", "700", "800"],
+//   subsets: ["latin"],
+// });
+// export const righteous = Righteous({ weight: ["400"], subsets: ["latin"] });
 
-const metadata: Metadata = {
+export const metadata: Metadata = {
   title: "RAEL",
   description: "All you need to know about RCA and the RCA community",
   openGraph: {
@@ -31,10 +30,8 @@ export default function RootLayout({
       <head>
         <link rel="shortcut icon" href="rael.svg" type="image/x-icon" />
       </head>
-      <body className={righteous.className + ""}>
-        {/* <Providers> */}
-        {children}
-        {/* </Providers> */}
+      <body className={""}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

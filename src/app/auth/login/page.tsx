@@ -1,12 +1,9 @@
-import { poppins } from "@/app/layout";
 import React from "react";
 
 const LoginPage = () => {
   return (
     <form
-      className={
-        " flex-col w-full flex items-center gap-y-8 " + poppins.className
-      }
+      className={" flex-col w-full flex items-center gap-y-8 font-poppins "}
     >
       <input
         className="border-2 w-full border-stone-500 rounded-xl focus:border-black duration-200 p-3.5 px-5"

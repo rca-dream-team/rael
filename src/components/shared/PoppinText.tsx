@@ -1,5 +1,4 @@
-import { poppins } from "@/app/layout"
-import Text, { TextProps } from "./Text"
+import Text, { TextProps } from "./Text";
 
 /**
  * @description PText is a component that uses the Poppins font
@@ -7,11 +6,11 @@ import Text, { TextProps } from "./Text"
  * @returns {JSX.Element}
  */
 const PText = (props: TextProps): JSX.Element => {
-    return (
-        <Text {...props} className={
-            `${poppins.className} ${props.className}`
-        }>{props.children}</Text>
-    )
-}
+  return (
+    <Text {...props} className={`font-poppins ${props.className}`}>
+      {props.children}
+    </Text>
+  );
+};
 
-export default PText
+export default PText;

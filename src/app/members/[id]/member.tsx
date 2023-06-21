@@ -16,7 +16,7 @@ export interface MemberProps {
 
 const Member = ({ data }: MemberProps) => {
   return (
-    <div className="max-w-[1000px] w-full rounded-xl bg-white gap-y-11 px-11 flex-col flex">
+    <div className="max-w-[1000px] w-full rounded-xl bg-white dark:bg-black gap-y-11 px-11 flex-col flex">
       <div className="flex items-center justify-center">
         <Image
           src={data?.image ?? "/images/member.png"}
