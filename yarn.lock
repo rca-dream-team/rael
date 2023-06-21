@@ -417,7 +417,7 @@
   "resolved" "https://registry.npmjs.org/@next/env/-/env-13.4.6.tgz"
   "version" "13.4.6"
 
-"@next/eslint-plugin-next@^13.4.3":
+"@next/eslint-plugin-next@^13.4.6":
   "integrity" "sha512-bPigeu0RI7bgy1ucBA2Yqcfg539y0Lzo38P2hIkrRB1GNvFSbYg6RTu8n6tGqPVrH3TTlPTNKLXG01wc+5NuwQ=="
   "resolved" "https://registry.npmjs.org/@next/eslint-plugin-next/-/eslint-plugin-next-13.4.6.tgz"
   "version" "13.4.6"
@@ -1585,7 +1585,7 @@
   "resolved" "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   "version" "1.4.0"
 
-"next@*", "next@^13.4.3":
+"next@*", "next@^13.4.6":
   "integrity" "sha512-sjVqjxU+U2aXZnYt4Ud6CTLNNwWjdSfMgemGpIQJcN3Z7Jni9xRWbR0ie5fQzCg87aLqQVhKA2ud2gPoqJ9lGw=="
   "resolved" "https://registry.npmjs.org/next/-/next-13.4.6.tgz"
   "version" "13.4.6"

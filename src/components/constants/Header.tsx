@@ -5,7 +5,7 @@ import { RAELIcon } from "../shared/icons";
 
 const Header = () => {
   return (
-    <div className="flex w-full items-center justify-between border-b-2 py-6">
+    <div className="flex w-full dark:border-slate-500 items-center justify-between border-b-2 py-6">
       <div className=""></div>
       {/* <Image src={"/rael.svg"} height={40} width={100} alt="rael" /> */}
       <RAELIcon size={100} />

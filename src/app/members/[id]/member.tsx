@@ -33,6 +33,18 @@ const Member = ({ data }: MemberProps) => {
         </div>
       </div>
       <PText className="text-sm">{data?.desc}</PText>
+      <div className="grid grid-cols-3 w-full gap-6">
+        {data?.images?.map((im, i) => (
+          <Image
+            src={`/images/mem${i + 1}.png`}
+            alt="Alt"
+            className=" w-full object-cover h-full"
+            key={i}
+            width={300}
+            height={300}
+          />
+        ))}
+      </div>
     </div>
   );
 };
