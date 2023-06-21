@@ -10,8 +10,8 @@ const Header = () => {
       {/* <Image src={"/rael.svg"} height={40} width={100} alt="rael" /> */}
       <RAELIcon size={100} />
       <div className="flex gap-x-3 items-center">
-        <MagnifyingGlassIcon className="w-6" />
-        <BellIcon className="w-6" />
+        <MagnifyingGlassIcon className="w-6 font-bold" />
+        <BellIcon className="w-6 font-bold" />
         <Image
           src={"/svgs/avatar.svg"}
           alt="avatar"
