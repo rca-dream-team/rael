@@ -1,12 +1,13 @@
 import MainAppLayout from "@/components/layouts/MainAppLayout";
 import React from "react";
-
 import PText from '@/components/shared/PoppinText'
 import RText from '@/components/shared/RighteousText'
 
 
+
 const RcaDailyPage = () => {
 return (
+  <MainAppLayout>
 <div className=' w-[80%] '>
   <RText className='text-3xl'>15th March</RText>
   <div className='mt-5'>
@@ -16,6 +17,7 @@ return (
     </div>
   </div>
 </div>
+</MainAppLayout>
 )
 }
 
