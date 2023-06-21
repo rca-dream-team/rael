@@ -1,16 +1,21 @@
+"use client"
 import Image from "next/image";
 import React from "react";
 import { BellIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { RAELIcon } from "../shared/icons";
+import { useState } from "react";
+import SearchDiv from "../SearchDiv";
 
 const Header = () => {
+  const [searchVal,setSearchVal]= useState(false)
   return (
     <div className="flex w-full dark:border-slate-500 items-center justify-between border-b-2 py-6">
       <div className=""></div>
       {/* <Image src={"/rael.svg"} height={40} width={100} alt="rael" /> */}
       <RAELIcon size={100} />
       <div className="flex gap-x-3 items-center">
-        <MagnifyingGlassIcon className="w-6 font-bold" />
+        <MagnifyingGlassIcon className="w-6 font-bold" onClick={()=>setSearchVal(!searchVal)}/>
+        {searchVal ? <SearchDiv/>:<></>}
         <BellIcon className="w-6 font-bold" />
         <Image
           src={"/svgs/avatar.svg"}
