@@ -1,6 +1,5 @@
 import MainAppLayout from "@/components/layouts/MainAppLayout";
 import React from "react";
-import MantineTimeline from "./mantine-timeline";
 import ChronoTimeline from "./chrono-timeline";
 
 const TimelinePage = () => {

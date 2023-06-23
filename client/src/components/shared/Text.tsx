@@ -9,12 +9,15 @@ export interface TextProps extends React.HTMLAttributes<HTMLSpanElement> {
  * @example const example = () => <Text>Example</Text>
  */
 const Text = (props: TextProps) => {
+  const noDark = props.noDark;
+  let newProps = { ...props };
+  delete newProps.noDark;
   return (
     <span
-      {...props}
-      className={`${props.className} ${props.noDark ? "" : "dark:text-white"}`}
+      {...newProps}
+      className={`${newProps.className} ${noDark ? "" : "dark:text-white"}`}
     >
-      {props.children}
+      {newProps.children}
     </span>
   );
 };

@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import "./globals.css";
 import Providers from "./providers";
+import { NavigationEvents } from "@/components/routing/navigation-events";
+import { Suspense } from "react";
 
 // export const poppins = Poppins({
 //   weight: ["400", "500", "600", "700", "800"],
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  modal
+  modal,
 }: {
   children: React.ReactNode;
   modal: React.ReactNode;
@@ -30,11 +32,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="shortcut icon" href="rael.svg" type="image/x-icon" />
+        <link rel="shortcut icon" href="logo.svg" type="image/x-icon" />
       </head>
       <body className={""}>
         <Providers>{children}</Providers>
         {modal}
+        <Suspense fallback={null}>
+          <NavigationEvents />
+        </Suspense>
       </body>
     </html>
   );

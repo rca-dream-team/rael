@@ -1,6 +1,7 @@
 "use client";
 import React, { useContext } from "react";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
+import { usePathname } from "next/navigation";
 
 interface AppContextProps {
   toggleTheme?: () => void;
@@ -19,9 +20,13 @@ export const useApp = () => useContext(AppContext);
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [isDarkTheme, setIsDarkTheme] = React.useState<boolean | null>(null);
+  const pathname = usePathname();
 
   const toggleTheme = () => {
     setIsDarkTheme(!isDarkTheme);
+    // if (pathname?.includes("/timeline")) {
+    //   window.location.reload();
+    // }
   };
 
   React.useEffect(() => {
@@ -37,21 +42,21 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   }, [isDarkTheme]);
 
   // set theme saved in local storage
-  // React.useEffect(() => {
-  //   const theme = window.localStorage.getItem("theme");
-  //   console.log("theme", theme);
+  React.useEffect(() => {
+    const theme = window.localStorage.getItem("theme");
+    console.log("theme", theme);
 
-  //   if (theme === "dark") {
-  //     console.log("isDark saved");
-  //     setIsDarkTheme(true);
-  //   } else if (theme === "light") {
-  //     console.log("light saved");
-  //     setIsDarkTheme(false);
-  //   } else {
-  //     console.log("syatem");
-  //     setIsDarkTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
-  //   }
-  // }, []);
+    if (theme === "dark") {
+      console.log("isDark saved");
+      setIsDarkTheme(true);
+    } else if (theme === "light") {
+      console.log("light saved");
+      setIsDarkTheme(false);
+    } else {
+      console.log("syatem");
+      setIsDarkTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    }
+  }, []);
 
   return (
     <AppContext.Provider value={{ toggleTheme, isDarkTheme }}>
@@ -63,12 +68,13 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
           left: 20,
           cursor: "pointer",
         }}
-        className=" w-16 absolute  rounded-full items-center justify-center flex p-2"
+        onClick={toggleTheme}
+        className=" dark:text-white absolute  rounded-full items-center justify-center flex"
       >
         {!isDarkTheme ? (
-          <SunIcon className="w-11 dark:text-white" onClick={toggleTheme} />
+          <SunIcon className="w-11 dark:text-white" />
         ) : (
-          <MoonIcon className="w-11 dark:text-white" onClick={toggleTheme} />
+          <MoonIcon className="w-11 dark:text-white" />
         )}
       </div>
       {children}

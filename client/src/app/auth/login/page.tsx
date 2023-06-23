@@ -1,8 +1,16 @@
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import React from "react";
 
 const LoginPage = () => {
+  async function handleSubmit() {
+    "use server";
+    cookies().set("token", "1234");
+    redirect("/");
+  }
   return (
     <form
+      action={handleSubmit}
       className={" flex-col w-full flex items-center gap-y-8 font-poppins "}
     >
       <input

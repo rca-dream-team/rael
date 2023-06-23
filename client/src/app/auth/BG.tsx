@@ -27,7 +27,7 @@ const BG = () => {
         rx="140.5"
         ry="118.5"
         fill="#D9D9D9"
-        fill-opacity="0.11"
+        fillOpacity="0.11"
       />
       <ellipse
         cx="59.5"
@@ -35,7 +35,7 @@ const BG = () => {
         rx="99.5"
         ry="80.5"
         fill="#D9D9D9"
-        fill-opacity="0.11"
+        fillOpacity="0.11"
       />
       <ellipse
         cx="498.5"
@@ -43,7 +43,7 @@ const BG = () => {
         rx="99.5"
         ry="80.5"
         fill="#D9D9D9"
-        fill-opacity="0.11"
+        fillOpacity="0.11"
       />
       <ellipse
         cx="521.5"
@@ -51,7 +51,7 @@ const BG = () => {
         rx="87.5"
         ry="80.5"
         fill="#D9D9D9"
-        fill-opacity="0.11"
+        fillOpacity="0.11"
       />
       <ellipse
         cx="35.5"
@@ -59,7 +59,7 @@ const BG = () => {
         rx="140.5"
         ry="118.5"
         fill="#D9D9D9"
-        fill-opacity="0.11"
+        fillOpacity="0.11"
       />
     </svg>
   );
