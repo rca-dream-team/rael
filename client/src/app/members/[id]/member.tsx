@@ -2,6 +2,12 @@ import PText from "@/components/shared/PoppinText";
 import RText from "@/components/shared/RighteousText";
 import React from "react";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Nick Singizwa - Overview",
+  description: 'Get to know Nick\'s Achievements in RCA'
+}
 
 export interface MemberProps {
   data: {
@@ -17,7 +23,7 @@ export interface MemberProps {
 const Member = ({ data }: MemberProps) => {
   return (
     <div className="max-w-[1000px] w-full rounded-xl bg-white dark:bg-black gap-y-11 px-11 flex-col flex">
-      <div className="flex items-center justify-center">
+      <div className="flex py-2 items-center justify-center">
         <Image
           src={data?.image ?? "/images/member.png"}
           height={300}
@@ -38,7 +44,7 @@ const Member = ({ data }: MemberProps) => {
           <Image
             src={`/images/mem${i + 1}.png`}
             alt="Alt"
-            className=" w-full object-cover h-full"
+            className=" min-w-full rounded-xl overflow-hidden object-cover h-full"
             key={i}
             width={300}
             height={300}

@@ -10,6 +10,16 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar{
+  width: 3px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: gray;
+  border-radius: 5px;
+}
+
 .font-poppins {
   font-family: 'Poppins', sans-serif;
 }
