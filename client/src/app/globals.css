@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Righteous&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Righteous', cursive;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-righteous {
+  font-family: 'Righteous', cursive;
+}
+
+.stylbtn {
+  position: relative;
+  overflow: hidden;
+}
+
+.stylbtn::after {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: -3px;
+  width: 0%;
+  /* height: 100%; */
+  bottom: -3px;
+  background-color: #fff;
+  transition: all 0.5s ease;
+  z-index: 0;
+}
+
+.stylbtn:hover:after {
+  width: 120%;
+  z-index: 0;
+}
+
+.stylbtn:hover {
+  color: black;
+}
+
+.card-description {
+  margin: 0 !important;
+  padding: 0.4em 0.6em !important;
+}
