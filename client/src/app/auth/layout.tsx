@@ -23,6 +23,13 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
     <div className="flex overflow-hidden w-full bg-white max-h-screen">
       <div className="w-[45%] relative flex bg-black h-screen object-cover">
         <BG />
+        {/* <Image
+          src={"/svgs/auth-bg.svg"}
+          height={800}
+          width={800}
+          className=" object-cover min-h-screen min-w-fit"
+          alt=""
+        /> */}
         <div className=" absolute right-0 flex flex-col bg-white trun -translate-y-[50%] top-[50%]">
           <div className=" absolute left-0 w-1/2 h-full bg-black "></div>
           <div
