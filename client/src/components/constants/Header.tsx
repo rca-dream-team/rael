@@ -54,7 +54,7 @@ const Header = () => {
                 Settings
               </Link>
               <Link
-                href={"#"}
+                href={"/auth/logout"}
                 className="text-sm font-poppins p-2 hover:text-white hover:bg-gray-600 font-bold"
               >
                 Logout
