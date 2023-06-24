@@ -79,3 +79,17 @@ input[type='checkbox']:checked::before {
   margin: 0 !important;
   padding: 0.4em 0.6em !important;
 }
+
+/* timeline buttons */
+.rc-controls li button {
+  color: black !important;
+  background-color: #fff !important;
+}
+
+.rc-controls {
+  background: #64616164 !important;
+}
+
+:is(.dark .timeline-vertical-circle .active) {
+  background: black !important;
+}

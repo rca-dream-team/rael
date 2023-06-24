@@ -16,7 +16,7 @@ const Header = () => {
   };
 
   return (
-    <div className="flex w-full dark:border-slate-500 items-center justify-between border-b-2 py-6">
+    <div className="flex w-full dark:border-slate-900 items-center justify-between border-b-2 py-6">
       <div className=""></div>
       {/* <Image src={"/logo.svg"} height={40} width={100} alt="rael" /> */}
       <RAELIcon size={100} />
