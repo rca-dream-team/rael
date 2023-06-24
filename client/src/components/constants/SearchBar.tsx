@@ -21,7 +21,7 @@ const SearchBar = ({ setSearchVal }: { setSearchVal: any }) => {
       value={search}
       onChange={handleSearch}
       id=""
-      className="relative w-full min-w-[200px] bg-transparent border-b border-gray-500 outline-none font-poppins text-sm text-gray-300"
+      className="relative w-full min-w-[200px] bg-gray-100  border-b border-gray-500 outline-none font-poppins text-sm text-gray-600"
     />
   );
 };

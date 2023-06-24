@@ -21,7 +21,7 @@ const Header = () => {
       {/* <Image src={"/logo.svg"} height={40} width={100} alt="rael" /> */}
       <RAELIcon size={100} />
       <div className="flex gap-x-3 relative items-center">
-        <div className="flex items-center absolute right-20 gap-x-3">
+        <div className="flex items-center absolute mr-4 right-20 gap-x-3">
           <MagnifyingGlassIcon
             className="w-6 font-bold cursor-pointer"
             onClick={handleShowSearch}
