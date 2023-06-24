@@ -3,11 +3,22 @@ import RText from "@/components/shared/RighteousText";
 import React from "react";
 import Image from "next/image";
 import { Metadata } from "next";
+import { MdMail } from "react-icons/md";
+import { FaLink } from "react-icons/fa";
+import {
+  IoLogoBehance,
+  IoLogoLinkedin,
+  IoLogoGithub,
+  IoLogoInstagram,
+  IoLogoFacebook,
+  IoLink,
+} from "react-icons/io5";
+import { MailIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "Nick Singizwa - Overview",
-  description: 'Get to know Nick\'s Achievements in RCA'
-}
+  description: "Get to know Nick's Achievements in RCA",
+};
 
 export interface MemberProps {
   data: {
@@ -22,7 +33,7 @@ export interface MemberProps {
 
 const Member = ({ data }: MemberProps) => {
   return (
-    <div className="max-w-[1000px] w-full rounded-xl bg-white dark:bg-black gap-y-11 px-11 flex-col flex">
+    <div className="max-w-[1000px] pb-4 w-full rounded-xl bg-white dark:bg-black gap-y-11 px-11 flex-col flex">
       <div className="flex py-2 items-center justify-center">
         <Image
           src={data?.image ?? "/images/member.png"}
@@ -50,6 +61,16 @@ const Member = ({ data }: MemberProps) => {
             height={300}
           />
         ))}
+      </div>
+      <div className="flex w-full gap-x-4 dark:text-white items-center justify-center">
+        {/* <MdMail size={30} className=" cursor-pointer" /> */}
+        <MailIcon size={30} className="cursor-pointer" />
+        <IoLogoGithub size={30} className=" cursor-pointer" />
+        <IoLogoLinkedin size={30} className=" cursor-pointer" />
+        <IoLogoBehance size={30} className=" cursor-pointer" />
+        <IoLogoInstagram size={30} className=" cursor-pointer" />
+        <IoLogoFacebook size={30} className=" cursor-pointer" />
+        <FaLink size={25} className=" cursor-pointer" />
       </div>
     </div>
   );
