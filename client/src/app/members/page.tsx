@@ -5,8 +5,8 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "RCA Members - RAEL"
-}
+  title: "RCA Members - RAEL",
+};
 
 const MembersPage = async () => {
   return (
@@ -18,7 +18,7 @@ const MembersPage = async () => {
             <Link
               key={i}
               href={`/members/${i + 1}`}
-              className="bg-gray-100 mx-auto max-w-[300px] w-full dark:bg-slate-950 h-fit rounded-xl border border-slate-600 p-2 text-center"
+              className="bg-gray-100 mx-auto max-w-[300px] w-full dark:bg-slate-950/90 h-fit rounded-xl border border-slate-300 dark:border-slate-900/50 p-2 text-center"
             >
               <Image
                 src={"/images/mem3.png"}

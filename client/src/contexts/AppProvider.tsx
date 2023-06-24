@@ -63,13 +63,14 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
       <div
         style={{
           width: 20,
-          position: "absolute",
+          position: "fixed",
           bottom: 20,
           left: 20,
           cursor: "pointer",
+          // zIndex: 50,
         }}
         onClick={toggleTheme}
-        className=" dark:text-white absolute  rounded-full items-center justify-center flex"
+        className=" dark:text-white fixed rounded-full items-center justify-center flex"
       >
         {!isDarkTheme ? (
           <SunIcon className="w-11 dark:text-white" />
