@@ -30,14 +30,8 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
           className=" object-cover min-h-screen min-w-fit"
           alt=""
         /> */}
-        <div className=" absolute right-0 flex flex-col bg-white trun -translate-y-[50%] top-[50%]">
-          <div className=" absolute left-0 w-1/2 h-full bg-black "></div>
-          <div
-            className={`px-11 z-10 py-5 bg-black ${
-              isLogin ? "rounded-br-[3em]" : ""
-            }`}
-          ></div>
-          <Link
+        <div className=" absolute right-0 flex flex-col bg-white trun-translate-y-[50%] top-[50%]">
+<Link
             href="/auth/login"
             className={` z-10 px-11 text- py-5 ${
               !isLogin
