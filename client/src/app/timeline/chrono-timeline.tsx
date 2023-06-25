@@ -30,13 +30,13 @@ const ChronoTimeline = () => {
 
   useEffect(() => {
     setLoading(true);
-    const timout = setTimeout(() => {
+    const timeout = setTimeout(() => {
       setLoading(false);
     }, 1000);
 
     return () => {
       setLoading(false);
-      clearTimeout(timout);
+      clearTimeout(timeout);
     };
   }, [isDarkTheme]);
 
