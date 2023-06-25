@@ -5,8 +5,9 @@ import { BellIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { RAELIcon } from "../shared/icons";
 import { useState } from "react";
 import SearchBar from "./SearchBar";
-import { Popover } from "@mantine/core";
+import { Popover, Progress } from "@mantine/core";
 import Link from "next/link";
+import ProgressBar from "../routing/ProgressBar";
 
 const Header = () => {
   const [searchVal, setSearchVal] = useState(false);
@@ -18,7 +19,6 @@ const Header = () => {
   return (
     <div className="flex w-full dark:border-slate-900/50 items-center justify-between border-b-2 py-6">
       <div className=""></div>
-      {/* <Image src={"/logo.svg"} height={40} width={100} alt="rael" /> */}
       <RAELIcon size={100} />
       <div className="flex gap-x-3 relative items-center">
         <div className="flex items-center absolute right-20 gap-x-3">

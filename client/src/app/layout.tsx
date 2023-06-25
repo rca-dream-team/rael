@@ -3,6 +3,7 @@ import "./globals.css";
 import Providers from "./providers";
 import { NavigationEvents } from "@/components/routing/navigation-events";
 import { Suspense } from "react";
+import ProgressBar from "@/components/routing/ProgressBar";
 
 // export const poppins = Poppins({
 //   weight: ["400", "500", "600", "700", "800"],
@@ -37,7 +38,7 @@ export default function RootLayout({
       <body className={""}>
         <Providers>{children}</Providers>
         {modal}
-        <Suspense fallback={null}>
+        <Suspense fallback={<ProgressBar />}>
           <NavigationEvents />
         </Suspense>
       </body>
