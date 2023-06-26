@@ -36,10 +36,10 @@ export default function RootLayout({
         <link rel="shortcut icon" href="logo.svg" type="image/x-icon" />
       </head>
       <body className={""}>
-        <Providers>{children}</Providers>
-        {modal}
         <Suspense fallback={<ProgressBar />}>
-          <NavigationEvents />
+          <Providers>{children}</Providers>
+          {modal}
+          {/* <NavigationEvents /> */}
         </Suspense>
       </body>
     </html>

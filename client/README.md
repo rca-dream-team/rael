@@ -30,6 +30,9 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 - Use `tailwindcss` for styling. You can use `className` prop to add classes to components.
 - Add `dark` class to the specific component to make it dark. This will be used to toggle between light and dark mode.
 
+## TODO
+- Using `BBCode` to parse posts text.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

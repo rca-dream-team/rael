@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 
 const ProgressBar = () => {
   const [value, setValue] = useState(0);
+  const isDark = localStorage.getItem("theme") === "dark";
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -19,7 +20,7 @@ const ProgressBar = () => {
       value={value}
       variant="indeterminate"
       h={3}
-      color="black"
+      color={isDark ? "white" : "black"}
       w={"100%"}
     />
   );
