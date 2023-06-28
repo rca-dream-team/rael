@@ -20,7 +20,7 @@ const ProgressBar = () => {
       value={value}
       variant="indeterminate"
       h={3}
-      color={isDark ? "white" : "black"}
+      color={"black"}
       w={"100%"}
     />
   );

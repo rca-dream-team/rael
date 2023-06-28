@@ -15,7 +15,7 @@ export const CTextInput = (props: TextInputProps) => {
         ".mantine-Input-input": {
           ":focus": { border: "2px solid #000 !important" },
           padding: (props.sx as any)?.padding ?? "1.5em 0.6em !important",
-          fontWeight: "normal",
+          fontWeight: "500",
           borderRadius: (props.sx as any)?.borderRadius ?? "0.7em",
           width: "100%",
           fontSize: (props.sx as any)?.fontSize ?? "1em",
@@ -36,13 +36,13 @@ export const CPasswordInput = (props: TextInputProps) => {
         ".mantine-Input-input": {
           ":focus": { border: "2px solid #000 !important" },
           padding: (props.sx as any)?.padding ?? "1.5em 0.6em !important",
-          fontWeight: "normal",
+          fontWeight: "500",
           borderRadius: (props.sx as any)?.borderRadius ?? "0.7em",
           width: "100%",
           fontSize: (props.sx as any)?.fontSize ?? "1em",
           border: "2px solid #78716c",
         },
-        "mantine-PasswordInput-innerInput": {
+        ".mantine-PasswordInput-innerInput": {
           height: "100%",
         },
         width: "100%",

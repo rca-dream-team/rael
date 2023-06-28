@@ -20,7 +20,7 @@ export default function LoginForm() {
           ? null
           : "A password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 number",
     },
-    validateInputOnChange: true,
+    validateInputOnBlur: true,
   });
 
   const handleSubmit = () => {

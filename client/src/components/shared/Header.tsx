@@ -7,7 +7,6 @@ import { useState } from "react";
 import SearchBar from "./SearchBar";
 import { Popover, Progress } from "@mantine/core";
 import Link from "next/link";
-import ProgressBar from "../routing/ProgressBar";
 
 const Header = () => {
   const [searchVal, setSearchVal] = useState(false);
@@ -21,7 +20,11 @@ const Header = () => {
       <div className=""></div>
       <RAELIcon size={100} />
       <div className="flex gap-x-3 relative items-center">
-        <div className="flex items-center absolute mr-4 right-20 gap-x-3">
+        <div
+          className={`flex items-center absolute mr-4 right-20 gap-x-3 ${
+            searchVal ? "flex-row-reverse" : ""
+          }`}
+        >
           <MagnifyingGlassIcon
             className="w-6 font-bold cursor-pointer"
             onClick={handleShowSearch}
