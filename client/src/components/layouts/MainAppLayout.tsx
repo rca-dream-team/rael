@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../constants/Header";
-import NavBar from "../constants/NavBar";
+import Header from "../shared/Header";
+import NavBar from "../shared/NavBar";
 
 interface MainAppLayoutProps {
   children: React.ReactNode;

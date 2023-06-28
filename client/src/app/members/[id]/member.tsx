@@ -1,5 +1,5 @@
-import PText from "@/components/shared/PoppinText";
-import RText from "@/components/shared/RighteousText";
+import PText from "@/components/constants/PoppinText";
+import RText from "@/components/constants/RighteousText";
 import React from "react";
 import Image from "next/image";
 import { Metadata } from "next";

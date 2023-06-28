@@ -1,5 +1,5 @@
 import Member, { MemberProps } from "@/app/members/[id]/member";
-import Modal from "@/components/constants/Modal";
+import Modal from "@/components/shared/Modal";
 import { Metadata } from "next";
 
 interface MemberModalPageProps {
@@ -9,8 +9,8 @@ interface MemberModalPageProps {
 }
 
 export const metadata: Metadata = {
-  title: "Nick Singizwa - Overview"
-}
+  title: "Nick Singizwa - Overview",
+};
 
 export default async function MemberModal({ params }: MemberModalPageProps) {
   const id = params?.id;

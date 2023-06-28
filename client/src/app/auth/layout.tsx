@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import BG from "./BG";
+import BG from "../../components/constants/BG";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import Footer from "@/components/constants/Footer";
+import Footer from "@/components/shared/Footer";
 import Image from "next/image";
-import PText from "@/components/shared/PoppinText";
+import PText from "@/components/constants/PoppinText";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   const [isLogin, setIsLogin] = React.useState(true);

@@ -2,14 +2,18 @@
 import React, { useContext } from "react";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
+import ProgressBar from "@/components/routing/ProgressBar";
 
 interface AppContextProps {
   toggleTheme?: () => void;
   isDarkTheme?: boolean | null;
+  showProgressBar?: boolean;
+  setShowProgressBar: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const appContextDefaultValues: AppContextProps = {
   toggleTheme: () => {},
+  setShowProgressBar: () => {},
 };
 
 const AppContext = React.createContext<AppContextProps>(
@@ -20,6 +24,7 @@ export const useApp = () => useContext(AppContext);
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [isDarkTheme, setIsDarkTheme] = React.useState<boolean | null>(null);
+  const [showProgressBar, setShowProgressBar] = React.useState(false);
   const pathname = usePathname();
 
   const toggleTheme = () => {
@@ -59,7 +64,10 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <AppContext.Provider value={{ toggleTheme, isDarkTheme }}>
+    <AppContext.Provider
+      value={{ toggleTheme, isDarkTheme, setShowProgressBar, showProgressBar }}
+    >
+      {showProgressBar && <ProgressBar />}
       <div
         style={{
           width: 20,
