@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import ProgressBar from "@/components/routing/ProgressBar";
+import { NProvider } from "next13-progressbar";
 
 interface AppContextProps {
   toggleTheme?: () => void;
@@ -86,7 +87,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
           <MoonIcon className="w-11 dark:text-white" />
         )}
       </div>
-      {children}
+      <NProvider color={isDarkTheme ? "#fff" : "#000"}>{children}</NProvider>
     </AppContext.Provider>
   );
 };

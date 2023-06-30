@@ -3,7 +3,7 @@
     "next/core-web-vitals",
     "eslint:recommended",
     "next",
-    "prettier",
+    "prettier:recommended",
     "eslint:recommended"
   ],
   "rules": {

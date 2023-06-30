@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import CLink from "../routing/CLink";
 
 const links = [
   // {
@@ -37,15 +36,9 @@ const NavBar = () => {
   return (
     <div className="flex flex-col w-full overflow-x-auto sticky top-0 sm:items-center">
       <div className=" border-2 bg-white dark:bg-black dark:border-slate-900/90 overflow-hidden flex items-center rounded-[2em] max-w-[800px] w-fit">
-        {/* <Link
-        href={"#"}
-        className="py-3 w-36 flex justify-center items-center bg-black rounded-[3em] text-white"
-      >
-        RCA DAILY
-      </Link> */}
         {links.map((link) => {
           return (
-            <CLink
+            <Link
               // @ts-ignore
               href={link.href[0]}
               key={link.name}
@@ -56,7 +49,7 @@ const NavBar = () => {
               }`}
             >
               {link.name}
-            </CLink>
+            </Link>
           );
         })}
       </div>
