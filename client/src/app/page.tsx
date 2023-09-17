@@ -1,5 +1,8 @@
-import RcaDailyPage from "./rca-daily/page";
+import RcaDailyPage from './rca-daily/page';
 
 export default function Home() {
-  return <RcaDailyPage />;
+   return <RcaDailyPage />;
 }
+
+Home.title = 'homepage';
+Home.key = 'key';
