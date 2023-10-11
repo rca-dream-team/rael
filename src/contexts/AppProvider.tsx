@@ -2,19 +2,15 @@
 import React, { useContext } from 'react';
 import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 import { usePathname } from 'next/navigation';
-import ProgressBar from '@/components/routing/ProgressBar';
 import { Next13ProgressBar } from 'next13-progressbar';
 
 interface AppContextProps {
    toggleTheme?: () => void;
    isDarkTheme?: boolean | null;
-   showProgressBar?: boolean;
-   setShowProgressBar: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const appContextDefaultValues: AppContextProps = {
    toggleTheme: () => {},
-   setShowProgressBar: () => {},
 };
 
 const AppContext = React.createContext<AppContextProps>(appContextDefaultValues);
@@ -23,11 +19,16 @@ export const useApp = () => useContext(AppContext);
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
    const [isDarkTheme, setIsDarkTheme] = React.useState<boolean | null>(null);
-   const [showProgressBar, setShowProgressBar] = React.useState(false);
-   const pathname = usePathname();
+
+   const setIsDarkThemeAsync = () => {
+      setIsDarkTheme(null);
+      setTimeout(() => {
+         setIsDarkTheme(!isDarkTheme)
+      }, 500);
+   }
 
    const toggleTheme = () => {
-      setIsDarkTheme(!isDarkTheme);
+      setIsDarkThemeAsync();
       // if (pathname?.includes("/timeline")) {
       //   window.location.reload();
       // }
@@ -63,8 +64,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
    }, []);
 
    return (
-      <AppContext.Provider value={{ toggleTheme, isDarkTheme, setShowProgressBar, showProgressBar }}>
-         {showProgressBar && <ProgressBar />}
+      <AppContext.Provider value={{ toggleTheme, isDarkTheme }}>
          <div
             style={{
                width: 20,
@@ -80,7 +80,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
             {!isDarkTheme ? <SunIcon className="w-11 dark:text-white" /> : <MoonIcon className="w-11 dark:text-white" />}
          </div>
          {children}
-         <Next13ProgressBar color={isDarkTheme ? '#fff' : '#000'} />
+         {isDarkTheme !== null && <Next13ProgressBar color={isDarkTheme ? '#fff' : '#000'} />}
       </AppContext.Provider>
    );
 };
