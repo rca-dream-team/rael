@@ -6,8 +6,8 @@ export default defineType({
    type: 'document',
    fields: [
       defineField({
-         name: 'name',
-         title: 'Name',
+         name: 'names',
+         title: 'Names',
          type: 'string',
          validation: (Rule) => Rule.required(),
       }),
@@ -28,15 +28,7 @@ export default defineType({
       defineField({
          name: 'bio',
          title: 'Bio',
-         type: 'array',
-         of: [
-            {
-               title: 'Block',
-               type: 'block',
-               styles: [{ title: 'Normal', value: 'normal' }],
-               lists: [],
-            },
-         ],
+         type: 'string',
       }),
       defineField({
          name: 'class',
@@ -84,7 +76,7 @@ export default defineType({
    ],
    preview: {
       select: {
-         title: 'name',
+         title: 'names',
          media: 'picture',
       },
    },
