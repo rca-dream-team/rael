@@ -1,4 +1,4 @@
-import { sanityClient } from '@/sanity/sanity.client';
+import { sanityClient } from '../../sanity.client';
 import { groq } from 'next-sanity';
 import { ValidationContext, defineField, defineType } from 'sanity';
 

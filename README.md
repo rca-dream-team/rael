@@ -25,7 +25,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ### Components
 - Use `Text` component for all text. `RText` is a wrapper around `Text` that sets the font to Righteous. `PText` is a wrapper around `Text` that sets the font to Poppins.
-- Use `CLink` component for all links. `CLink` is a wrapper around `Link` that allows to navigate with progress bar.
+
 
 ### Styling
 - Use `tailwindcss` for styling. You can use `className` prop to add classes to components.
