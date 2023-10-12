@@ -1,12 +1,13 @@
 import { Metadata } from 'next';
 import './globals.css';
 import Providers from './providers';
+import { Righteous } from 'next/font/google';
 
 // export const poppins = Poppins({
 //   weight: ["400", "500", "600", "700", "800"],
 //   subsets: ["latin"],
 // });
-// export const righteous = Righteous({ weight: ["400"], subsets: ["latin"] });
+export const righteous = Righteous({ weight: ['400'], subsets: ['latin'] });
 
 export const metadata: Metadata = {
    title: 'RAEL',
@@ -29,7 +30,7 @@ export default function RootLayout(props: { children: React.ReactNode; modal: Re
          <head>
             <link rel="shortcut icon" href="logo.svg" type="image/x-icon" />
          </head>
-         <body className={''}>
+         <body className={righteous.className}>
             <Providers>
                {children}
                {modal}

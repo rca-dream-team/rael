@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write ./src/**/*.{js,jsx,ts,tsx}"
+    "format": "prettier --write ./src/**/*.{js,jsx,ts,tsx}",
+    "deploy": "next build && next export && touch out/.nojekyll && gh-pages -d out",
+    "deploy-sanity": "sanity deploy"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -17,6 +19,7 @@
     "@mantine/form": "^6.0.15",
     "@mantine/hooks": "^6.0.13",
     "@mantine/next": "^6.0.13",
+    "@mantine/notifications": "^6.0.13",
     "@sanity/vision": "^3.18.0",
     "cookies-next": "^2.1.2",
     "csvtojson": "^2.0.10",

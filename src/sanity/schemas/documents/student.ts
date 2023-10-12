@@ -1,4 +1,27 @@
-import { defineField, defineType } from 'sanity';
+import { sanityClient } from '@/sanity/sanity.client';
+import { groq } from 'next-sanity';
+import { ValidationContext, defineField, defineType } from 'sanity';
+
+const isUniqueColour = (student: any, context: ValidationContext) => {
+   const { document } = context;
+
+   const id = document?._id.replace(/^drafts\./, '');
+
+   const params = {
+      draft: `drafts.${id}`,
+      published: id,
+      student,
+   };
+
+   /* groq */
+   const query = groq`!defined(*[
+     _type == 'student' &&
+     !(_id in [$draft, $published]) &&
+     email == $student
+   ][0]._id)`;
+
+   return sanityClient.fetch(query, params);
+};
 
 export default defineType({
    name: 'student',
@@ -15,7 +38,13 @@ export default defineType({
          name: 'email',
          title: 'Email',
          type: 'email',
-         validation: (Rule) => Rule.required(),
+         validation: (Rule) =>
+            Rule.required().custom(async (value, context) => {
+               const isUnique = await isUniqueColour(value, context);
+               if (!isUnique) return 'Email is owned by other student.';
+               return true;
+            }),
+         description: "Student email should not be duplicated. I can't be assigned to more than 1 student",
       },
       defineField({
          name: 'picture',
@@ -26,16 +55,21 @@ export default defineType({
          },
       }),
       defineField({
+         name: 'pictureUrls',
+         title: 'Picture URLs',
+         type: 'array',
+         of: [{ type: 'url' }],
+      }),
+      defineField({
          name: 'bio',
          title: 'Bio',
          type: 'string',
       }),
       defineField({
-         name: 'class',
-         title: 'Class',
+         name: 'classes',
+         title: 'Classes',
          type: 'reference',
          to: [{ type: 'class' }],
-         validation: (Rule) => Rule.required(),
       }),
       defineField({
          name: 'promotion',
