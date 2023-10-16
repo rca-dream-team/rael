@@ -22,11 +22,7 @@ const Member = ({ member }: MemberProps) => {
                   <RText className=" text-xl uppercase">{member.names}</RText>
                   <PText className=" font-medium uppercase">{member.leaderTitle}</PText>
                </div>
-               <PText className=" text-sm">
-                  {member?.occupation?.map((ocu) => (
-                     <span>{ocu}</span>
-                  ))}
-               </PText>
+               <PText className=" text-sm">{member?.occupation?.map((ocu) => <span key={ocu}>{ocu}</span>)}</PText>
             </div>
          </div>
          <PText className="text-sm">{member?.bio}</PText>

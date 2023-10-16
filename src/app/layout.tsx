@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import './globals.css';
 import Providers from './providers';
 import { Righteous } from 'next/font/google';
+import React from 'react';
 
 // export const poppins = Poppins({
 //   weight: ["400", "500", "600", "700", "800"],

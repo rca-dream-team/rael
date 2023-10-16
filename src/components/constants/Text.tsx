@@ -1,5 +1,7 @@
+import React from 'react';
+
 export interface TextProps extends React.HTMLAttributes<HTMLSpanElement> {
-  noDark?: boolean;
+   noDark?: boolean;
 }
 /**
  * @name Text
@@ -9,17 +11,14 @@ export interface TextProps extends React.HTMLAttributes<HTMLSpanElement> {
  * @example const example = () => <Text>Example</Text>
  */
 const Text = (props: TextProps) => {
-  const noDark = props.noDark;
-  let newProps = { ...props };
-  delete newProps.noDark;
-  return (
-    <span
-      {...newProps}
-      className={`${newProps.className} ${noDark ? "" : "dark:text-white"}`}
-    >
-      {newProps.children}
-    </span>
-  );
+   const noDark = props.noDark;
+   let newProps = { ...props };
+   delete newProps.noDark;
+   return (
+      <span {...newProps} className={`${newProps.className} ${noDark ? '' : 'dark:text-white'}`}>
+         {newProps.children}
+      </span>
+   );
 };
 
 export default Text;

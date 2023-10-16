@@ -23,9 +23,9 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
    const setIsDarkThemeAsync = () => {
       setIsDarkTheme(null);
       setTimeout(() => {
-         setIsDarkTheme(!isDarkTheme)
+         setIsDarkTheme(!isDarkTheme);
       }, 500);
-   }
+   };
 
    const toggleTheme = () => {
       setIsDarkThemeAsync();

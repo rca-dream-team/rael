@@ -1,10 +1,8 @@
-import ProgressBar from '@/components/routing/ProgressBar'
-import React from 'react'
+import ProgressBar from '@/components/routing/ProgressBar';
+import React from 'react';
 
 const Loading = () => {
-  return (
-    <ProgressBar />
-  )
-}
+   return <ProgressBar />;
+};
 
-export default Loading
+export default Loading;

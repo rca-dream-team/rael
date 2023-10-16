@@ -1,40 +1,26 @@
 {
-  "extends": [
-    // "next/core-web-vitals",
-    "eslint:recommended",
-    "next",
-    "prettier:recommended",
-    "eslint:recommended"
-  ],
-  "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto",
-        "singleQuote": true,
-        "trailingComma": "all",
-        "tabWidth": 3,
-        "semi": true,
-        "printWidth": 130,
-        "bracketSpacing": true
-      }
-    ]
-  },
-  "overrides": [
-    {
-      "files": [
-        "src/**/*.ts",
-        "src/**/*.tsx"
+   "extends": ["next/core-web-vitals", "eslint:recommended", "next", "plugin:prettier/recommended"],
+   "rules": {
+      "prettier/prettier": [
+         "error",
+         {
+            "endOfLine": "auto",
+            "singleQuote": true,
+            "trailingComma": "all",
+            "tabWidth": 3,
+            "semi": true,
+            "printWidth": 130,
+            "bracketSpacing": true
+         }
       ],
-      "excludedFiles": [
-        "*.js",
-        "*.jsx",
-        "*.json",
-        "*.config.js"
-      ]
-    }
-  ],
-  "ignorePatterns": [
-    "./src/cms/**/*"
-  ]
+      "no-unused-vars":"warn",
+      "no-useless-escape":"warn"
+   },
+   "overrides": [
+      {
+         "files": ["src/**/*.ts", "src/**/*.tsx"],
+         "excludedFiles": ["*.js", "*.jsx", "*.json", "*.config.js"]
+      }
+   ],
+   "ignorePatterns": ["./src/cms/**/*"]
 }
