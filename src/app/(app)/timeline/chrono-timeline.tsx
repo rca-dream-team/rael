@@ -23,7 +23,6 @@ const ChronoTimeline = () => {
          //   },
       },
    ];
-   const router = useRouter();
 
    useEffect(() => {
       setLoading(true);
