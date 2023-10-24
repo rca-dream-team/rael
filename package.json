@@ -23,6 +23,7 @@
       "@sanity/vision": "^3.18.0",
       "cookies-next": "^2.1.2",
       "csvtojson": "^2.0.10",
+      "dayjs": "^1.11.10",
       "eslint": "^8.43.0",
       "i18next": "^23.1.0",
       "next": "latest",

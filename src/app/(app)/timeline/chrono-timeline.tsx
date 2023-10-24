@@ -1,28 +1,36 @@
 'use client';
 import { useApp } from '@/contexts/AppProvider';
-import { useRouter } from 'next/navigation';
-import React, { useEffect } from 'react';
+import { Timeline } from '@/types/timeline.type';
+import dayjs from 'dayjs';
+import React, { FC, useEffect } from 'react';
 import { Chrono } from 'react-chrono';
 import { TimelineItemModel } from 'react-chrono/dist/models/TimelineItemModel';
 
-const ChronoTimeline = () => {
+interface TimelineProps {
+   data: Timeline[];
+}
+
+const ChronoTimeline: FC<TimelineProps> = ({ data }) => {
    const { isDarkTheme } = useApp();
    const [loading, setLoading] = React.useState(true);
-   const items: TimelineItemModel[] = [
-      {
-         title: 'May 1940',
-         cardTitle: 'Dunkirk',
-         url: 'http://www.history.com',
-         cardSubtitle: 'Men of the British Expeditionary Force (BEF) wade out to..',
-         cardDetailedText: 'Men of the British Expeditionary Force (BEF) wade out to..',
-         //   media: {
-         //     type: "IMAGE",
-         //     source: {
-         //       url: "http://someurl/image.jpg",
-         //     },
-         //   },
-      },
-   ];
+   const [timeLineData, setTimeLineData] = React.useState<TimelineItemModel[]>([]);
+
+   function mapTimelineDataToModel(data: Timeline[]): TimelineItemModel[] {
+      return data.map((item) => ({
+         title: dayjs(item.time).format('MMM D YYYY'),
+         cardTitle: item.title,
+         url: item.url,
+         cardSubtitle: item.description,
+         cardDetailedText: item.description,
+         // imageUrl: item.image.asset.url,
+         media: {
+            type: 'IMAGE',
+            source: {
+               url: item.image.asset.url,
+            },
+         },
+      }));
+   }
 
    useEffect(() => {
       setLoading(true);
@@ -36,13 +44,18 @@ const ChronoTimeline = () => {
       };
    }, [isDarkTheme]);
 
+   useEffect(() => {
+      const newTimeLine = mapTimelineDataToModel(data);
+      console.log('newTimeLine', newTimeLine);
+      setTimeLineData(newTimeLine);
+   }, [data]);
    return (
       <div className="" style={{ width: '100%', height: '75vh' }}>
          {/* {createPortal( */}
          {!loading ? (
             <Chrono
                slideShow
-               items={[...items, ...items, ...items, ...items, ...items, ...items]}
+               items={[...timeLineData, ...timeLineData, ...timeLineData]}
                mode="VERTICAL_ALTERNATING"
                theme={{
                   primary: isDarkTheme ? 'white' : 'black',
