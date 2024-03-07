@@ -50,13 +50,14 @@ const ChronoTimeline: FC<TimelineProps> = ({ data }) => {
       setTimeLineData(newTimeLine);
    }, [data]);
    return (
-      <div className="" style={{ width: '100%', height: '75vh' }}>
+      <div className="my-timeline" style={{ width: '100%', height: '85vh' }}>
          {/* {createPortal( */}
          {!loading ? (
             <Chrono
                slideShow
                items={[...timeLineData, ...timeLineData, ...timeLineData]}
                mode="VERTICAL_ALTERNATING"
+               darkMode={isDarkTheme}
                theme={{
                   primary: isDarkTheme ? 'white' : 'black',
                   secondary: isDarkTheme ? 'white' : 'black',
@@ -71,7 +72,9 @@ const ChronoTimeline: FC<TimelineProps> = ({ data }) => {
                   cardTitle: 'hidden',
                   cardSubTitle: 'timeDetail',
                   cardText: 'cardText',
+                  controls: isDarkTheme && 'my-controls',
                }}
+               // className="hidden"
             />
          ) : (
             <div className=" flex items-center dark:text-white justify-center h-full w-full">

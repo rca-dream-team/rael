@@ -14,7 +14,7 @@ export const getAllStudentsQuery = groq`
 `;
 
 export const getStudentByIdQuery = groq`
-    *[_type == 'student' && _id == $id]  {
+    *[_type == 'student' && _id == $id][0]  {
         _id,
         names,
         email,

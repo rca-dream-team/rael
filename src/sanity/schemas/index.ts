@@ -7,6 +7,10 @@ import staffRole from './documents/staffRole';
 import student from './documents/student';
 import timeline from './documents/timeline';
 import blockContent from './objects/blockContent';
+import link from './objects/link';
 import socials from './objects/socials';
 
-export const schemaTypes = [blockContent, socials, className, promotion, student, project, timeline, staff, staffRole, author];
+const objects = [blockContent, socials, link];
+const documents = [promotion, student, project, timeline, staff, staffRole, className, author];
+
+export const schemaTypes = [...objects, ...documents];

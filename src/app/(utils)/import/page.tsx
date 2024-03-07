@@ -1,9 +1,9 @@
 'use client';
-import React, { useState } from 'react';
-import csvtojson from 'csvtojson';
-import { Button, FileButton, Modal } from '@mantine/core';
 import { sanityClient } from '@/sanity/sanity.client';
+import { Button, Modal } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
+import csvtojson from 'csvtojson';
+import React, { useState } from 'react';
 
 const FileUpload = () => {
    const [file, setFile] = useState<Blob | null>(null);

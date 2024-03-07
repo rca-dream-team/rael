@@ -3,10 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* * {
-  color: black;
-} */
- 
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -78,4 +74,13 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.my-controls li button {
+  color: black;
+}
+
+.my-timeline div div ul {
+  background-color: transparent;
+  justify-content: center;
 }

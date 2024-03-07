@@ -8,42 +8,42 @@ export default defineType({
       {
          name: 'linkedIn',
          title: 'LinkedIn',
-         type: 'url',
+         type: 'link',
       },
       {
          name: 'twitter',
          title: 'Twitter',
-         type: 'url',
+         type: 'link',
       },
       {
          name: 'facebook',
          title: 'Facebook',
-         type: 'url',
+         type: 'link',
       },
       {
          name: 'instagram',
          title: 'Instagram',
-         type: 'url',
+         type: 'link',
       },
       {
          name: 'github',
          title: 'Github',
-         type: 'url',
+         type: 'link',
       },
       {
          name: 'portfolio',
          title: 'Portfolio',
-         type: 'url',
+         type: 'link',
       },
       {
          name: 'behance',
          title: 'Behance',
-         type: 'url',
+         type: 'link',
       },
       {
          name: 'dribbble',
          title: 'Dribbble',
-         type: 'url',
+         type: 'link',
       },
    ],
 });
