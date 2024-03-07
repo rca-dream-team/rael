@@ -16,7 +16,7 @@ export const metadata: Metadata = {
    },
 };
 
-export const revalidate = 15; // 15 seconds
+export const revalidate = 15;
 
 const getTimelineData = async () => {
    const data = await sanityClient.fetch(getAllTimeline);

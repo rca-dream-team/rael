@@ -42,7 +42,7 @@ const NavBar = () => {
                      // @ts-ignore
                      href={link.href[0]}
                      key={link.name}
-                     className={`2sm:py-3 cursor-pointer  py-2 whitespace-nowrap px-3 2sm:text-base text-sm rounded-[3em] 2sm:px-5 ${
+                     className={`2sm:py-3 cursor-pointer font-righteous  py-2 whitespace-nowrap px-3 2sm:text-base text-sm rounded-[3em] 2sm:px-5 ${
                         link.href.includes(path) || path.includes(link.href[0])
                            ? 'dark:bg-white dark:text-black bg-black text-white'
                            : 'dark:bg-black dark:text-white bg-white text-black'

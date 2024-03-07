@@ -11,6 +11,7 @@ import React from 'react';
 export const righteous = Righteous({ weight: ['400'], subsets: ['latin'] });
 
 export const metadata: Metadata = {
+   // metadataBase:
    title: 'RAEL',
    description: 'All you need to know about RCA and the RCA community',
    openGraph: {

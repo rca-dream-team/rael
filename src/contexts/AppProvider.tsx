@@ -65,20 +65,6 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
    return (
       <AppContext.Provider value={{ toggleTheme, isDarkTheme }}>
-         <div
-            style={{
-               width: 20,
-               position: 'fixed',
-               bottom: 20,
-               left: 20,
-               cursor: 'pointer',
-               // zIndex: 50,
-            }}
-            onClick={toggleTheme}
-            className=" dark:text-white fixed rounded-full items-center justify-center flex"
-         >
-            {!isDarkTheme ? <SunIcon className="w-11 dark:text-white" /> : <MoonIcon className="w-11 dark:text-white" />}
-         </div>
          {children}
          {isDarkTheme !== null && <Next13ProgressBar color={isDarkTheme ? '#fff' : '#000'} />}
       </AppContext.Provider>
