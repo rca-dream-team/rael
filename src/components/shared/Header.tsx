@@ -40,7 +40,7 @@ const Header = () => {
                </Popover.Target>
                <Popover.Dropdown p={0} className=" border-gray-700 overflow-hidden">
                   <div className="flex dark:bg-black flex-col">
-                     <Link href={'#'} className="text-sm font-poppins p-2 hover:text-white hover:bg-gray-600 font-bold">
+                     <Link href={'/profile'} className="text-sm font-poppins p-2 hover:text-white hover:bg-gray-600 font-bold">
                         Profile
                      </Link>
                      <Link href={'#'} className="text-sm font-poppins p-2 hover:text-white hover:bg-gray-600 font-bold">
