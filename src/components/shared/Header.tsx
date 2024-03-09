@@ -6,7 +6,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { RAELIcon } from '../constants/icons';
-import NavBar from './NavBar';
+import NavBar from './navbar';
+import NewNavbar from './navbar/new-navbar';
 
 const Header = () => {
    const [searchVal, setSearchVal] = useState(false);
@@ -17,10 +18,10 @@ const Header = () => {
    };
 
    return (
-      <header className="flex w-full dark:border-slate-900/90 items-center justify-between border-b-2 py-6">
+      <header className="flex sticky top-0 bg-white dark:bg-black w-full dark:border-slate-900/90 items-center justify-between border-b py-4">
          <RAELIcon size={100} />
          <div className="">
-            <NavBar />
+            <NewNavbar />
          </div>
          <div className="flex gap-x-3 relative items-center">
             {/* <div className={`flex items-center absolute mr-4 right-20 gap-x-3 ${searchVal ? 'flex-row-reverse' : ''}`}>

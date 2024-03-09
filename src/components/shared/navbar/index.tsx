@@ -3,26 +3,22 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-const links = [
-   // {
-   //   name: "RCA DAILY",
-   //   href: "/",
-   // },
+export const links = [
    {
-      name: 'RCA DAILY',
-      href: ['/rca-daily', '/'],
+      name: 'News Department',
+      href: ['/'],
    },
    {
-      name: 'CLASSIFIED',
-      href: ['/classified'],
-   },
-   {
-      name: 'TIMELINE',
+      name: 'Timeline',
       href: ['/timeline'],
    },
    {
-      name: 'MEMBERS',
+      name: 'Rca Family',
       href: ['/members'],
+   },
+   {
+      name: 'Gallery',
+      href: ['/gallery'],
    },
 ];
 
@@ -37,6 +33,7 @@ const NavBar = () => {
       <div className="flex flex-col w-full overflow-x-auto sticky top-0 sm:items-center">
          <div className=" border-2 bg-white dark:bg-black dark:border-slate-900/90 overflow-hidden flex items-center rounded-[2em] max-w-[800px] w-fit">
             {links.map((link) => {
+               // const
                return (
                   <Link
                      // @ts-ignore

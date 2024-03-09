@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const whitelist = ['/auth/login', '/auth/signup', '/auth/logout'];
+const whitelist = ['/auth/login', '/auth/signup', '/auth/logout', '/members'];
 
 export function middleware(request: NextRequest) {
    const token = request.cookies.get('token');
    const path = request.nextUrl.pathname;
    const isStudio = path.startsWith('/studio');
 
-   if (whitelist.includes(path) || isStudio) {
+   if (whitelist.some((whitePath) => whitePath.startsWith(path)) || isStudio) {
       return NextResponse.next();
    }
 
