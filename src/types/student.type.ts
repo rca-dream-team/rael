@@ -6,8 +6,8 @@ export interface IStudent {
    names: string;
    email: string;
    picture: null;
-   classes: null;
-   promotion: null;
+   currentClass: null;
+   promotion: string;
    leaderTitle: string;
    images: any[];
    _id: string;

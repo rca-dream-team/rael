@@ -1,35 +1,34 @@
+import { sanityClient } from '@/sanity/sanity.client';
 import { groq } from 'next-sanity';
 import { ValidationContext, defineType } from 'sanity';
-import { sanityClient } from '../../sanity.client';
 
-const isUniqueEmail = (student: any, context: ValidationContext) => {
+const isUniqueEmail = (profileRequest: any, context: ValidationContext) => {
    const { document } = context;
    const id = document?._id.replace(/^drafts\./, '');
 
    const params = {
       draft: `drafts.${id}`,
       published: id,
-      student,
+      profileRequest,
    };
 
-   /* groq */
    const query = groq`!defined(*[
-     _type == 'student' &&
-     !(_id in [$draft, $published]) &&
-     email == $student
-   ][0]._id)`;
+      _type == 'profileRequest' &&
+      !(_id in [$draft, $published]) &&
+      email == $profileRequest
+    ][0]._id)`;
 
    return sanityClient.fetch(query, params);
 };
-
+// defineField
 export default defineType({
-   name: 'student',
-   title: 'Student',
+   name: 'profileRequest',
+   title: 'Profile Request',
    type: 'document',
    groups: [
       {
-         title: 'Student Information',
-         name: 'studentInformation',
+         title: 'Main Information',
+         name: 'mainInfo',
          default: true,
       },
       {
@@ -47,11 +46,20 @@ export default defineType({
    ],
    fields: [
       {
-         name: 'names',
-         title: 'Names',
-         type: 'string',
+         name: 'requester',
+         title: 'Requester',
+         type: 'reference',
+         to: [{ type: 'student' }],
          validation: (Rule) => Rule.required(),
-         group: ['studentInformation'],
+         group: ['mainInfo'],
+      },
+      {
+         name: 'isApproved',
+         title: 'Is Approved',
+         description: 'Is the profile request approved?',
+         type: 'boolean',
+         group: ['mainInfo'],
+         initialValue: false,
       },
       {
          name: 'email',
@@ -63,8 +71,8 @@ export default defineType({
                if (!isUnique) return 'Email is owned by other student.';
                return true;
             }),
-         description: "Student email should not be duplicated. I can't be assigned to more than 1 student",
-         group: ['studentInformation'],
+         description: "Student email should not be duplicated. I can't be assigned to more than 1 student request",
+         group: ['mainInfo'],
       },
       {
          name: 'picture',
@@ -81,26 +89,13 @@ export default defineType({
          type: 'reference',
          to: [{ type: 'promotion' }],
          validation: (Rule) => Rule.required(),
-         group: ['studentInformation'],
-      },
-      {
-         name: 'pictureUrls',
-         title: 'Picture URLs',
-         type: 'array',
-         of: [{ type: 'url' }],
-         group: ['pictures'],
+         group: ['mainInfo'],
       },
       {
          name: 'bio',
          title: 'Bio',
          type: 'string',
-         group: ['studentInformation'],
-      },
-      {
-         name: 'currentClass',
-         title: 'Current Class',
-         type: 'string',
-         group: ['studentInformation'],
+         group: ['mainInfo'],
       },
       {
          name: 'occupation',
@@ -117,11 +112,10 @@ export default defineType({
          group: ['extraCurricula'],
       },
       {
-         name: 'projects',
-         title: 'Projects',
-         type: 'array',
-         of: [{ type: 'reference', to: [{ type: 'project' }] }],
-         group: ['extraCurricula'],
+         name: 'socials',
+         title: 'Socials',
+         type: 'socials',
+         group: ['socials'],
       },
       {
          name: 'images',
@@ -130,18 +124,5 @@ export default defineType({
          of: [{ type: 'image' }],
          group: ['pictures'],
       },
-      {
-         name: 'socials',
-         title: 'Socials',
-         type: 'socials',
-         group: ['socials'],
-      },
    ],
-   preview: {
-      select: {
-         title: 'names',
-         subtitle: 'promotion.name',
-         media: 'picture',
-      },
-   },
 });

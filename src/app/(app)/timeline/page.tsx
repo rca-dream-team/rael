@@ -25,7 +25,7 @@ const getTimelineData = async () => {
 
 const TimelinePage = async () => {
    const timeline = await getTimelineData();
-   console.log('timeline', timeline);
+
    return (
       <>
          {/* <MantineTimeline /> */}

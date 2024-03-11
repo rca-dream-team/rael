@@ -5,7 +5,7 @@
    "scripts": {
       "dev": "next dev",
       "build": "next build",
-      "start": "next start",
+      "start": "next start -p 2024",
       "lint": "next lint",
       "format": "prettier --write ./src",
       "deploy": "next build && next export && touch out/.nojekyll && gh-pages -d out",
@@ -21,6 +21,7 @@
       "@mantine/next": "^6.0.13",
       "@mantine/notifications": "^6.0.13",
       "@sanity/vision": "^3.32.0",
+      "axios": "^1.6.7",
       "class-variance-authority": "^0.7.0",
       "clsx": "^2.1.0",
       "cookies-next": "^2.1.2",
@@ -29,6 +30,7 @@
       "eslint": "^8.43.0",
       "framer-motion": "^11.0.8",
       "i18next": "^23.1.0",
+      "jwt-decode": "^4.0.0",
       "next": "^14.1.2",
       "next-sanity": "^8.1.5",
       "next13-progressbar": "^1.0.3",
@@ -37,6 +39,7 @@
       "react-dom": "^18.2.0",
       "react-icons": "^4.9.0",
       "sanity": "^3.32.0",
+      "sanity-plugin-media": "^2.2.5",
       "styled-components": "^6.0.8",
       "tailwind-merge": "^2.2.1",
       "tailwindcss-animate": "^1.0.7",
@@ -44,6 +47,8 @@
    },
    "devDependencies": {
       "@next/eslint-plugin-next": "^13.4.6",
+      "@prisma/client": "^5.10.2",
+      "@sanity/image-url": "^1.0.2",
       "@types/node": "^20.3.1",
       "@types/react": "^18.2.64",
       "@types/react-dom": "^18.2.21",
@@ -53,6 +58,7 @@
       "eslint-plugin-prettier": "^5.0.1",
       "postcss": "^8.4.24",
       "prettier": "latest",
+      "prisma": "^5.10.2",
       "tailwindcss": "^3.3.2"
    }
 }

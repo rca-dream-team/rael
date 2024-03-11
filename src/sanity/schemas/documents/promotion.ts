@@ -16,12 +16,12 @@ export default defineType({
          title: 'Year',
          type: 'number',
       },
-      {
-         name: 'students',
-         title: 'Students',
-         type: 'array',
-         of: [{ type: 'reference', to: [{ type: 'student' }] }],
-      },
+      // {
+      //    name: 'students',
+      //    title: 'Students',
+      //    type: 'array',
+      //    of: [{ type: 'reference', to: [{ type: 'student' }] }],
+      // },
       {
          name: 'start',
          title: 'Start',

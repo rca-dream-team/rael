@@ -1,9 +1,9 @@
-import { sanityClient } from '@/sanity/sanity.client';
-import Member, { MemberProps } from './member';
 import { getStudentByIdQuery } from '@/sanity/queries/student.query';
+import { sanityClient } from '@/sanity/sanity.client';
 import { IStudent } from '@/types/student.type';
-import { ResolvingMetadata, Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
+import Member from './member';
 
 interface MemberPageProps {
    params: {
@@ -16,7 +16,7 @@ export async function generateMetadata({ params, searchParams }: MemberPageProps
    const id = params.id;
    // optionally access and extend (rather than replace) parent metadata
    // const previousImages = (await parent).openGraph?.images || [];
-   const [student]: IStudent[] = await sanityClient.fetch(getStudentByIdQuery, { id });
+   const student = await sanityClient.fetch(getStudentByIdQuery, { id });
    console.log('student', student);
 
    return {
@@ -29,7 +29,7 @@ export async function generateMetadata({ params, searchParams }: MemberPageProps
 }
 
 const getMember = async (id: string) => {
-   const [member] = await sanityClient.fetch(getStudentByIdQuery, { id });
+   const member = await sanityClient.fetch(getStudentByIdQuery, { id });
    return member;
 };
 

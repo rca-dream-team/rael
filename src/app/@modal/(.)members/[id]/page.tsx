@@ -20,8 +20,7 @@ export async function generateMetadata(
    const id = params.id;
    // optionally access and extend (rather than replace) parent metadata
    // const previousImages = (await parent).openGraph?.images || [];
-   const [student]: IStudent[] = await sanityClient.fetch(getStudentByIdQuery, { id });
-   console.log('student', student);
+   const student: IStudent = await sanityClient.fetch(getStudentByIdQuery, { id });
 
    return {
       title: `${student.names ?? 'RCA Member'} - RAEL`,
@@ -35,7 +34,7 @@ export async function generateMetadata(
 export default async function MemberModal({ params }: MemberModalPageProps) {
    const id = params?.id;
    if (!id) notFound();
-   const [member] = await sanityClient.fetch(getStudentByIdQuery, { id });
+   const member = await sanityClient.fetch(getStudentByIdQuery, { id });
 
    return (
       <Modal>

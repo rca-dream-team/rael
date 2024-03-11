@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 const MembersPage = async () => {
    const students = await getMembers();
-   console.log('students', students);
+   // console.log('students', students);
 
    return (
       <>

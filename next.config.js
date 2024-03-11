@@ -2,8 +2,8 @@
 const nextConfig = {
    reactStrictMode: false,
    images: {
-      domains: ['images.unsplash.com'],
       formats: ['image/avif', 'image/webp'],
+      remotePatterns: [{ hostname: 'images.unsplash.com' }, { hostname: 'cdn.sanity.io' }],
    },
   
 };

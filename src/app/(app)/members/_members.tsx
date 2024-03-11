@@ -1,9 +1,12 @@
 'use client';
+import PromFilter from '@/components/members/PromFilter';
+import { getImageUrl } from '@/sanity/sanity.client';
 import { IStudent } from '@/types/student.type';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import React, { FC, useEffect } from 'react';
+import { FaUserCircle } from 'react-icons/fa';
 
 interface MembersProps {
    students: IStudent[];
@@ -13,6 +16,7 @@ interface MembersProps {
 const Members: FC<MembersProps> = ({ staffs, students }) => {
    const [tab, setTab] = React.useState('students');
    const [filter, setFilter] = React.useState('');
+   const [filteredStudents, setFilteredStudents] = React.useState<IStudent[]>([]);
    const searchParams = useSearchParams();
 
    useEffect(() => {
@@ -22,39 +26,72 @@ const Members: FC<MembersProps> = ({ staffs, students }) => {
       const filter = searchParams.get('filter');
       if (filter) setFilter(filter);
    }, [searchParams]);
+
+   useEffect(() => {
+      if (tab === 'students') {
+         setFilteredStudents(students);
+      } else {
+         setFilteredStudents(staffs);
+      }
+   }, [tab, students, staffs]);
+
+   const handlePromChange = (e: string) => {
+      setFilter(e);
+      if (e) {
+         const filtered = students.filter((student) => student.promotion === e);
+         setFilteredStudents(filtered);
+      } else {
+         setFilteredStudents(students);
+      }
+   };
    return (
       <>
-         {/* <h2 className="font-bold text-xl">Staff</h2> */}
-         <div className=" border-2 bg-white dark:bg-black dark:border-slate-900/90 overflow-hidden flex items-center w-fit max-w-[300px] mx-auto rounded-[3em]">
-            <button
-               onClick={() => setTab('students')}
-               className={`2sm:py-2 cursor-pointer w-32  py-2 whitespace-nowrap px-3 2sm:text-base text-sm rounded-[3em] 2sm:px-5 ${
-                  tab === 'students'
-                     ? 'dark:bg-white dark:text-black bg-black text-white'
-                     : 'dark:bg-black dark:text-white bg-white text-black'
-               }`}
-            >
-               Students
-            </button>
-            <button
-               onClick={() => setTab('staffs')}
-               className={`2sm:py-2 cursor-pointer w-32  py-2 whitespace-nowrap px-3 2sm:text-base text-sm rounded-[3em] 2sm:px-5 ${
-                  tab === 'staffs'
-                     ? 'dark:bg-white dark:text-black bg-black text-white'
-                     : 'dark:bg-black dark:text-white bg-white text-black'
-               }`}
-            >
-               Staffs
-            </button>
+         <div className=" flex justify-between items-center w-full">
+            <PromFilter handleChange={handlePromChange} />
+            <div className=" border-2 bg-white dark:bg-black dark:border-slate-900/90 overflow-hidden flex items-center w-fit max-w-[300px] rounded-[3em]">
+               <button
+                  onClick={() => setTab('students')}
+                  className={`2sm:py-2 cursor-pointer w-32  py-2 whitespace-nowrap px-3 2sm:text-base text-sm rounded-[3em] 2sm:px-5 ${
+                     tab === 'students'
+                        ? 'dark:bg-white dark:text-black bg-black text-white'
+                        : 'dark:bg-black dark:text-white bg-white text-black'
+                  }`}
+               >
+                  Students
+               </button>
+               <button
+                  onClick={() => setTab('staffs')}
+                  className={`2sm:py-2 cursor-pointer w-32  py-2 whitespace-nowrap px-3 2sm:text-base text-sm rounded-[3em] 2sm:px-5 ${
+                     tab === 'staffs'
+                        ? 'dark:bg-white dark:text-black bg-black text-white'
+                        : 'dark:bg-black dark:text-white bg-white text-black'
+                  }`}
+               >
+                  Staffs
+               </button>
+            </div>
+            <div className=""></div>
          </div>
          <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 2sm:grid-cols-2 gap-x-4 gap-y-6 w-full gap-2 mt-4">
-            {students.map((student, i) => (
+            {filteredStudents.map((student, i) => (
                <Link
                   key={i}
                   href={`/members/${student._id}` as any}
-                  className="bg-gray-100 mx-auto max-w-[300px] w-full dark:bg-slate-950/90 h-fit rounded-xl border border-slate-300 dark:border-slate-900/80 p-2 text-center"
+                  className="bg-gray-100 h-full mx-auto max-w-[300px] w-full dark:bg-slate-950/90 h-fit rounded-xl border border-slate-300 dark:border-slate-900/80 p-2 text-center"
                >
-                  <Image src={'/images/mem3.png'} width={200} height={200} className="object-cover min-w-full" alt="member" />
+                  {student.picture ? (
+                     <Image
+                        src={getImageUrl(student.picture)!}
+                        width={200}
+                        height={200}
+                        className="object-cover min-w-full"
+                        alt="member"
+                     />
+                  ) : (
+                     <div className=" w-full aspect-square justify-center flex items-center">
+                        <FaUserCircle className=" text-3xl cursor-pointer" />
+                     </div>
+                  )}
                   <p className="text-md font-bold mt-1">{student.names}</p>
                   <span className="text-sm text-gray-600">{student.leaderTitle}</span>
                </Link>

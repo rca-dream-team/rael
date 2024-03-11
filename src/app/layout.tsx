@@ -8,7 +8,7 @@ import React from 'react';
 //   weight: ["400", "500", "600", "700", "800"],
 //   subsets: ["latin"],
 // });
-export const righteous = Righteous({ weight: ['400'], subsets: ['latin'] });
+const righteous = Righteous({ weight: ['400'], subsets: ['latin'] });
 
 export const metadata: Metadata = {
    // metadataBase:

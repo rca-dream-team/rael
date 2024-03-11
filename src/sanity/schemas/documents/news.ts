@@ -1,47 +1,64 @@
-import { defineField } from 'sanity';
+import { FaNewspaper } from 'react-icons/fa';
+import { defineType } from 'sanity';
 
-export default defineField({
+export default defineType({
    name: 'news',
    title: 'News',
+   icon: FaNewspaper,
    type: 'document',
    fields: [
       {
          name: 'title',
+         description: 'Title of the news article.',
          title: 'Title',
          type: 'string',
          validation: (Rule) => Rule.required(),
       },
       {
-         name: 'description',
-         title: 'Description',
+         name: 'slug',
+         title: 'Slug',
+         type: 'slug',
+         options: {
+            source: 'title',
+            maxLength: 96,
+         },
+         validation: (Rule) => Rule.required(),
+      },
+      {
+         name: 'excerpt',
+         title: 'Excerpt',
+         description: 'A short description of the news article.',
          type: 'text',
          validation: (Rule) => Rule.required(),
       },
-      // content
+      {
+         name: 'date',
+         title: 'Date',
+         type: 'date',
+         validation: (Rule) => Rule.required(),
+      },
+      {
+         name: 'image',
+         title: 'Image',
+         type: 'image',
+      },
       {
          name: 'content',
          title: 'Content',
+         description: 'The content of the news article.',
          type: 'array',
-         of: [{ type: 'block' }],
-      },
-      {
-         name: 'mainImage',
-         title: 'Main Image',
-         type: 'image',
-         options: {
-            hotspot: true,
-         },
-      },
-      {
-         name: 'images',
-         title: 'Images',
-         type: 'array',
-         of: [{ type: 'image' }],
-      },
-      {
-         name: 'time',
-         title: 'time',
-         type: 'datetime',
+         of: [
+            {
+               type: 'block',
+            },
+            {
+               type: 'image',
+            },
+            {
+               type: 'file',
+            },
+         ],
+         validation: (Rule) => Rule.required(),
       },
       {
          name: 'author',
@@ -53,7 +70,16 @@ export default defineField({
    preview: {
       select: {
          title: 'title',
-         media: 'mainImage',
+         date: 'date',
+         media: 'image',
+      },
+      prepare(selection) {
+         const { title, date, media } = selection;
+         return {
+            title,
+            subtitle: date,
+            media,
+         };
       },
    },
 });
