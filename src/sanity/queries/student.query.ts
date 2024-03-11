@@ -7,7 +7,7 @@ export const getAllStudentsQuery = groq`
     email,
     picture,
     classes,
-    promotion,
+    "promotion": promotion->name,
     occupation,
     leaderTitle,
   }

@@ -2,9 +2,10 @@
 import PText from '@/components/constants/PoppinText';
 import RText from '@/components/constants/RighteousText';
 import { MailIcon } from '@/components/icons';
+import { getImageUrl } from '@/sanity/sanity.client';
 import { IStudent } from '@/types/student.type';
 import Image from 'next/image';
-import { FaLink } from 'react-icons/fa';
+import { FaLink, FaUserCircle } from 'react-icons/fa';
 import { IoLogoBehance, IoLogoFacebook, IoLogoGithub, IoLogoInstagram, IoLogoLinkedin } from 'react-icons/io5';
 
 export interface MemberProps {
@@ -16,7 +17,22 @@ const Member = ({ member }: MemberProps) => {
    return (
       <div className="max-w-[1000px] pb-4 w-full rounded-xl bg-white dark:bg-[#060911] gap-y-11 px-11 flex-col flex">
          <div className="flex py-2 items-center justify-center">
-            <Image src={member?.picture ?? '/images/member.png'} height={300} width={300} alt="Member" />
+            {/* <Image src={member?.picture ?? '/images/member.png'} height={300} width={300} alt="Member" /> */}
+            <div className="flex w-[300px] aspect-square rounded-full overflow-hidden">
+               {member.picture ? (
+                  <Image
+                     src={getImageUrl(member.picture)!}
+                     width={300}
+                     height={300}
+                     className="object-cover min-w-full"
+                     alt="member"
+                  />
+               ) : (
+                  <div className=" w-full aspect-square justify-center flex items-center">
+                     <FaUserCircle className=" text-3xl cursor-pointer" />
+                  </div>
+               )}
+            </div>
             <div className="flex flex-col gap-y-7 w-full px-11">
                <div className="flex flex-col">
                   <RText className=" text-xl uppercase">{member.names}</RText>

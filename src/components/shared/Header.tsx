@@ -17,12 +17,12 @@ const Header = () => {
    console.log('user', user);
 
    return (
-      <header className="flex sticky top-0 bg-white dark:bg-black w-full dark:border-slate-900/90 items-center justify-between border-b py-4">
+      <header className="flex sticky top-0 bg-white dark:bg-black w-full dark:border-slate-900/90 items-center justify-between border-b z-50 py-4">
          <RAELIcon size={100} />
          <div className="">
             <NewNavbar />
          </div>
-         <div className="flex gap-x-3 relative items-center">
+         <div className="flex gap-x-3 relative z-50 items-center">
             {/* <div className={`flex items-center absolute mr-4 right-20 gap-x-3 ${searchVal ? 'flex-row-reverse' : ''}`}>
                <MagnifyingGlassIcon className="w-6 font-bold cursor-pointer" onClick={handleShowSearch} />
                {searchVal ? <SearchBar setSearchVal={setSearchVal} /> : <></>}

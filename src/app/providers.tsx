@@ -10,7 +10,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
       <MantineProvider
          theme={{
             colors: {
-               brand: ['#F0BBDD', '#ED9BCF', '#EC7CC3', '#ED5DB8', '#F13EAF', '#F71FA7', '#000', '#E00890', '#C50E82', '#AD1374'],
+               brand: ['#1f1e1e', '#1f1e1e', '#1f1e1e', '#1f1e1e', '#1f1e1e', '#1f1e1e', '#000', '#000010', '#1f1e1e', '#1f1e1e'],
             },
             primaryColor: 'brand',
          }}
