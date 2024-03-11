@@ -21,7 +21,6 @@ export async function generateMetadata(
    // optionally access and extend (rather than replace) parent metadata
    // const previousImages = (await parent).openGraph?.images || [];
    const student: IStudent = await sanityClient.fetch(getStudentByIdQuery, { id });
-   console.log('student', student);
 
    return {
       title: `${student.names ?? 'RCA Member'} - RAEL`,

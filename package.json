@@ -5,7 +5,7 @@
    "scripts": {
       "dev": "next dev -p 2023",
       "build": "next build",
-      "start": "next start",
+      "start": "next start -p 2024",
       "lint": "next lint",
       "format": "prettier --write ./src",
       "deploy": "next build && next export && touch out/.nojekyll && gh-pages -d out",
