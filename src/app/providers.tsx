@@ -3,6 +3,7 @@ import React from 'react';
 import AppProvider from '../contexts/AppProvider';
 import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
+import AuthProvider from '@/contexts/AuthProvider';
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
    return (
@@ -15,7 +16,9 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
          }}
       >
          <Notifications position="top-right" />
-         <AppProvider>{children}</AppProvider>
+         <AuthProvider>
+            <AppProvider>{children}</AppProvider>
+         </AuthProvider>
       </MantineProvider>
    );
 };

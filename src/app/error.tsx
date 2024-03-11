@@ -15,7 +15,7 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
             className="bg-black border-2 border-white hover:border-black truncate stylbtn text-white rounded-[3em] py-3 px-8"
             onClick={
                // Attempt to recover by trying to re-render the segment
-               () => reset()
+               () => window.location.reload()
             }
          >
             <p className="z-50 relative">Try again</p>

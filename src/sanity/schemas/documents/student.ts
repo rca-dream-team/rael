@@ -76,6 +76,14 @@ export default defineType({
          group: ['pictures'],
       },
       {
+         name: 'promotion',
+         title: 'Promotion',
+         type: 'reference',
+         to: [{ type: 'promotion' }],
+         validation: (Rule) => Rule.required(),
+         group: ['studentInformation'],
+      },
+      {
          name: 'pictureUrls',
          title: 'Picture URLs',
          type: 'array',
@@ -92,14 +100,6 @@ export default defineType({
          name: 'currentClass',
          title: 'Current Class',
          type: 'string',
-         group: ['studentInformation'],
-      },
-      {
-         name: 'promotion',
-         title: 'Promotion',
-         type: 'reference',
-         to: [{ type: 'promotion' }],
-         validation: (Rule) => Rule.required(),
          group: ['studentInformation'],
       },
       {
@@ -140,6 +140,7 @@ export default defineType({
    preview: {
       select: {
          title: 'names',
+         subtitle: 'promotion.name',
          media: 'picture',
       },
    },
