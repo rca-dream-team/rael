@@ -6,6 +6,8 @@ import Image from 'next/image'
 import { Input } from '@mantine/core'
 import PromFilter from '@/components/members/PromFilter'
 import { Textarea } from '@mantine/core'
+import { ActionIcon } from '@mantine/core'
+import { PlusIcon } from '@heroicons/react/24/outline'
 
 
 
@@ -27,7 +29,7 @@ const page = () => {
         <div className='flex flex-col h-fit gap-4 mt-4'>
         <Input size="lg" radius="md" value={user?.names} onChange={null} /> 
         <PromFilter  label='current'/>
-        <Input size="lg" radius="md" placeholder={user?.leaderTitle?  user.leaderTitle : "student"}  />
+        <Input size="lg" radius="md" placeholder={user?.leaderTitle?  user.leaderTitle : "student"}  className='text-sm' />
         </div>
       </div>
       <div>
@@ -41,10 +43,22 @@ const page = () => {
       />
       </div>
       <div className='mt-6'>
-        <h2>Occupations</h2>
+          <h2 className='text-2xl font-bold'>Occupations</h2>
+          <div className='flex flex-row gap-6 align-middle mt-4'>
+            {user?.occupation? (
+              <Input size="lg" radius="md" value={user?.names} onChange={null} className='w-[50%]' className='text-sm'/> 
+              ):(
+            
+              <Input size="lg" radius="md" placeholder={'Add an occupation'} onChange={null} className='w-[50%]' className='text-sm' /> 
+            )}
+            <ActionIcon variant="outline">
+                <PlusIcon/>
+            </ActionIcon>
+          </div>
+        </div>
       </div>
       
-    </div>
+    
   )
 }
 
