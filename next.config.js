@@ -5,7 +5,6 @@ const nextConfig = {
       formats: ['image/avif', 'image/webp'],
       remotePatterns: [{ hostname: 'images.unsplash.com' }, { hostname: 'cdn.sanity.io' }],
    },
-  
 };
 
 module.exports = nextConfig;
