@@ -10,7 +10,6 @@ import { PlusIcon } from '@heroicons/react/24/outline';
 import { FaUpload } from 'react-icons/fa';
 import { Button } from '@mantine/core';
 
-
 const ProfilePage = () => {
    const { user } = useAuth();
 
