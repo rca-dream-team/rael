@@ -1,6 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import Header from '@/components/shared/Header';
+import React from 'react';
 import { useAuth } from '@/contexts/AuthProvider';
 import Image from 'next/image';
 import { Input } from '@mantine/core';
@@ -10,7 +9,7 @@ import { ActionIcon } from '@mantine/core';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { FaUpload } from 'react-icons/fa';
 import { Button } from '@mantine/core';
-import MainAppLayout from '../layout';
+
 
 const ProfilePage = () => {
    const { user } = useAuth();
