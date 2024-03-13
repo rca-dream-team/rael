@@ -49,7 +49,7 @@ const page = () => {
          </div>
          <div className=" mt-6 ">
             <h3 className="text-xl font-bold">Occupations</h3>
-            <div className="flex flex-row gap-6  mt-4 items-center align-middle">
+            <div className="flex flex-wrap flex-row gap-6  mt-4 items-center align-middle">
                {user?.occupation ? (
                   <Input size="lg" radius="md" value={user?.names} onChange={null} className="w-[50%]" className="text-sm" />
                ) : (
@@ -62,7 +62,7 @@ const page = () => {
          </div>
          <div className="mt-6">
             <h3 className="text-xl font-bold">Contacts</h3>
-            <div className="flex gap-6 p-4 items-center align-middle">
+            <div className="flex flex-wrap gap-6 p-4 items-center align-middle">
                <div className="flex flex-col gap-2 p-2 border rounded-sm w-[50%]">
                   <div className="flex text-sm gap-4 border-b h-8 items-center align-middle">
                      <p>Link</p>
