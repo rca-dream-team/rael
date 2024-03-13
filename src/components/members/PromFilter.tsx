@@ -3,11 +3,11 @@ import { Select } from '@mantine/core';
 import React from 'react';
 
 interface Props {
-   handleChange?: (e: string) => void,
-   label: string
+   handleChange?: (e: string) => void;
+   label: string;
 }
 
-const PromFilter = ({ handleChange,label }: Props) => {
+const PromFilter = ({ handleChange, label }: Props) => {
    const [selectData, setSelectData] = React.useState<any[]>([]);
    const [loading, setLoading] = React.useState(false);
 
