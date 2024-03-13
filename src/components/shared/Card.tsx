@@ -12,7 +12,7 @@ const CardComponent = () => {
                />
             </Card.Section>
 
-            <Group justify="space-between" mt="md" mb="xs">
+            <Group className=" justify-center" mt="md" mb="xs">
                <Text fw={500}>Nickman Football captain helps the team reach the peace cup finals</Text>
             </Group>
 
