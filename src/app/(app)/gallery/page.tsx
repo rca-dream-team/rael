@@ -1,18 +1,12 @@
 import RText from '@/components/constants/RighteousText';
-import CardComponent from '@/components/shared/Card';
+import { GalleryIndex } from './_index';
 
 const ClassifiedPage = () => {
    return (
       <>
          <div className=" w-[80%] ">
-            <RText className="text-2xl">15th March</RText>
-            <div className="mt-5 flex gap-6 flex-wrap">
-               <CardComponent />
-               <CardComponent />
-               <CardComponent />
-               <CardComponent />
-               <CardComponent />
-            </div>
+            <RText className="text-2xl">RCA Gallery</RText>
+            <GalleryIndex />
          </div>
       </>
    );
