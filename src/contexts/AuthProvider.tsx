@@ -1,3 +1,4 @@
+import { studentFields } from '@/sanity/queries/student.query';
 import { sanityClient } from '@/sanity/sanity.client';
 import { IStudent } from '@/types/student.type';
 import { decodeToken } from '@/utils';
@@ -25,9 +26,14 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
          console.log('decoded token', decoded);
          const role = decoded.role ?? getCookie('user_type');
          const schema = role?.toString().toLowerCase() === 'student' ? 'student' : 'staff';
-         const res = await sanityClient.fetch(`*[_type == '${schema}' && email == $email][0]`, {
-            email: decoded?.email,
-         });
+         const res = await sanityClient.fetch(
+            `*[_type == '${schema}' && email == $email][0] {
+            ${studentFields}
+         }`,
+            {
+               email: decoded?.email,
+            },
+         );
          console.log('profile', res);
          setUser(res);
       } catch (error) {

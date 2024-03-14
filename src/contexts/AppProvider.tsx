@@ -3,6 +3,8 @@ import React, { useContext } from 'react';
 import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 import { usePathname } from 'next/navigation';
 import { Next13ProgressBar } from 'next13-progressbar';
+import { MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 
 interface AppContextProps {
    toggleTheme?: () => void;
@@ -65,7 +67,30 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
    return (
       <AppContext.Provider value={{ toggleTheme, isDarkTheme }}>
-         {children}
+         <MantineProvider
+            theme={{
+               colors: {
+                  brand: [
+                     '#1f1e1e',
+                     '#1f1e1e',
+                     '#1f1e1e',
+                     '#1f1e1e',
+                     '#1f1e1e',
+                     '#1f1e1e',
+                     '#000',
+                     '#000010',
+                     '#1f1e1e',
+                     '#1f1e1e',
+                  ],
+               },
+               primaryColor: 'brand',
+               colorScheme: isDarkTheme ? 'dark' : 'light',
+            }}
+         >
+            <Notifications position="top-right" />
+
+            {children}
+         </MantineProvider>
          {isDarkTheme !== null && <Next13ProgressBar color={isDarkTheme ? '#fff' : '#000'} />}
       </AppContext.Provider>
    );

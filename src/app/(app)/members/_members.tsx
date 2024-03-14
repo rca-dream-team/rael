@@ -2,6 +2,7 @@
 import PromFilter from '@/components/members/PromFilter';
 import { getImageUrl } from '@/sanity/sanity.client';
 import { IStudent } from '@/types/student.type';
+import { Card } from '@mantine/core';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
@@ -74,27 +75,27 @@ const Members: FC<MembersProps> = ({ staffs, students }) => {
          </div>
          <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 2sm:grid-cols-2 gap-x-4 gap-y-6 w-full gap-2 mt-4">
             {filteredStudents.map((student, i) => (
-               <Link
-                  key={i}
-                  href={`/members/${student._id}` as any}
-                  className="bg-gray-100 h-full mx-auto max-w-[300px] w-full dark:bg-slate-950/90 h-fit rounded-xl border border-slate-300 dark:border-slate-900/80 p-2 text-center"
-               >
-                  {student.picture ? (
-                     <Image
-                        src={getImageUrl(student.picture)!}
-                        width={200}
-                        height={200}
-                        className="object-cover min-w-full"
-                        alt="member"
-                     />
-                  ) : (
-                     <div className=" w-full aspect-square justify-center flex items-center">
-                        <FaUserCircle className=" text-3xl cursor-pointer" />
+               <Card padding={0} shadow="sm" key={i}>
+                  <Link href={`/members/${student._id}` as any} className=" w-full h-fit rounded-xl text-center">
+                     <div className=" w-full aspect-square overflow-hidden max-w-[300px] justify-center flex items-center">
+                        {student.picture ? (
+                           <Image
+                              src={getImageUrl(student.picture)!}
+                              width={200}
+                              height={200}
+                              className="object-cover min-w-full h-full"
+                              alt="member"
+                           />
+                        ) : (
+                           <FaUserCircle className=" text-3xl cursor-pointer" />
+                        )}
                      </div>
-                  )}
-                  <p className="text-md font-bold mt-1">{student.names}</p>
-                  <span className="text-sm text-gray-600">{student.leaderTitle}</span>
-               </Link>
+                     <div className="flex flex-col p-2">
+                        <p className="text-md text-center font-bold mt-1">{student.names}</p>
+                        <span className="text-sm text-center text-gray-600 w-full flex">{student.leaderTitle}</span>
+                     </div>
+                  </Link>
+               </Card>
             ))}
          </div>
       </>

@@ -13,6 +13,20 @@ export const getAllStudentsQuery = groq`
   }
 `;
 
+export const studentFields = groq`
+    _id,
+    names,
+    email,
+    picture,
+    classes,
+    "promotion": promotion->name,
+    occupation,
+    leaderTitle,
+    images,
+    socials,
+    bio,
+`;
+
 export const getStudentByIdQuery = groq`
     *[_type == 'student' && _id == $id][0]  {
         _id,

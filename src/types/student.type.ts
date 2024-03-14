@@ -11,13 +11,18 @@ export interface IStudent {
    leaderTitle: string;
    images: any[];
    _id: string;
-   socials: ISocial[];
+   socials: ISocial;
 }
 
-interface ISocial {
-   github: string;
-   portfolio: string;
-   facebook: string;
-   instagram: string;
-   linkedIn: string;
+export interface ISocial {
+   github: SocialLink;
+   portfolio: SocialLink;
+   facebook: SocialLink;
+   instagram: SocialLink;
+   linkedIn: SocialLink;
+}
+
+interface SocialLink {
+   label: string;
+   url: string;
 }

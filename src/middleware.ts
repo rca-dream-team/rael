@@ -8,7 +8,15 @@ export function middleware(request: NextRequest) {
    const path = request.nextUrl.pathname;
    const isStudio = path.startsWith('/studio');
 
-   if (whitelist.some((whitePath) => whitePath.startsWith(path)) || isStudio) {
+   if (
+      whitelist.some((whitePath) => {
+         if (path === '/') {
+            return false;
+         }
+         return whitePath.startsWith(path);
+      }) ||
+      isStudio
+   ) {
       return NextResponse.next();
    }
 

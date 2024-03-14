@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { Card, Image, Text, Group } from '@mantine/core';
 const CardComponent = () => {

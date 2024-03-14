@@ -1,5 +1,3 @@
-'use client';
-import PText from '@/components/constants/PoppinText';
 import RText from '@/components/constants/RighteousText';
 import CardComponent from '@/components/shared/Card';
 

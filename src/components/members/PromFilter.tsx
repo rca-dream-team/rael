@@ -1,14 +1,17 @@
 import { sanityClient } from '@/sanity/sanity.client';
-import { Select } from '@mantine/core';
+import { Select, SelectProps } from '@mantine/core';
 import React from 'react';
 
-interface Props {
+interface Props extends Omit<SelectProps, 'data'> {
    handleChange?: (e: string) => void;
    label: string;
+   value?: string;
+   data?: SelectProps['data'];
 }
 
-const PromFilter = ({ handleChange, label }: Props) => {
+const PromFilter = ({ handleChange, label, value, data, ...rest }: Props) => {
    const [selectData, setSelectData] = React.useState<any[]>([]);
+   const [_value, setValue] = React.useState(value);
    const [loading, setLoading] = React.useState(false);
 
    const getPromData = async () => {
@@ -25,15 +28,23 @@ const PromFilter = ({ handleChange, label }: Props) => {
    React.useEffect(() => {
       getPromData();
    }, []);
+   console.log('value', value);
    return (
       <div className="flex flex-col">
          <p className="px-1">{label} (Prom): </p>
          <Select
             placeholder={`${label} Promotion`}
+            defaultValue={value}
+            value={_value}
             disabled={loading}
-            data={loading ? ['Loading..'] : selectData}
+            data={data ?? loading ? ['Loading..'] : selectData}
             searchable
-            onChange={handleChange}
+            onChange={(value) => {
+               setValue(value as string);
+               if (!value) return;
+               handleChange?.(value as string);
+            }}
+            {...rest}
          />
       </div>
    );

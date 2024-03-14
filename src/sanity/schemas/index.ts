@@ -1,5 +1,6 @@
 import author from './documents/author';
 import className from './documents/class';
+import leaderTitle from './documents/leaderTitle';
 import maintainer from './documents/maintainer';
 import news from './documents/news';
 import profileRequest from './documents/profile-request';
@@ -14,6 +15,19 @@ import link from './objects/link';
 import socials from './objects/socials';
 
 const objects = [blockContent, socials, link];
-const documents = [promotion, student, project, timeline, staff, staffRole, className, author, maintainer, news, profileRequest];
+const documents = [
+   promotion,
+   student,
+   project,
+   timeline,
+   staff,
+   staffRole,
+   className,
+   author,
+   maintainer,
+   news,
+   profileRequest,
+   leaderTitle,
+];
 
 export const schemaTypes = [...objects, ...documents];
