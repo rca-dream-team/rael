@@ -8,11 +8,13 @@ import React, { ReactNode, useContext, useEffect } from 'react';
 interface AuthContextProps {
    user: IStudent | null;
    setUser: React.Dispatch<React.SetStateAction<any>>;
+   getProfile: () => Promise<any>;
 }
 
 const AuthContext = React.createContext<AuthContextProps>({
    user: null,
    setUser: () => {},
+   getProfile: () => Promise.resolve(),
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -45,7 +47,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
       getProfile();
    }, []);
 
-   return <AuthContext.Provider value={{ user, setUser }}>{children}</AuthContext.Provider>;
+   return <AuthContext.Provider value={{ user, setUser, getProfile }}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;

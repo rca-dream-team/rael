@@ -125,4 +125,10 @@ export default defineType({
          group: ['pictures'],
       },
    ],
+   preview: {
+      select: {
+         title: 'requester.names',
+         subtitle: 'requester.email',
+      },
+   },
 });

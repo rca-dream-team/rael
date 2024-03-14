@@ -6,11 +6,16 @@ import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import { Input, Textarea } from '@mantine/core';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 
 const ProfilePage = () => {
-   const { user } = useAuth();
+   const { user, getProfile } = useAuth();
+
+   useEffect(() => {
+      getProfile();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, []);
 
    return (
       <div className="relative flex flex-col mb-6 w-full max-w-[1000px]">

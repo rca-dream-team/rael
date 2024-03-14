@@ -2,14 +2,17 @@
 import { OCCUPATIONS } from '@/app/(utils)/constants';
 import PromFilter from '@/components/members/PromFilter';
 import AsyncSelect from '@/components/profile/AsyncSelect';
+import RequestModal from '@/components/profile/RequestModal';
 import { useAuth } from '@/contexts/AuthProvider';
 import { getImageUrl } from '@/sanity/sanity.client';
-import { ISocial } from '@/types/student.type';
+import { ISocial, ProfileRequest } from '@/types/student.type';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import { Button, Input, MultiSelect, Textarea } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
+import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 
 const ProfileRequestPage = () => {
@@ -19,25 +22,74 @@ const ProfileRequestPage = () => {
       leaderTitle: user?.leaderTitle,
       bio: user?.bio,
       socials: user?.socials,
+      promotion: user?.promotion,
    });
+   const [loading, setLoading] = useState(false);
+   const [userRequest, setUserRequest] = useState<ProfileRequest | null>(null);
+   const [showModal, setShowModal] = useState(false);
 
    const handleSocialChange = (social: keyof ISocial, value: string) => {
       const newSocials = structuredClone(profileData.socials);
       if (!newSocials) return;
-      newSocials[social].url = value;
+      // const
+      newSocials[social] = { url: value, label: social };
+      console.log('newSocials', newSocials);
       setProfileData({ ...profileData, socials: newSocials });
    };
 
    console.log('profileData', profileData);
 
    useEffect(() => {
+      console.log('userRequest', userRequest);
       setProfileData({
-         occupation: user?.occupation,
-         leaderTitle: user?.leaderTitle,
-         bio: user?.bio,
-         socials: user?.socials,
+         occupation: userRequest?.occupation ?? user?.occupation ?? [],
+         leaderTitle: userRequest?.leaderTitle ?? user?.leaderTitle,
+         bio: userRequest?.bio ?? user?.bio,
+         socials: userRequest?.socials ?? user?.socials,
+         promotion: userRequest?.promotion ?? user?.promotion,
       });
-   }, [user]);
+   }, [user, userRequest]);
+
+   const submitRequest = async () => {
+      if (!user) return;
+      setLoading(true);
+      try {
+         console.log('toRequest', profileData);
+         const res = await axios.put('/api/profile/request', {
+            request: profileData,
+            requester: user,
+         });
+         // requestProfile(profileData, user);
+         console.log('response', res);
+         notifications.show({
+            color: 'green',
+            title: 'Profile Requested',
+            message: 'Profile Request Sent Successfully',
+         });
+      } catch (error) {
+         console.log('__error', error);
+         notifications.show({
+            color: 'red',
+            title: 'Request Error',
+            message: 'Error Sending Profile Request',
+         });
+      }
+      setLoading(false);
+   };
+
+   const getUserRequest = async () => {
+      try {
+         const res = await axios.get('/api/profile/request');
+         console.log('res', res);
+         setUserRequest(res.data?.data ?? res.data);
+      } catch (error) {
+         console.log('error', error);
+      }
+   };
+
+   useEffect(() => {
+      getUserRequest();
+   }, []);
 
    return (
       <div className="relativeflex flex-col mb-6 w-full max-w-[1000px]">
@@ -46,6 +98,15 @@ const ProfileRequestPage = () => {
             View Profile
          </Link>
          <h3 className="text-xl font-bold text-center">Request profile</h3>
+         {userRequest && (
+            <div className="flex mx-auto justify-center">
+               <span>
+                  {userRequest.isApproved
+                     ? 'This Request is Approved and it is now live on your profile'
+                     : 'This Request is still pending approval'}
+               </span>
+            </div>
+         )}
          <div className="relative flex flex-row align-middle mt-4">
             <div className="flex w-[300px] aspect-square rounded-full overflow-hidden">
                {user?.picture ? (
@@ -66,14 +127,19 @@ const ProfileRequestPage = () => {
                <Input.Wrapper label="Names">
                   <Input size="lg" radius="md" width={'100%'} value={user?.names} readOnly />
                </Input.Wrapper>
-               <PromFilter size="lg" label="current" value={user?.promotion!} />
-               <Input.Wrapper label="Leader Title">
+               <PromFilter
+                  size="lg"
+                  label="current"
+                  value={profileData.promotion}
+                  handleChange={(val) => setProfileData({ ...profileData, promotion: val })}
+               />
+               <Input.Wrapper label="Leader Title" description={`Currently Selected: ${profileData?.leaderTitle}`}>
                   <AsyncSelect
                      query="*[_type=='leaderTitle']"
                      labelKey="title"
                      size="lg"
                      px={0}
-                     value={user?.leaderTitle ?? ''}
+                     value={profileData?.leaderTitle ?? ''}
                      accessorKey="title"
                      onChange={(value) => {
                         console.log('value', value);
@@ -81,6 +147,7 @@ const ProfileRequestPage = () => {
                      }}
                      placeholder="Select title"
                      variant="default"
+                     selectValue
                   />
                </Input.Wrapper>
             </div>
@@ -90,9 +157,9 @@ const ProfileRequestPage = () => {
                label="Description"
                placeholder={'Edit your Bio here ! '}
                autosize
-               value={user?.bio}
+               value={profileData?.bio}
                minRows={2}
-               onChange={(e) => setProfileData({ ...profileData, bio: e.currentTarget.value })}
+               onChange={(e) => setProfileData({ ...profileData, bio: e.target.value })}
                maxRows={4}
                className="mt-4 "
             />
@@ -162,10 +229,19 @@ const ProfileRequestPage = () => {
             </div> */}
          </div>
          <div className="w-full flex justify-center">
-            <Button variant="filled" className="z-10  bg-black text-white self-center mt-6 " size="xl" radius={'xl'}>
-               Submit
+            <Button
+               onClick={() => setShowModal(true)}
+               loading={loading}
+               disabled={loading}
+               variant="filled"
+               className="z-10  bg-black text-white dark:bg-white dark:text-black self-center mt-6 "
+               size="lg"
+               radius={'xl'}
+            >
+               {userRequest ? 'Update' : 'Submit'}
             </Button>
          </div>
+         {showModal && <RequestModal onClose={() => setShowModal(false)} onSure={submitRequest} loading={loading} />}
       </div>
    );
 };

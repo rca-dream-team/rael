@@ -1,17 +1,31 @@
-export interface IStudent {
+export interface ICommon {
+   _id: string;
+   _type: string;
+   _rev: string;
+   _createdAt: string;
+   _updatedAt: string;
+   _key: string;
+   _weak: boolean;
    bio: string;
    occupation: string[];
+   promotion: string;
+   email: string;
+   socials: ISocial;
+   leaderTitle: string;
+}
+
+export interface IStudent extends ICommon {
    projects: null;
    pictureUrls: string[];
    names: string;
-   email: string;
    picture: null;
    currentClass: null;
-   promotion: string;
-   leaderTitle: string;
    images: any[];
-   _id: string;
-   socials: ISocial;
+}
+
+export interface ProfileRequest extends ICommon {
+   requester: IStudent;
+   isApproved: boolean;
 }
 
 export interface ISocial {

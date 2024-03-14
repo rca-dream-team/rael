@@ -34,7 +34,7 @@ const PromFilter = ({ handleChange, label, value, data, ...rest }: Props) => {
          <p className="px-1">{label} (Prom): </p>
          <Select
             placeholder={`${label} Promotion`}
-            defaultValue={value}
+            // defaultValue={_value}
             value={_value}
             disabled={loading}
             data={data ?? loading ? ['Loading..'] : selectData}

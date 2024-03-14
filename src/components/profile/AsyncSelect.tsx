@@ -1,4 +1,3 @@
-import loading from '@/app/loading';
 import { sanityClient } from '@/sanity/sanity.client';
 import { capitalize, getObjValue } from '@/utils/funcs';
 import { MantineSize, Select } from '@mantine/core';
@@ -32,6 +31,7 @@ interface Props {
    description?: string;
    filterData?: (data: any) => any;
    params?: QueryWithoutParams;
+   selectValue?: boolean;
 }
 
 const AsyncSelect: FC<Props> = ({
@@ -55,6 +55,7 @@ const AsyncSelect: FC<Props> = ({
    filterData,
    query,
    params,
+   selectValue,
 }) => {
    const [selected, setSelected] = React.useState(value);
    console.log('selected', selected);
@@ -63,7 +64,6 @@ const AsyncSelect: FC<Props> = ({
    const [loading, setLoading] = useState(false);
 
    useEffect(() => {
-      console.log('data', data);
       const dataSet = new Set(data?.map((item) => JSON.stringify(item)));
       const newData = [...dataSet].map((item) => JSON.parse(item));
       setData?.(newData);
@@ -74,11 +74,11 @@ const AsyncSelect: FC<Props> = ({
       }));
       console.log('selectData', selectData);
       setSelectedData(selectData ?? []);
-      const selected = _data?.find((item) => item[accessorKey ?? 'id'] === value);
+      const selected = selectValue ? value : _data?.find((item) => item[accessorKey ?? 'id'] === value);
       setActive?.(selected);
       console.log('selected use', selected?.id);
       if (selected) {
-         setSelected(selected.id);
+         setSelected(selectValue ? selected : selected.id);
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [accessorKey, data, labelKey, value]);

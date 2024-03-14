@@ -1,10 +1,10 @@
 import { getCookie } from 'cookies-next';
 import { jwtDecode } from 'jwt-decode';
 
-export const decodeToken = () => {
+export const decodeToken = (_token?: string) => {
    let data: any = null;
    try {
-      const token = getCookie('mis_token');
+      const token = _token ?? getCookie('mis_token');
       if (!token) {
          return data;
       }
