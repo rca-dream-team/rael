@@ -1,7 +1,5 @@
 'use client';
 import React, { useContext } from 'react';
-import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
-import { usePathname } from 'next/navigation';
 import { Next13ProgressBar } from 'next13-progressbar';
 import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
