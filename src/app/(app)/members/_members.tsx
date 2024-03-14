@@ -47,7 +47,7 @@ const Members: FC<MembersProps> = ({ staffs, students }) => {
    return (
       <>
          <div className=" flex justify-between items-center w-full">
-            <PromFilter handleChange={handlePromChange} />
+            <PromFilter handleChange={handlePromChange} label="Filter" />
             <div className=" border-2 bg-white dark:bg-black dark:border-slate-900/90 overflow-hidden flex items-center w-fit max-w-[300px] rounded-[3em]">
                <button
                   onClick={() => setTab('students')}

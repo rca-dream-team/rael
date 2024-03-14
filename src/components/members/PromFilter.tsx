@@ -4,9 +4,10 @@ import React from 'react';
 
 interface Props {
    handleChange?: (e: string) => void;
+   label: string;
 }
 
-const PromFilter = ({ handleChange }: Props) => {
+const PromFilter = ({ handleChange, label }: Props) => {
    const [selectData, setSelectData] = React.useState<any[]>([]);
    const [loading, setLoading] = React.useState(false);
 
@@ -26,9 +27,9 @@ const PromFilter = ({ handleChange }: Props) => {
    }, []);
    return (
       <div className="flex flex-col">
-         <p className="px-1">Filter (Prom): </p>
+         <p className="px-1">{label} (Prom): </p>
          <Select
-            placeholder="Filter By Promotion"
+            placeholder={`${label} Promotion`}
             disabled={loading}
             data={loading ? ['Loading..'] : selectData}
             searchable
