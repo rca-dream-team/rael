@@ -80,7 +80,6 @@ const ProfileRequestPage = () => {
    const getUserRequest = async () => {
       try {
          const res = await axios.get('/api/profile/request');
-         console.log('res', res);
          setUserRequest(res.data?.data ?? res.data);
       } catch (error) {
          console.log('error', error);
@@ -125,7 +124,7 @@ const ProfileRequestPage = () => {
             </div>
             <div className="flex flex-col p-3 h-fit  flex-1 gap-4 mt-4">
                <Input.Wrapper label="Names">
-                  <Input size="lg" radius="md" width={'100%'} value={user?.names} readOnly />
+                  <Input size="lg" radius="md" width={'100%'} value={user?.names} onChange={() => {}} readOnly />
                </Input.Wrapper>
                <PromFilter
                   size="lg"
@@ -157,7 +156,7 @@ const ProfileRequestPage = () => {
                label="Description"
                placeholder={'Edit your Bio here ! '}
                autosize
-               value={profileData?.bio}
+               value={profileData?.bio ?? ''}
                minRows={2}
                onChange={(e) => setProfileData({ ...profileData, bio: e.target.value })}
                maxRows={4}
@@ -181,7 +180,10 @@ const ProfileRequestPage = () => {
          </div>
          <div className="mt-6 w-full">
             <h3 className="text-xl font-bold">Contacts</h3>
-            <div className="flex flex-wrap gap-6 lg:grid p-3 grid-cols-2 w-full items-center border align-middle">
+            <span className="text-sm text-gray-500">
+               Add your social media links if available. Ignore some if you don&apos;t have it
+            </span>
+            <div className=" gap-6 grid p-3 lg:grid-cols-2 w-full items-center border align-middle">
                <Input.Wrapper label={'Github'}>
                   <Input
                      value={profileData.socials?.github?.url}
@@ -212,6 +214,39 @@ const ProfileRequestPage = () => {
                      onChange={(e) => handleSocialChange('portfolio', e.target.value)}
                      size="lg"
                      placeholder={`Enter Portfolio Link`}
+                  />
+               </Input.Wrapper>
+               {/* Twitter */}
+               <Input.Wrapper label={'Facebook'}>
+                  <Input
+                     value={profileData.socials?.facebook?.url}
+                     onChange={(e) => handleSocialChange('facebook', e.target.value)}
+                     size="lg"
+                     placeholder={`Enter Facebook Link`}
+                  />
+               </Input.Wrapper>
+               <Input.Wrapper label={'Twitter'}>
+                  <Input
+                     value={profileData.socials?.twitter?.url}
+                     onChange={(e) => handleSocialChange('twitter', e.target.value)}
+                     size="lg"
+                     placeholder={`Enter Twitter Link`}
+                  />
+               </Input.Wrapper>
+               <Input.Wrapper label={'Behance'}>
+                  <Input
+                     value={profileData.socials?.behance?.url}
+                     onChange={(e) => handleSocialChange('behance', e.target.value)}
+                     size="lg"
+                     placeholder={`Enter Behance Link`}
+                  />
+               </Input.Wrapper>
+               <Input.Wrapper label={'Dribbble'}>
+                  <Input
+                     value={profileData.socials?.dribbble?.url}
+                     onChange={(e) => handleSocialChange('dribbble', e.target.value)}
+                     size="lg"
+                     placeholder={`Enter Dribbble Link`}
                   />
                </Input.Wrapper>
             </div>

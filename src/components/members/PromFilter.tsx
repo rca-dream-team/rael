@@ -1,6 +1,6 @@
 import { sanityClient } from '@/sanity/sanity.client';
 import { Select, SelectProps } from '@mantine/core';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface Props extends Omit<SelectProps, 'data'> {
    handleChange?: (e: string) => void;
@@ -29,6 +29,15 @@ const PromFilter = ({ handleChange, label, value, data, ...rest }: Props) => {
       getPromData();
    }, []);
    console.log('value', value);
+
+   useEffect(() => {
+      if (!value) return;
+      const selected = selectData?.find((item) => item === value);
+      console.log('selected', selected);
+      if (selected) {
+         setValue(selected);
+      }
+   }, [value, selectData]);
    return (
       <div className="flex flex-col">
          <p className="px-1">{label} (Prom): </p>

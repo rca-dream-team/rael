@@ -34,6 +34,9 @@ export interface ISocial {
    facebook: SocialLink;
    instagram: SocialLink;
    linkedIn: SocialLink;
+   twitter: SocialLink;
+   behance: SocialLink;
+   dribbble: SocialLink;
 }
 
 interface SocialLink {
