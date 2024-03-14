@@ -12,14 +12,17 @@
       "deploy-sanity": "sanity deploy"
    },
    "dependencies": {
-      "@emotion/react": "^11.11.1",
+      "@emotion/react": "^11.11.4",
       "@emotion/server": "^11.11.0",
+      "@emotion/styled": "^11.11.0",
       "@heroicons/react": "^2.0.18",
       "@mantine/core": "^6.0.13",
       "@mantine/form": "^6.0.15",
       "@mantine/hooks": "^6.0.13",
       "@mantine/next": "^6.0.13",
       "@mantine/notifications": "^6.0.13",
+      "@mui/material": "^5.15.13",
+      "@mui/styled-engine-sc": "^6.0.0-alpha.17",
       "@sanity/vision": "^3.32.0",
       "axios": "^1.6.7",
       "class-variance-authority": "^0.7.0",
@@ -40,7 +43,7 @@
       "react-icons": "^4.9.0",
       "sanity": "^3.32.0",
       "sanity-plugin-media": "^2.2.5",
-      "styled-components": "^6.0.8",
+      "styled-components": "^6.1.8",
       "tailwind-merge": "^2.2.1",
       "tailwindcss-animate": "^1.0.7",
       "typescript": "^5.1.3"

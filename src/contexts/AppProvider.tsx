@@ -29,6 +29,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
    const toggleTheme = () => {
       setIsDarkThemeAsync();
+
       // if (pathname?.includes("/timeline")) {
       //   window.location.reload();
       // }
