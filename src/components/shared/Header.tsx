@@ -10,10 +10,10 @@ import NewNavbar from './navbar/new-navbar';
 import { getImageUrl, urlFor } from '@/sanity/sanity.client';
 import { FaUserCircle } from 'react-icons/fa';
 
+
 const Header = () => {
    const { toggleTheme, isDarkTheme } = useApp();
    const { user } = useAuth();
-
    console.log('user', user);
 
    return (
