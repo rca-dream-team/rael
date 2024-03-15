@@ -6,7 +6,7 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 
 type Card = {
-   id: number;
+   id: number | string;
    content: React.JSX.Element | React.ReactNode | string;
    className: string;
    thumbnail: string;
@@ -35,7 +35,7 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
                      onClick={() => handleClick(card)}
                      className={cn(
                         card.className,
-                        'relative overflow-hidden',
+                        'relative overflow-hidden border',
                         selected?.id === card.id
                            ? 'rounded-lg cursor-pointer absolute inset-0 h-1/2 w-full md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col'
                            : lastSelected?.id === card.id
@@ -87,9 +87,11 @@ const SelectedCard = ({ selected }: { selected: Card | null }) => {
             initial={{
                opacity: 0,
             }}
-            animate={{
-               opacity: 0.6,
-            }}
+            animate={
+               {
+                  // opacity: 0.6,
+               }
+            }
             className="absolute inset-0 h-full w-full bg-black opacity-60 z-10"
          />
          <motion.div
