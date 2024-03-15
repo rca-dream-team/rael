@@ -1,6 +1,6 @@
 'use client';
 import { OCCUPATIONS } from '@/app/(utils)/constants';
-import PromFilter from '@/components/members/PromFilter';
+import PromFilter from '@/components/page_comps/members/PromFilter';
 import AsyncSelect from '@/components/profile/AsyncSelect';
 import RequestModal from '@/components/profile/RequestModal';
 import { useAuth } from '@/contexts/AuthProvider';

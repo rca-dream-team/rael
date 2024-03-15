@@ -11,7 +11,7 @@ import React from 'react';
 const righteous = Righteous({ weight: ['400'], subsets: ['latin'] });
 
 export const metadata: Metadata = {
-   // metadataBase:
+   metadataBase: new URL('http://194.163.167.131:2024/'),
    title: 'RAEL',
    description: 'All you need to know about RCA and the RCA community',
    openGraph: {

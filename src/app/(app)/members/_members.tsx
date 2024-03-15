@@ -1,5 +1,5 @@
 'use client';
-import PromFilter from '@/components/members/PromFilter';
+import PromFilter from '@/components/page_comps/members/PromFilter';
 import { getImageUrl } from '@/sanity/sanity.client';
 import { IStudent } from '@/types/student.type';
 import { Card } from '@mantine/core';

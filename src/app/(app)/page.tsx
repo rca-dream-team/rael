@@ -1,6 +1,8 @@
+import RcaDailyPage from '@/components/page_comps/rca-daily';
 import { fetchNews } from '@/sanity/queries/news';
-import RcaDailyPage from './rca-daily/page';
 import { News } from '@/types/news';
+
+export const revalidate = 15;
 
 export default async function Home() {
    const res: News[] = await fetchNews;
