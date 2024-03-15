@@ -7,13 +7,14 @@ import { IStudent } from '@/types/student.type';
 import Image from 'next/image';
 import { FaLink, FaUserCircle } from 'react-icons/fa';
 import { IoLogoBehance, IoLogoFacebook, IoLogoGithub, IoLogoInstagram, IoLogoLinkedin } from 'react-icons/io5';
+import { urlFor } from '@/sanity/sanity.client';
+import { IoDiscOutline } from 'react-icons/io5';
 
 export interface MemberProps {
    member: IStudent;
 }
 
 const Member = ({ member }: MemberProps) => {
-   const images = new Array<string>(4).fill('').map((it, i) => `/images/mem${i}`);
    return (
       <div className="max-w-[1000px] pb-4 w-full rounded-xl bg-white dark:bg-[#060911] gap-y-11 px-11 flex-col flex">
          <div className="flex py-2 items-center justify-center">
@@ -38,19 +39,29 @@ const Member = ({ member }: MemberProps) => {
                   <RText className=" text-xl uppercase">{member.names}</RText>
                   <PText className=" font-medium uppercase">{member.leaderTitle}</PText>
                </div>
-               <PText className=" text-sm">{member?.occupation?.map((ocu) => <span key={ocu}>{ocu}</span>)}</PText>
+               <div className="flex flex-col flex-wrap gap-2 h-20">
+                  {member?.occupation?.map((ocu, i) => (
+                     <div className="flex gap-2 ml-6" key={i}>
+                        <IoDiscOutline />{' '}
+                        <PText className=" text-sm">
+                           <span key={ocu}>{ocu}</span>
+                        </PText>
+                     </div>
+                  ))}
+               </div>
             </div>
          </div>
          <PText className="text-sm">{member?.bio}</PText>
          <div className="grid grid-cols-3 w-full gap-6">
-            {images?.map((im, i) => (
+            {member?.images?.map((im, i) => (
                <Image
-                  src={`/images/mem${i + 1}.png`}
+                  src={urlFor(im).url()}
                   alt="Alt"
                   className=" min-w-full rounded-xl overflow-hidden object-cover h-full"
                   key={i}
                   width={300}
                   height={300}
+                  quality={100}
                />
             ))}
          </div>
