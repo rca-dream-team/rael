@@ -13,6 +13,7 @@ export function GalleryIndex({ gallery }: Props) {
 
    const cards = gallery.map((g, i) => {
       const colSpan = i % 3 === 0 ? 'md:col-span-2' : 'col-span-1';
+      const thumbnail = g.coverImage ? urlFor(g.coverImage).url() : g?.images?.[0] ? urlFor(g?.images?.[0]?.image).url() : null;
       return {
          id: g._id,
          content: (
@@ -23,7 +24,7 @@ export function GalleryIndex({ gallery }: Props) {
             </div>
          ),
          className: colSpan,
-         thumbnail: g.coverImage ? urlFor(g.coverImage).url() : urlFor(g.images[0].image).url(),
+         thumbnail,
       };
    });
 
@@ -34,7 +35,13 @@ export function GalleryIndex({ gallery }: Props) {
                <Link href={`/gallery/${card.id}`} key={i} className={' w-full rounded-lg h-fit border shadow-sm'}>
                   <div className="relative overflow-hidden w-full gallery-card rounded-lg">
                      <div className="bg-white rounded-xl imgCont aspect-auto w-full">
-                        <Image src={card.thumbnail} alt="gallery" layout="responsive" width={800} height={600} />
+                        <Image
+                           src={card.thumbnail ?? '/images/mem1.png'}
+                           alt="gallery"
+                           layout="responsive"
+                           width={800}
+                           height={600}
+                        />
                      </div>
                      <div className=" absolute bottom-0 left-0 w-full bg-black/50 flex flex-col p-3">{card.content}</div>
                   </div>
