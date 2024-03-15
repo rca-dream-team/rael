@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { sanityClient } from '@/sanity/sanity.client';
 import { capitalize, getObjValue } from '@/utils/funcs';
 import { MantineSize, Select } from '@mantine/core';

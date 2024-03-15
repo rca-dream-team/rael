@@ -1,14 +1,14 @@
 'use client';
 import { useApp } from '@/contexts/AppProvider';
 import { useAuth } from '@/contexts/AuthProvider';
+import { getImageUrl } from '@/sanity/sanity.client';
 import { BellIcon, MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 import { Popover } from '@mantine/core';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FaUserCircle } from 'react-icons/fa';
 import { RAELIcon } from '../constants/icons';
 import NewNavbar from './navbar/new-navbar';
-import { getImageUrl, urlFor } from '@/sanity/sanity.client';
-import { FaUserCircle } from 'react-icons/fa';
 
 const Header = () => {
    const { toggleTheme, isDarkTheme } = useApp();
@@ -16,7 +16,7 @@ const Header = () => {
    console.log('user', user);
 
    return (
-      <header className="flex sticky top-0 bg-white dark:bg-black w-full dark:border-slate-900/90 items-center justify-between border-b z-50 py-4">
+      <header className="flex sticky top-0 bg-white dark:bg-black w-full dark:border-slate-900/90 items-center justify-between border-b z-30 py-4">
          <RAELIcon size={100} />
          <div className="">
             <NewNavbar />
@@ -26,7 +26,7 @@ const Header = () => {
                <MagnifyingGlassIcon className="w-6 font-bold cursor-pointer" onClick={handleShowSearch} />
                {searchVal ? <SearchBar setSearchVal={setSearchVal} /> : <></>}
             </div> */}
-            <BellIcon className="w-7 cursor-pointer font-bold" />
+            {/* <BellIcon className="w-7 cursor-pointer font-bold" /> */}
             <Popover width={200} position="bottom" shadow="md">
                <Popover.Target>
                   {user?.picture ? (

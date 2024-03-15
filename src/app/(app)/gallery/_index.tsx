@@ -1,7 +1,12 @@
 'use client';
 import { LayoutGrid } from '@/components/ui/layout-grid';
 
-export function GalleryIndex() {
+interface Props {
+   gallery: any;
+}
+
+export function GalleryIndex({ gallery }: Props) {
+   console.log('gallery', gallery);
    return (
       <div className="h-screen py-11 w-full">
          <LayoutGrid cards={cards} />
