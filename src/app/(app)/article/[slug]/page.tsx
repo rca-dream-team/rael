@@ -1,15 +1,13 @@
 import { fetchNewsBySlug } from '@/sanity/queries/news';
+import { urlFor } from '@/sanity/sanity.client';
 import { News } from '@/types/news';
+import { PortableText } from '@portabletext/react';
+import { getImageDimensions } from '@sanity/asset-utils';
 import { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import React from 'react';
 import { BiArrowBack } from 'react-icons/bi';
-import { PortableText } from '@portabletext/react';
-import Image from 'next/image';
-import urlBuilder from '@sanity/image-url';
-import { getImageDimensions } from '@sanity/asset-utils';
-import { urlFor } from '@/sanity/sanity.client';
 
 export const revalidate = 15;
 
