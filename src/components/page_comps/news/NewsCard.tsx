@@ -10,8 +10,14 @@ interface NewsCardProps {
 
 const NewsCard = ({ data }: NewsCardProps) => {
    return (
-      <Link href={`/article/${data.slug.current}`} className=" hover:bg-gray-50">
-         <Card shadow="sm" padding="0" radius="md" withBorder className="w-full  card hover:bg-gray-50 duration-300">
+      <Link href={`/article/${data.slug.current}`} className=" hover:bg-gray-50 hover:dark:bg-gray-900">
+         <Card
+            shadow="sm"
+            padding="0"
+            radius="md"
+            withBorder
+            className="w-full  card hover:bg-gray-50 hover:dark:bg-gray-900 duration-300"
+         >
             <div className="imgCont overflow-hidden">
                <Image
                   src={data.image ?? 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'}

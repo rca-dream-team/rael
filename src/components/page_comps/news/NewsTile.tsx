@@ -13,7 +13,7 @@ const NewsTile = ({ data }: NewsTileProps) => {
    return (
       <Link
          href={`/article/${data.slug.current}`}
-         className=" w-full max-h-48 overflow- tileCard hover:bg-gray-50 duration-300 flex border"
+         className=" w-full max-h-48 overflow- tileCard hover:bg-gray-50 hover:dark:bg-gray-900 duration-300 flex border"
       >
          <div className=" aspect-square imgCont overflow-hidden w-1/3">
             <Image

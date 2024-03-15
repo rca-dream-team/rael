@@ -30,7 +30,7 @@ export function GalleryIndex({ gallery }: Props) {
 
    return (
       <div className="h-screen py-11 w-full">
-         <div className="w-full h-full p-10 grid grid-cols-1 md:grid-cols-3  max-w-7xl mx-auto gap-4 ">
+         <div className="w-full h-full p-10 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  max-w-7xl mx-auto gap-4 ">
             {[...cards].map((card, i) => (
                <Link href={`/gallery/${card.id}`} key={i} className={' w-full rounded-lg h-fit border shadow-sm'}>
                   <div className="relative overflow-hidden w-full gallery-card rounded-lg">
