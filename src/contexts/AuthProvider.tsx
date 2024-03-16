@@ -55,7 +55,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
    }, []);
 
    if (!loading && !user && !whitelist.some((path) => pathname?.includes(path))) {
-      return router.push('/auth/login');
+      router.push('/auth/login');
+      return null;
    }
 
    if (loading) {
