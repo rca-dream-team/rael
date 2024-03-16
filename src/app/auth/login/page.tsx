@@ -29,10 +29,11 @@ export default function LoginForm() {
       try {
          const res = await axios.post('/api/auth/login', { token });
          console.log(res.data);
+         const data = res.data.data;
          setRcaLoading(true);
-         setCookie('mis_token', token, { maxAge: 60 * 60 * 24 * 31 });
-         setCookie('token', token, { maxAge: 60 * 60 * 24 * 31 });
-         setCookie('user_type', res.data?.data?.roles?.[0]?.roleName, { maxAge: 60 * 60 * 24 * 31 });
+         setCookie('mis_token', token, { maxAge: 60 * 60 * 24 * 30 });
+         setCookie('token', data.token, { maxAge: 60 * 60 * 24 * 30 });
+         setCookie('user_type', data?.profile?.roles?.[0]?.roleName, { maxAge: 60 * 60 * 24 * 30 });
          console.log('user created if not exists');
          window.location.href = (redirect as any) ?? '/';
       } catch (error) {

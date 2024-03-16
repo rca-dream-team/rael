@@ -3,10 +3,9 @@ import RText from '@/components/constants/RighteousText';
 import NewsCard from '@/components/page_comps/news/NewsCard';
 import LayoutChanger from '@/components/ui/LayoutChanger';
 import { News } from '@/types/news';
-import { useState } from 'react';
+import { useLocalStorage } from '@mantine/hooks';
 import NewsList from './news/NewsList';
 import NewsTile from './news/NewsTile';
-import { useLocalStorage } from '@mantine/hooks';
 
 interface RcaDailyPageProps {
    news: News[];
@@ -31,7 +30,7 @@ const RcaDailyPage = ({ news }: RcaDailyPageProps) => {
       <div className=" w-full lg:w-[80%] ">
          <div className="flex items-center justify-between w-full">
             <RText className="text-2xl">Rca News</RText>
-            <LayoutChanger value="grid" onChange={handleLayoutChange} />
+            <LayoutChanger value={layout} onChange={handleLayoutChange} />
          </div>
          {layout === 'grid' ? (
             <div className="mt-5 grid gap-6 flex-wrap lg:grid-cols-3 sm:grid-cols-2">

@@ -1,8 +1,9 @@
-import { studentFields } from '@/sanity/queries/student.query';
-import { sanityClient } from '@/sanity/sanity.client';
+import { authRoutes, whitelist } from '@/middleware';
 import { IStudent } from '@/types/student.type';
 import { decodeToken } from '@/utils';
-import { getCookie } from 'cookies-next';
+import axios from 'axios';
+import { deleteCookie, getCookie } from 'cookies-next';
+import { usePathname, useRouter } from 'next/navigation';
 import React, { ReactNode, useContext, useEffect } from 'react';
 
 interface AuthContextProps {
@@ -21,31 +22,46 @@ export const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
    const [user, setUser] = React.useState<IStudent | null>(null);
+   const [loading, setLoading] = React.useState(true);
+   const pathname = usePathname();
+   const router = useRouter();
 
    const getProfile = async () => {
+      if (authRoutes.some((path) => pathname?.includes(path))) {
+         setLoading(false);
+         return;
+      }
       try {
          const decoded = decodeToken();
          console.log('decoded token', decoded);
          const role = decoded.role ?? getCookie('user_type');
          const schema = role?.toString().toLowerCase() === 'student' ? 'student' : 'staff';
-         const res = await sanityClient.fetch(
-            `*[_type == '${schema}' && email == $email][0] {
-            ${studentFields}
-         }`,
-            {
-               email: decoded?.email,
-            },
-         );
+         const res = await axios.get(`/api/profile?user_type=${schema}`);
          console.log('profile', res);
-         setUser(res);
+         setUser(res.data.data);
       } catch (error) {
          console.error('Error getting profile', error);
+         deleteCookie('token');
+         deleteCookie('user_type');
+         deleteCookie('mis_token');
       }
+      setLoading(false);
    };
 
    useEffect(() => {
+      setLoading(true);
       getProfile();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, []);
+
+   if (!loading && !user && !whitelist.some((path) => pathname?.includes(path))) {
+      router.push('/auth/login');
+      return null;
+   }
+
+   if (loading) {
+      return <div className=" flex w-full h-screen justify-center items-center">Loading ...</div>;
+   }
 
    return <AuthContext.Provider value={{ user, setUser, getProfile }}>{children}</AuthContext.Provider>;
 };

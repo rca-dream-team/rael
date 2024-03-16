@@ -1,7 +1,7 @@
 import { groq } from 'next-sanity';
 import { sanityClient } from '../sanity.client';
 
-const profileRequestFields = groq`
+export const profileRequestFields = groq`
     ...,
     requester->,
     isApproved,

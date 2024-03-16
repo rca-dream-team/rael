@@ -1,7 +1,11 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { decodeToken } from './utils';
+import { deleteCookie } from 'cookies-next';
 
-const whitelist = ['/auth/login', '/auth/signup', '/auth/logout', '/members'];
+export const authRoutes = ['/auth/login', '/auth/signup', '/auth/logout'];
+export const otherWhitelisted = ['/members', '/studio'];
+export const whitelist = [...authRoutes, ...otherWhitelisted];
 
 export function middleware(request: NextRequest) {
    const token = request.cookies.get('token');
@@ -22,6 +26,16 @@ export function middleware(request: NextRequest) {
 
    if (!token) {
       return NextResponse.redirect(new URL('/auth/login', request.nextUrl).href + '?redirect=' + path);
+   } else {
+      const decoded = decodeToken(token.value);
+      console.log('decoded', decoded);
+      if (decoded.exp < Date.now() / 1000 || !decoded) {
+         // we divide by 1000 because the Date.now() returns milliseconds and the exp is in seconds
+         deleteCookie('token');
+         deleteCookie('user_type');
+         deleteCookie('mis_token');
+         return NextResponse.redirect(new URL('/auth/login', request.nextUrl).href + '?redirect=' + path);
+      }
    }
 
    return NextResponse.next();

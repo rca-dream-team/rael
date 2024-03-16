@@ -9,6 +9,8 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { BiArrowBack } from 'react-icons/bi';
 
+export const revalidate = 15;
+
 export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
    if (!props.params?.id) return { title: 'Gallery' };
    const data: Gallery = await fetchGalleryById(props.params?.id);

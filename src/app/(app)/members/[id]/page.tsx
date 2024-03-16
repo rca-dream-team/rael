@@ -1,9 +1,10 @@
 import { getStudentByIdQuery } from '@/sanity/queries/student.query';
 import { sanityClient } from '@/sanity/sanity.client';
-import { IStudent } from '@/types/student.type';
 import { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 import Member from './member';
+
+export const revalidate = 15;
 
 interface MemberPageProps {
    params: {

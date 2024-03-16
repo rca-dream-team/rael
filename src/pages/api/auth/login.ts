@@ -2,6 +2,7 @@ import { sanityClient } from '@/sanity/sanity.client';
 import Response from '@/types/response';
 import { misApi } from '@/utils/axios.config';
 import { NextApiRequest, NextApiResponse } from 'next';
+import jwt from 'jsonwebtoken';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
    if (req.method === 'POST') {
@@ -21,12 +22,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             email: profile.user?.email,
          });
 
+         let studentData = student;
          if (!student) {
             const newStudent = await createStudent(profile);
+            studentData = newStudent;
             console.log('new student', newStudent);
-            return res.status(200).json(new Response(profile, undefined, 'Logged in', true));
          }
-         return res.status(200).json(new Response(profile, undefined, 'Logged in', true));
+         const login_token = jwt.sign({ email: studentData.email, id: studentData?.id }, process.env.JWT_SECRET!, {
+            expiresIn: '30d',
+         });
+         return res.status(200).json(new Response({ profile, token: login_token }, undefined, 'Logged in', true));
       } catch (error: any) {
          console.error('Error logging in', error);
          return res.status(500).json(new Response(undefined, error, 'Error logging in'));

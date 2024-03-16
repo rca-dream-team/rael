@@ -10,7 +10,10 @@ interface NewsCardProps {
 
 const NewsList = ({ data }: NewsCardProps) => {
    return (
-      <Link href={`/article/${data.slug.current}`} className="border duration-300 hover:bg-gray-50 rounded-xl w-full h-fit p-4">
+      <Link
+         href={`/article/${data.slug.current}`}
+         className="border duration-300 hover:bg-gray-50 hover:dark:bg-gray-900 rounded-xl w-full h-fit p-4"
+      >
          <RText className="text-xl">
             <h2>{data.title}</h2>
          </RText>

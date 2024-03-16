@@ -122,6 +122,7 @@ const AsyncSelect: FC<Props> = ({
             onChange?.(e);
          }}
          className={className}
+         allowDeselect
       />
    );
 };

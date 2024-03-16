@@ -30,6 +30,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                occupation: requestData.occupation,
             })
             .commit();
+         // delete the request
+         await sanityClient.delete(requestData._id);
          console.log('res_data', _res);
          res.json({ message: 'Approve Webhook Success!', data: _res });
       } catch (error) {

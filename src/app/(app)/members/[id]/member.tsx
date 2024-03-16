@@ -53,12 +53,12 @@ const Member = ({ member }: MemberProps) => {
             </div>
          </div>
          <PText className="text-sm">{member?.bio}</PText>
-         <div className="grid grid-cols-3 w-full gap-6">
+         <div className="grid md:grid-cols-3 sm:grid-cols-2 w-full gap-6">
             {member?.images?.map((im, i) => (
                <Image
                   src={urlFor(im).url()}
                   alt="Alt"
-                  className=" min-w-full rounded-xl overflow-hidden object-cover h-full"
+                  className="w-full rounded-xl overflow-hidden"
                   key={i}
                   width={300}
                   height={300}
