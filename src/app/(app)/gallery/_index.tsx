@@ -32,13 +32,15 @@ export function GalleryIndex({ gallery }: Props) {
       <div className="h-screen py-11 w-full">
          <div className="w-full h-full p-10 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  max-w-7xl mx-auto gap-4 ">
             {[...cards].map((card, i) => (
-               <Link href={`/gallery/${card.id}`} key={i} className={' w-full rounded-lg h-fit border shadow-sm'}>
-                  <div className="relative overflow-hidden w-full gallery-card rounded-lg">
-                     <div className="bg-white rounded-xl imgCont aspect-auto w-full">
+               <Link href={`/gallery/${card.id}`} key={i} className={' w-full  rounded-lg aspect-[4/5] border shadow-sm'}>
+                  <div className="relative overflow-hidden w-full h-full gallery-card rounded-lg">
+                     <div className="bg-white rounded-xl h-full flex imgCont aspect-auto w-full">
                         <Image
                            src={card.thumbnail ?? '/images/mem1.png'}
                            alt="gallery"
                            layout="responsive"
+                           objectFit="cover"
+                           className="object-cover h-full w-full"
                            width={800}
                            height={600}
                         />
