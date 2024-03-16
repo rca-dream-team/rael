@@ -74,37 +74,37 @@ const Member = ({ member }: MemberProps) => {
                   <MailIcon size={30} className="cursor-pointer" />
                </Link>
             )}
-            {member.socials.github && (
-               <Link href={member.socials.github.url ?? '#'}>
+            {member.socials?.github && (
+               <Link href={member.socials?.github?.url ?? '#'}>
                   <IoLogoGithub size={30} className=" cursor-pointer" />
                </Link>
             )}
 
-            {member.socials.linkedIn && (
-               <Link href={member.socials.linkedIn.url ?? '#'}>
+            {member.socials?.linkedIn && (
+               <Link href={member.socials?.linkedIn?.url ?? '#'}>
                   <IoLogoLinkedin size={30} className=" cursor-pointer" />
                </Link>
             )}
 
-            {member.socials.behance && (
-               <Link href={member.socials.behance.url ?? '#'}>
+            {member.socials?.behance && (
+               <Link href={member.socials?.behance?.url ?? '#'}>
                   <IoLogoBehance size={30} className=" cursor-pointer" />
                </Link>
             )}
-            {member.socials.instagram && (
-               <Link href={member.socials.instagram.url ?? '#'}>
+            {member.socials?.instagram && (
+               <Link href={member.socials?.instagram?.url ?? '#'}>
                   <IoLogoInstagram size={30} className=" cursor-pointer" />
                </Link>
             )}
 
-            {member.socials.facebook && (
-               <Link href={member.socials.facebook.url ?? '#'}>
+            {member.socials?.facebook && (
+               <Link href={member.socials?.facebook?.url ?? '#'}>
                   <IoLogoFacebook size={30} className=" cursor-pointer" />
                </Link>
             )}
 
-            {member.socials.portfolio && (
-               <Link href={member.socials.portfolio.url ?? '#'}>
+            {member.socials?.portfolio && (
+               <Link href={member.socials?.portfolio?.url ?? '#'}>
                   <FaLink size={25} className=" cursor-pointer" />
                </Link>
             )}
