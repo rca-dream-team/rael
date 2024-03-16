@@ -1,8 +1,8 @@
+import { getRequestUser } from '@/lib/api-middlewares';
 import { fetchProfileRequest } from '@/sanity/queries/requests';
-import { sanityClient } from '@/sanity/sanity.client';
 import Response from '@/types/response';
-import { decodeToken } from '@/utils';
 import { requestProfile } from '@/utils/funcs/fetch';
+import jwt from 'jsonwebtoken';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -11,6 +11,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
          const { request, requester } = req.body;
          if (!request || !requester) {
             return res.json({ message: 'Enter all required parameters' });
+         }
+         const user = await getRequestUser(req, res);
+         if (!user) {
+            return res.json({ message: 'Unauthorized' });
          }
          const data = await requestProfile(request, requester);
          res.json({ data });
@@ -25,8 +29,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
          if (!token) {
             return res.json({ message: 'Unauthorized' });
          }
-         const decoded = decodeToken(token);
-         console.log('---decoded---', decoded);
+         const decoded: any = jwt.verify(token, process.env.JWT_SECRET!);
+         console.log('decoded', decoded);
          if (!decoded) {
             return res.json({ message: 'Unauthorized' });
          }

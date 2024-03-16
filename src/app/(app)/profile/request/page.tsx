@@ -66,6 +66,7 @@ const ProfileRequestPage = () => {
             title: 'Profile Requested',
             message: 'Profile Request Sent Successfully',
          });
+         getUserRequest();
       } catch (error) {
          console.log('__error', error);
          notifications.show({
@@ -80,7 +81,7 @@ const ProfileRequestPage = () => {
    const getUserRequest = async () => {
       try {
          const res = await axios.get('/api/profile/request');
-         setUserRequest(res.data?.data ?? res.data);
+         setUserRequest(res.data?.data);
       } catch (error) {
          console.log('error', error);
       }
