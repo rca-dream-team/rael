@@ -131,7 +131,7 @@ const ProfileRequestPage = () => {
                   size="lg"
                   label="current"
                   value={profileData.promotion}
-                  handleChange={(val) => setProfileData({ ...profileData, promotion: val })}
+                  handleChange={(val) => val && setProfileData({ ...profileData, promotion: val })}
                />
                <Input.Wrapper label="Leader Title" description={`Currently Selected: ${profileData?.leaderTitle}`}>
                   <AsyncSelect
