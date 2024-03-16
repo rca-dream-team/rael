@@ -27,7 +27,7 @@ export function GalleryIdIndex({ gallery }: Props) {
    console.log('cards', cards);
 
    return (
-      <div className="h-screen py-11 w-full">
+      <div className=" py-11 w-full">
          <LayoutGrid cards={cards} />
       </div>
    );

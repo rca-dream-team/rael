@@ -13,7 +13,9 @@ const MainAppLayout = ({ children }: MainAppLayoutProps) => {
       <main className="flex dark:bg-black w-full dark:text-white min-h-screen flex-col items-center gap-y-6 px-[5%]">
          <Header />
          {children}
+         {/* <div className="flex fixed bottom-0"> */}
          <Footer />
+         {/* </div> */}
       </main>
    );
 };
