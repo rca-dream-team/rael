@@ -33,9 +33,9 @@ const Header = () => {
                      <Image
                         src={getImageUrl(user?.picture)!}
                         alt="avatar"
-                        height={35}
-                        width={35}
-                        className=" rounded-full cursor-pointer object-cover"
+                        height={30}
+                        width={30}
+                        className="rounded-full cursor-pointer w-12 h-12 object-cover"
                      />
                   ) : (
                      <button>
