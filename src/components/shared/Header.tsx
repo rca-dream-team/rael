@@ -35,7 +35,8 @@ const Header = () => {
                         alt="avatar"
                         height={35}
                         width={35}
-                        className=" rounded-full cursor-pointer object-cover"
+                        className="rounded-full cursor-pointer w-10 h-10 object-cover"
+                        quality={100}
                      />
                   ) : (
                      <button>
