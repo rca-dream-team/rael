@@ -70,41 +70,41 @@ const Member = ({ member }: MemberProps) => {
             {/* <MdMail size={30} className=" cursor-pointer" /> */}
 
             {member.email && (
-               <Link href={member.email}>
+               <Link href={`mailto:${member.email}`} className="cursor-pointer">
                   <MailIcon size={30} className="cursor-pointer" />
                </Link>
             )}
             {member.socials.github && (
-               <Link href={member.socials.github.url}>
+               <Link href={member.socials.github.url ?? '#'}>
                   <IoLogoGithub size={30} className=" cursor-pointer" />
                </Link>
             )}
 
             {member.socials.linkedIn && (
-               <Link href={member.socials.linkedIn.url}>
+               <Link href={member.socials.linkedIn.url ?? '#'}>
                   <IoLogoLinkedin size={30} className=" cursor-pointer" />
                </Link>
             )}
 
             {member.socials.behance && (
-               <Link href={member.socials.behance.url}>
+               <Link href={member.socials.behance.url ?? '#'}>
                   <IoLogoBehance size={30} className=" cursor-pointer" />
                </Link>
             )}
             {member.socials.instagram && (
-               <Link href={member.socials.instagram.url}>
+               <Link href={member.socials.instagram.url ?? '#'}>
                   <IoLogoInstagram size={30} className=" cursor-pointer" />
                </Link>
             )}
 
             {member.socials.facebook && (
-               <Link href={member.socials.facebook.url}>
+               <Link href={member.socials.facebook.url ?? '#'}>
                   <IoLogoFacebook size={30} className=" cursor-pointer" />
                </Link>
             )}
 
             {member.socials.portfolio && (
-               <Link href={member.socials.portfolio.url}>
+               <Link href={member.socials.portfolio.url ?? '#'}>
                   <FaLink size={25} className=" cursor-pointer" />
                </Link>
             )}

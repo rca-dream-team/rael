@@ -3,7 +3,7 @@ import { Select, SelectProps } from '@mantine/core';
 import React, { useEffect } from 'react';
 
 interface Props extends Omit<SelectProps, 'data'> {
-   handleChange?: (e: string) => void;
+   handleChange?: (e: string | null) => void;
    label: string;
    value?: string;
    data?: SelectProps['data'];
@@ -40,7 +40,7 @@ const PromFilter = ({ handleChange, label, value, data, ...rest }: Props) => {
    }, [value, selectData]);
    return (
       <div className="flex flex-col">
-         <p className="px-1">{label} (Prom): </p>
+         <p className="px-1 text-sm">{label} (Prom): </p>
          <Select
             placeholder={`${label} Promotion`}
             // defaultValue={_value}
@@ -50,9 +50,10 @@ const PromFilter = ({ handleChange, label, value, data, ...rest }: Props) => {
             searchable
             onChange={(value) => {
                setValue(value as string);
-               if (!value) return;
-               handleChange?.(value as string);
+               // if (!value) return;
+               handleChange?.(value);
             }}
+            allowDeselect
             {...rest}
          />
       </div>

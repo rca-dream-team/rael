@@ -2,12 +2,12 @@
 import PromFilter from '@/components/page_comps/members/PromFilter';
 import { getImageUrl } from '@/sanity/sanity.client';
 import { IStudent } from '@/types/student.type';
-import { Card } from '@mantine/core';
+import { Card, Input } from '@mantine/core';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import React, { FC, useEffect } from 'react';
-import { FaUserCircle } from 'react-icons/fa';
+import { FaSearch, FaUserCircle } from 'react-icons/fa';
 
 interface MembersProps {
    students: IStudent[];
@@ -30,14 +30,16 @@ const Members: FC<MembersProps> = ({ staffs, students }) => {
 
    useEffect(() => {
       if (tab === 'students') {
-         setFilteredStudents(students);
+         if (filter) handlePromChange(filter);
+         else setFilteredStudents(students);
       } else {
          setFilteredStudents(staffs);
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [tab, students, staffs]);
 
-   const handlePromChange = (e: string) => {
-      setFilter(e);
+   const handlePromChange = (e: string | null) => {
+      e && setFilter(e);
       if (e) {
          const filtered = students.filter((student) => student.promotion === e);
          setFilteredStudents(filtered);
@@ -45,9 +47,23 @@ const Members: FC<MembersProps> = ({ staffs, students }) => {
          setFilteredStudents(students);
       }
    };
+
+   const handleSearch = (e: string) => {
+      setFilter(e);
+      if (e) {
+         const filtered = students.filter((student) => {
+            const json = JSON.stringify(student);
+            return json.toLowerCase().includes(e.toLowerCase());
+         });
+         setFilteredStudents(filtered);
+      } else {
+         setFilteredStudents(students);
+      }
+   };
+
    return (
       <>
-         <div className=" flex justify-between items-center w-full">
+         <div className=" flex justify-between md:flex-row flex-col gap-2 items-center w-full">
             <PromFilter handleChange={handlePromChange} label="Filter" />
             <div className=" border-2 bg-white dark:bg-black dark:border-slate-900/90 overflow-hidden flex items-center w-fit max-w-[300px] rounded-[3em]">
                <button
@@ -71,9 +87,19 @@ const Members: FC<MembersProps> = ({ staffs, students }) => {
                   Staffs
                </button>
             </div>
-            <div className=""></div>
+            <div className="">
+               <Input.Wrapper label="Search" className="w-full">
+                  <Input
+                     value={filter}
+                     onChange={(e) => handleSearch(e.currentTarget.value)}
+                     placeholder="Search"
+                     className="w-full"
+                     rightSection={<FaSearch />}
+                  />
+               </Input.Wrapper>
+            </div>
          </div>
-         <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 2sm:grid-cols-2 gap-x-4 gap-y-6 w-full gap-2 mt-4">
+         <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-x-4 gap-y-6 w-full gap-2 mt-4">
             {filteredStudents.map((student, i) => (
                <Card padding={0} shadow="sm" key={i}>
                   <Link href={`/members/${student._id}` as any} className=" w-full h-fit rounded-xl text-center">
@@ -92,7 +118,9 @@ const Members: FC<MembersProps> = ({ staffs, students }) => {
                      </div>
                      <div className="flex flex-col p-2">
                         <p className="text-md text-center font-bold mt-1">{student.names}</p>
-                        <span className="text-sm text-center text-gray-600 w-full flex">{student.leaderTitle}</span>
+                        <span className="text-sm text-center text-gray-600 w-full mx-auto justify-center flex">
+                           {student.leaderTitle}
+                        </span>
                      </div>
                   </Link>
                </Card>
