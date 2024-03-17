@@ -14,10 +14,16 @@ const RequestModal: FC<RequestModalProps> = ({ onClose, onSure, loading }) => {
          <div className="flex w-full flex-col gap-3">
             <p>Are you sure you want to update or request a profile?</p>
             <div className=" w-full justify-between items-center flex">
-               <Button disabled={loading} onClick={onClose} variant="outline">
+               <Button className=" dark:text-white dark:border-white" disabled={loading} onClick={onClose} variant="outline">
                   Cancel
                </Button>
-               <Button className=" dark:bg-white bg-black" onClick={onSure} variant="filled" disabled={loading} loading={loading}>
+               <Button
+                  className=" dark:bg-white bg-black dark:text-black"
+                  onClick={onSure}
+                  variant="filled"
+                  disabled={loading}
+                  loading={loading}
+               >
                   Request
                </Button>
             </div>
