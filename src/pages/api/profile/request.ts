@@ -25,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
    }
    if (req.method === 'GET') {
       try {
-         const token = req.cookies.token;
+         const token = req.cookies.rael_token;
          if (!token) {
             return res.json({ message: 'Unauthorized' });
          }

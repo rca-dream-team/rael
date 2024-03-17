@@ -4,7 +4,7 @@ import { sanityClient } from '@/sanity/sanity.client';
 import { profileRequestFields } from '@/sanity/queries/requests';
 
 export const getRequestUser = async (req: NextApiRequest, res: NextApiResponse, user_type?: string) => {
-   const token = req.cookies.token;
+   const token = req.cookies.rael_token;
    if (!token) {
       return res.json({ message: 'Unauthorized' });
    }
