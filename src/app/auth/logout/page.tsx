@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 const LogoutPage = () => {
    const router = useRouter();
    const logout = () => {
-      deleteCookie('token');
+      deleteCookie('rael_token');
       router.push('/auth/login');
    };
 

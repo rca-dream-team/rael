@@ -20,7 +20,7 @@ const Member = ({ member }: MemberProps) => {
       <div className="max-w-[1000px] pb-4 w-full rounded-xl bg-white dark:bg-[#060911] gap-y-11 px-11 flex-col flex">
          <div className="flex py-2 items-center justify-center">
             {/* <Image src={member?.picture ?? '/images/member.png'} height={300} width={300} alt="Member" /> */}
-            <div className="flex w-[300px] aspect-square rounded-full overflow-hidden">
+            <div className="flex w-[300px] aspect-square rounded-full border overflow-hidden">
                {member.picture ? (
                   <Image
                      src={getImageUrl(member.picture)!}

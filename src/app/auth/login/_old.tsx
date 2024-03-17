@@ -22,7 +22,7 @@ export default function LoginForm() {
 
    const handleSubmit = () => {
       console.log('login');
-      setCookie('token', '1234');
+      setCookie('rael_token', '1234');
       router.push((redirect as any) ?? '/');
    };
    return (

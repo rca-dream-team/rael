@@ -41,7 +41,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
          setUser(res.data.data);
       } catch (error) {
          console.error('Error getting profile', error);
-         deleteCookie('token');
+         deleteCookie('rael_token');
          deleteCookie('user_type');
          deleteCookie('mis_token');
       }

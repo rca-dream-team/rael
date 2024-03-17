@@ -14,7 +14,7 @@ export default function LoginForm() {
 
    React.useEffect(() => {
       const getOauthToken = async () => {
-         const token = searchParams?.get('token');
+         const token = searchParams?.get('rael_token');
          if (!token) return;
          // const decoded = decodeToken(token);
          // console.log('decoded token', decoded);
@@ -32,7 +32,7 @@ export default function LoginForm() {
          const data = res.data.data;
          setRcaLoading(true);
          setCookie('mis_token', token, { maxAge: 60 * 60 * 24 * 30 });
-         setCookie('token', data.token, { maxAge: 60 * 60 * 24 * 30 });
+         setCookie('rael_token', data.token, { maxAge: 60 * 60 * 24 * 30 });
          setCookie('user_type', data?.profile?.roles?.[0]?.roleName, { maxAge: 60 * 60 * 24 * 30 });
          console.log('user created if not exists');
          window.location.href = (redirect as any) ?? '/';
@@ -50,7 +50,7 @@ export default function LoginForm() {
    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       console.log('login');
-      // setCookie('token', '1234');
+      // setCookie('rael_token', '1234');
       router.push((redirect as any) ?? '/');
    };
    return (

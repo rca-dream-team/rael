@@ -4,7 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 export const decodeToken = (_token?: string) => {
    let data: any = null;
    try {
-      const token = _token ?? getCookie('mis_token');
+      const token = _token ?? getCookie('rael_token');
       if (!token) {
          return data;
       }
