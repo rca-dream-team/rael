@@ -14,7 +14,7 @@ export default function LoginForm() {
 
    React.useEffect(() => {
       const getOauthToken = async () => {
-         const token = searchParams?.get('rael_token');
+         const token = searchParams?.get('token');
          if (!token) return;
          // const decoded = decodeToken(token);
          // console.log('decoded token', decoded);
