@@ -1,11 +1,11 @@
 'use client';
-import { OCCUPATIONS } from '@/app/(utils)/constants';
 import PromFilter from '@/components/page_comps/members/PromFilter';
 import AsyncSelect from '@/components/profile/AsyncSelect';
 import RequestModal from '@/components/profile/RequestModal';
 import { useAuth } from '@/contexts/AuthProvider';
 import { getImageUrl } from '@/sanity/sanity.client';
 import { ISocial, ProfileRequest } from '@/types/student.type';
+import useGet from '@/utils/hooks/useGet';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import { Button, Input, MultiSelect, Textarea } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
@@ -27,6 +27,11 @@ const ProfileRequestPage = () => {
    const [loading, setLoading] = useState(false);
    const [userRequest, setUserRequest] = useState<ProfileRequest | null>(null);
    const [showModal, setShowModal] = useState(false);
+   // const [occupations, setOccupations] = useState<string[]>([]);
+   const { data: occupations, loading: ocLoading } = useGet<string[]>('*[_type=="occupation"]{name}', {
+      formatResponse: (res) => res.map((item: any) => item.name),
+      defaultValue: [],
+   });
 
    const handleSocialChange = (social: keyof ISocial, value: string) => {
       const newSocials = structuredClone(profileData.socials);
@@ -90,6 +95,8 @@ const ProfileRequestPage = () => {
    useEffect(() => {
       getUserRequest();
    }, []);
+
+   console.log('occupations', occupations);
 
    return (
       <div className="relativeflex flex-col mb-6 w-full max-w-[1000px]">
@@ -168,7 +175,7 @@ const ProfileRequestPage = () => {
             <h3 className="text-xl font-bold">Occupations</h3>
             <div className="flex flex-wrap flex-row gap-6  mt-4 items-center align-middle">
                <MultiSelect
-                  data={OCCUPATIONS}
+                  data={ocLoading ? [{ label: 'Loading ..', disabled: true, value: '' }] : occupations ?? []}
                   placeholder="Select your occupation"
                   value={profileData.occupation}
                   className="w-[100%]"
@@ -176,6 +183,7 @@ const ProfileRequestPage = () => {
                   onChange={(value) => {
                      setProfileData({ ...profileData, occupation: value });
                   }}
+                  // disabled={ocLoading}
                />
             </div>
          </div>

@@ -4,6 +4,7 @@ import gallery from './documents/gallery';
 import leaderTitle from './documents/leaderTitle';
 import maintainer from './documents/maintainer';
 import news from './documents/news';
+import club from './documents/club';
 import profileRequest from './documents/profile-request';
 import project from './documents/project';
 import promotion from './documents/promotion';
@@ -15,6 +16,7 @@ import blockContent from './objects/blockContent';
 import galleryImage from './objects/galleryImage';
 import link from './objects/link';
 import socials from './objects/socials';
+import occupation from './documents/occupation';
 
 const objects = [blockContent, socials, link, galleryImage];
 const documents = [
@@ -31,6 +33,8 @@ const documents = [
    profileRequest,
    leaderTitle,
    gallery,
+   club,
+   occupation,
 ];
 
 export const schemaTypes = [...objects, ...documents];

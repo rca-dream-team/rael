@@ -2,7 +2,7 @@
 import { useApp } from '@/contexts/AppProvider';
 import { useAuth } from '@/contexts/AuthProvider';
 import { getImageUrl } from '@/sanity/sanity.client';
-import { BellIcon, MoonIcon, SunIcon } from '@heroicons/react/24/outline';
+import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 import { Popover } from '@mantine/core';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,7 +13,6 @@ import NewNavbar from './navbar/new-navbar';
 const Header = () => {
    const { toggleTheme, isDarkTheme } = useApp();
    const { user } = useAuth();
-   console.log('user', user);
 
    return (
       <header className="flex sticky top-0 bg-white dark:bg-black w-full dark:border-slate-900/90 items-center justify-between border-b z-30 py-4">

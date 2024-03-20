@@ -6,6 +6,8 @@ import { News } from '@/types/news';
 import { useLocalStorage } from '@mantine/hooks';
 import NewsList from './news/NewsList';
 import NewsTile from './news/NewsTile';
+import { useRouter } from 'next13-progressbar';
+import { useEffect } from 'react';
 
 interface RcaDailyPageProps {
    news: News[];
@@ -16,7 +18,12 @@ const RcaDailyPage = ({ news }: RcaDailyPageProps) => {
       key: 'layout',
       defaultValue: 'grid',
    });
+   const router = useRouter();
    //    const [layout, setLayout] = useState(savedLayout);
+
+   useEffect(() => {
+      console.log('I will infinitely repeat');
+   }, [router]);
 
    const handleLayoutChange = (layout: 'grid' | 'list' | 'tile') => {
       console.log(layout);
