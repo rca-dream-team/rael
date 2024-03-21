@@ -1,5 +1,5 @@
 import { Center, SegmentedControl, Tooltip } from '@mantine/core';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaListUl, FaThList } from 'react-icons/fa';
 import { FiGrid } from 'react-icons/fi';
 
@@ -12,11 +12,17 @@ interface Props {
 
 const LayoutChanger = ({ value, onChange }: Props) => {
    const [_value, setValue] = React.useState(value ?? 'grid');
+   console.log('savedLauoy', value);
 
    const handleChange = (value: Layout) => {
-      setValue(value);
+      // setValue(value);
       onChange(value);
    };
+
+   useEffect(() => {
+      if (!value) return;
+      setValue(value);
+   }, [value]);
 
    return (
       <SegmentedControl

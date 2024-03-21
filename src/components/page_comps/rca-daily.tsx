@@ -8,6 +8,8 @@ import NewsList from './news/NewsList';
 import NewsTile from './news/NewsTile';
 import { fetchNewsByCategory } from '@/sanity/queries/news';
 import CategoryChanger from '../ui/CategoryChanger';
+import { useRouter } from 'next13-progressbar';
+import { useEffect } from 'react';
 
 interface RcaDailyPageProps {
    news: News[];
@@ -23,7 +25,12 @@ const RcaDailyPage = ({ news }: RcaDailyPageProps) => {
       key: 'category',
       defaultValue: 'unclassified',
    });
+   const router = useRouter();
    //    const [layout, setLayout] = useState(savedLayout);
+
+   useEffect(() => {
+      console.log('I will infinitely repeat');
+   }, [router]);
 
    const handleLayoutChange = (layout: 'grid' | 'list' | 'tile') => {
       console.log(layout);

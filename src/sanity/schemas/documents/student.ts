@@ -1,3 +1,4 @@
+import { AsyncListInput } from '@/sanity/components/AsyncListInput';
 import { groq } from 'next-sanity';
 import { ValidationContext, defineType } from 'sanity';
 import { sanityClient } from '../../sanity.client';
@@ -107,6 +108,14 @@ export default defineType({
          title: 'Occupation',
          type: 'array',
          of: [{ type: 'string' }],
+         options: {
+            list: [],
+            query: `*[_type == "occupation"]{_id, name}`,
+            formatResponse: (res: any[]) => res.map((item) => ({ value: item.name, title: item.name })),
+         },
+         components: {
+            input: AsyncListInput,
+         },
          group: ['extraCurricula'],
       },
       {
@@ -115,6 +124,13 @@ export default defineType({
          type: 'string',
          description: 'Ex: Chairman, Vice President of media club, etc.',
          group: ['extraCurricula'],
+      },
+      {
+         name: 'clubs',
+         title: 'Clubs',
+         type: 'array',
+         of: [{ type: 'reference', to: [{ type: 'club' }] }],
+         group: 'extraCurricula',
       },
       {
          name: 'projects',
