@@ -5,6 +5,7 @@ export interface News {
    excerpt: string;
    content: Content[];
    image: string;
+   category: Category;
 }
 
 export interface Slug {
@@ -20,6 +21,10 @@ export interface Content {
    style?: string;
    asset?: Asset;
    listItem?: 'bullet' | 'number';
+}
+export interface Category {
+   _ref: string;
+   _type: string;
 }
 
 export interface Children {
