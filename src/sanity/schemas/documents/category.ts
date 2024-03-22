@@ -5,11 +5,11 @@ export default defineType({
    title: 'News category',
    type: 'document',
    fields: [
-      defineField({
-         name: 'category',
-         title: 'Category',
+      {
+         name: 'name',
+         title: 'name',
          type: 'string',
          validation: (Rule) => Rule.required(),
-      }),
+      },
    ],
 });
