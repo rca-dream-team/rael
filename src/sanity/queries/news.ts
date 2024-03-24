@@ -9,7 +9,7 @@ const newsFields = `
     content,
     "author": author->{name, image},
     "image": image.asset->url,
-    "category": category->{name},
+    "category": category->name,
 `;
 
 export const fetchNewsQuery = groq`*[_type == "news"] | order(date desc) {
