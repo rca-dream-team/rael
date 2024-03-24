@@ -46,7 +46,8 @@ const RcaDailyPage = ({ news }: RcaDailyPageProps) => {
    console.log('Lauoy', layout);
    console.log(category);
 
-   // const newsFiltered = news.filter((news) => news.category._ref === category);
+   const newsFiltered = news.filter((news) => (news?.category as unknown as string) == category);
+   console.log(news);
 
    // const news=fetchNewsByCategory()
 
@@ -64,7 +65,7 @@ const RcaDailyPage = ({ news }: RcaDailyPageProps) => {
          </div> */}
          {layout === 'grid' ? (
             <div className="mt-5 grid gap-6 flex-wrap lg:grid-cols-3 sm:grid-cols-2">
-               {news.map((news) => (
+               {newsFiltered.map((news) => (
                   <NewsCard key={news.slug.current} data={news} />
                ))}
             </div>
