@@ -27,7 +27,7 @@ export const fetchNewsBySlug = (slug: string) => sanityClient.fetch(fetchNewsByS
 export const fetchNewsSlugsQuery = groq`*[_type == "news" && defined(slug.current)][].slug.current`;
 export const fetchNewsSlugs = sanityClient.fetch(fetchNewsSlugsQuery);
 
-export const fetchNewsByAuthorQuery = groq`*[_type == "news" && references(^._id)] | order(date desc){
+export const fetchNewsByAuthorQuery = groq`*[_type == "news" && author._ref == $id]{
     ${newsFields}
 }`;
 export const fetchNewsByAuthor = (id: string) => sanityClient.fetch(fetchNewsByAuthorQuery, { id });

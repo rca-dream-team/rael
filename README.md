@@ -32,7 +32,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 - Add `dark` class to the specific component to make it dark. This will be used to toggle between light and dark mode.
 
 ## TODO
-- Using `BBCode` to parse posts text.
+- [ ] Integrate staff on members page
 
 ## Learn More
 

@@ -1,4 +1,4 @@
-import { getStudentByIdQuery } from '@/sanity/queries/student.query';
+import { getStudentByIdQuery } from '@/sanity/queries/member.query';
 import { sanityClient } from '@/sanity/sanity.client';
 import { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';

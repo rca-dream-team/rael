@@ -1,6 +1,6 @@
 import Member from '@/app/(app)/members/[id]/member';
 import Modal from '@/components/shared/Modal';
-import { getStudentByIdQuery } from '@/sanity/queries/student.query';
+import { getStudentByIdQuery } from '@/sanity/queries/member.query';
 import { sanityClient } from '@/sanity/sanity.client';
 import { IStudent } from '@/types/student.type';
 import { Metadata, ResolvingMetadata } from 'next';
