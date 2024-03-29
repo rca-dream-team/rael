@@ -12,7 +12,7 @@ const MainAppLayout = ({ children }: MainAppLayoutProps) => {
       <main className="flex dark:bg-black pb-20 overflow-y-auto h-screen bg-white w-full dark:text-white min-h-screen flex-col items-center gap-y-6 px-[5%]">
          <Header />
          {children}
-         <div className="flex  bg-white dark:bg-black fixed bottom-0 z-50 w-full">
+         <div className="flex  bg-white dark:bg-black fixed bottom-0 z-10 w-full">
             <Footer hasDark />
          </div>
       </main>

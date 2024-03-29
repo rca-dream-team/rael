@@ -1,11 +1,10 @@
-import { Center, SegmentedControl, Tooltip } from '@mantine/core';
+import { Center, SegmentedControl } from '@mantine/core';
 import React from 'react';
-import { FaListUl, FaThList } from 'react-icons/fa';
-import { FiGrid } from 'react-icons/fi';
 
 type Category = 'classified' | 'unclassified';
 
 interface Props {
+   // eslint-disable-next-line no-unused-vars
    onChange: (category: Category) => void;
    value?: Category;
 }

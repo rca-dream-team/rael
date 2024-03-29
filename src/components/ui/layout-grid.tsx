@@ -1,42 +1,48 @@
 'use client';
+import { Gallery } from '@/types/gallery';
 import { cn } from '@/utils/cn';
 import { putDataInCols } from '@/utils/funcs';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import GalleryViewer from './gallery-viewer';
 
 type Card = {
+   index: number;
    id: number | string;
    content: React.JSX.Element | React.ReactNode | string;
    className: string;
    thumbnail: string;
 };
 
-export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
+interface Props {
+   cards: Card[];
+   gallery: Gallery;
+}
+
+export const LayoutGrid = ({ cards, gallery }: Props) => {
    const [selected, setSelected] = useState<Card | null>(null);
    const [lastSelected, setLastSelected] = useState<Card | null>(null);
    const [cardGirdCols, setCardGridCols] = useState<Card[][]>([]);
    const [isFirstSelected, setIsFirstSelected] = useState(false); // to be changed in the future
+   const [showViewer, setShowViewer] = useState({
+      state: false,
+      // gallery: [],
+      active: 0,
+   });
 
-   const handleClick = (card: Card, i: number) => {
-      if (i === 0) setIsFirstSelected(true);
-      else setIsFirstSelected(false);
-      setLastSelected(selected);
-      setSelected(card);
+   const handleClick = (card: Card) => {
+      setShowViewer({ state: true, active: card.index });
+      // if (i === 0) setIsFirstSelected(true);
+      // else setIsFirstSelected(false);
+      // setLastSelected(selected);
+      // setSelected(card);
    };
 
    const handleOutsideClick = () => {
       console.log('outside click', selected);
       setLastSelected(selected);
       setSelected(null);
-   };
-
-   const divideCards = (cards: Card[], cols: number) => {
-      const cardGrid: Card[][] = [];
-      for (let i = 0; i < cards.length; i += cols) {
-         cardGrid.push(cards.slice(i, i + cols));
-      }
-      return cardGrid;
    };
 
    useEffect(() => {
@@ -55,12 +61,12 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
                      {col.map((card, i) => {
                         if (!card) return null;
                         return (
-                           <div key={i} className={cn(' h-fit')}>
+                           <div key={i} className={cn(' h-fit card tileCard cursor-pointer')}>
                               <motion.div
-                                 // onClick={() => handleClick(card, i)}
+                                 onClick={() => handleClick(card)}
                                  className={cn(
                                     card.className,
-                                    'relative overflow-hidden  border',
+                                    'relative overflow-hidden imgCont border',
                                     selected?.id === card.id
                                        ? 'rounded-lg cursor-pointer border-gray-500 bg-gray-900/10 absolute inset-0 h-1/2 w-full md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col'
                                        : lastSelected?.id === card.id
@@ -88,6 +94,15 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
             })}
          </div>
          {/* <Overlay zIndex={50} className=" top-0 left-0 w-full bottom-0 right-0" onClick={handleOutsideClick} /> */}
+         {showViewer.state && (
+            <div className=" z-50 w-full fixed top-0 bg-black/70 flex items-center justify-center h-full left-0">
+               <GalleryViewer
+                  gallery={gallery}
+                  activeIndex={showViewer.active}
+                  handleExit={() => setShowViewer({ state: false, active: 0 })}
+               />
+            </div>
+         )}
       </>
    );
 };
