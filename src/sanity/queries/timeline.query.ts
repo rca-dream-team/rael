@@ -1,6 +1,6 @@
 import { groq } from 'next-sanity';
 
-export const getAllTimeline = groq`*[_type == "timeline"]{
+export const getAllTimeline = groq`*[_type == "timeline"] | order(time desc) {
     title,
     description,
     url,

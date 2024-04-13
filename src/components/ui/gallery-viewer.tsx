@@ -1,19 +1,11 @@
-import { Gallery } from '@/types/gallery';
-import { Card } from '@mantine/core';
-import React, { FC, useEffect, useState } from 'react';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, useCarousel } from './carousel';
-import BlurImage from './brul-image';
 import { urlFor } from '@/sanity/sanity.client';
-import { FastAverageColor } from 'fast-average-color';
+import { Gallery } from '@/types/gallery';
+import { ArrowLeftIcon, MagnifyingGlassMinusIcon, MagnifyingGlassPlusIcon } from '@heroicons/react/24/outline';
 import { useIdle } from '@mantine/hooks';
-import {
-   ArrowLeftIcon,
-   MagnifyingGlassMinusIcon,
-   MagnifyingGlassPlusIcon,
-   MinusIcon,
-   PlusIcon,
-} from '@heroicons/react/24/outline';
-import { Button } from './button';
+import { FastAverageColor } from 'fast-average-color';
+import React, { FC, useEffect, useState } from 'react';
+import BlurImage from './brul-image';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, useCarousel } from './carousel';
 
 interface Props {
    gallery: Gallery;
