@@ -4,29 +4,30 @@ import NewsCard from '@/components/page_comps/news/NewsCard';
 import LayoutChanger from '@/components/ui/LayoutChanger';
 import { News } from '@/types/news';
 import { useLocalStorage } from '@mantine/hooks';
+import { useRouter } from 'next13-progressbar';
+import { useEffect, useState } from 'react';
+import CategoryChanger from '../ui/CategoryChanger';
 import NewsList from './news/NewsList';
 import NewsTile from './news/NewsTile';
-import { fetchNewsByCategory } from '@/sanity/queries/news';
-import CategoryChanger from '../ui/CategoryChanger';
-import { useRouter } from 'next13-progressbar';
-import { useEffect } from 'react';
+import { useAuth } from '@/contexts/AuthProvider';
 
 interface RcaDailyPageProps {
    news: News[];
 }
 
 const RcaDailyPage = ({ news }: RcaDailyPageProps) => {
+   const { user } = useAuth();
+   const isStaff = user?._type !== 'student';
    const [layout, setLayout] = useLocalStorage<'grid' | 'list' | 'tile'>({
       key: 'layout',
       defaultValue: 'grid',
    });
-
    const [category, setCategory] = useLocalStorage<'classified' | 'unclassified'>({
       key: 'category',
       defaultValue: 'unclassified',
    });
    const router = useRouter();
-   //    const [layout, setLayout] = useState(savedLayout);
+   const [newsFiltered, setNewsFiltered] = useState<News[]>(news);
 
    useEffect(() => {
       console.log('I will infinitely repeat');
@@ -42,12 +43,14 @@ const RcaDailyPage = ({ news }: RcaDailyPageProps) => {
       setCategory(category);
    };
 
-   //    console.log('savedLauoy', savedLayout);
-   console.log('Lauoy', layout);
-   console.log(category);
-
-   const newsFiltered = news.filter((news) => (news?.category as unknown as string) == category);
-   console.log(news);
+   useEffect(() => {
+      let newsFiltered: News[] = [];
+      if (!isStaff) newsFiltered = news.filter((news) => (news?.category as string) == category);
+      else newsFiltered = news.filter((news) => (news?.category as string) == 'unclassified');
+      console.log(newsFiltered);
+      setNewsFiltered(newsFiltered);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [category, news]);
 
    // const news=fetchNewsByCategory()
 
@@ -55,7 +58,7 @@ const RcaDailyPage = ({ news }: RcaDailyPageProps) => {
       <div className=" w-full lg:w-[80%] ">
          <div className="flex items-center justify-between w-full">
             <RText className="text-2xl">Rca News</RText>
-            <CategoryChanger value={category} onChange={handleCategoryChange} />
+            {!isStaff && <CategoryChanger value={category} onChange={handleCategoryChange} />}
             <LayoutChanger value={layout} onChange={handleLayoutChange} />
          </div>
          {/* <div>

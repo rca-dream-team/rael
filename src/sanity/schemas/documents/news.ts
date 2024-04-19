@@ -69,8 +69,16 @@ export default defineType({
       {
          name: 'category',
          title: 'Category',
-         type: 'reference',
-         to: [{ type: 'category' }],
+         type: 'string',
+         validation: (Rule) => Rule.required(),
+         // classified or unclassified
+         options: {
+            list: [
+               { title: 'Classified', value: 'classified' },
+               { title: 'Unclassified', value: 'unclassified' },
+            ],
+         },
+         initialValue: 'unclassified',
       },
    ],
    preview: {

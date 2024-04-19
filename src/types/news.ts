@@ -5,7 +5,7 @@ export interface News {
    excerpt: string;
    content: Content[];
    image: string;
-   category: Category;
+   category: Category | string;
 }
 
 export interface Slug {

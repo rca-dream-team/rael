@@ -1,5 +1,4 @@
 import author from './documents/author';
-import category from './documents/category';
 import className from './documents/class';
 import gallery from './documents/gallery';
 import leaderTitle from './documents/leaderTitle';
@@ -34,7 +33,6 @@ const documents = [
    profileRequest,
    leaderTitle,
    gallery,
-   category,
    club,
    occupation,
 ];
