@@ -16,7 +16,7 @@ const RcaDaily = async () => {
    // const filteredNews = await fetchNewsByCategory();
    return (
       <>
-         <RcaDailyPage news={res} />
+         <RcaDailyPage news={res} categories={[]} />
       </>
    );
 };
