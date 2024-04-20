@@ -5,7 +5,7 @@ export interface News {
    excerpt: string;
    content: Content[];
    image: string;
-   category: Category | string;
+   category: NewsCategory;
 }
 
 export interface Slug {
@@ -22,9 +22,12 @@ export interface Content {
    asset?: Asset;
    listItem?: 'bullet' | 'number';
 }
-export interface Category {
+export interface NewsCategory {
    _ref: string;
    _type: string;
+   _id: string;
+   classified: boolean;
+   name: string;
 }
 
 export interface Children {

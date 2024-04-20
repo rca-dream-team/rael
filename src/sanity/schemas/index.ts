@@ -17,6 +17,7 @@ import galleryImage from './objects/galleryImage';
 import link from './objects/link';
 import socials from './objects/socials';
 import occupation from './documents/occupation';
+import newsCategory from './documents/news-category';
 
 const objects = [blockContent, socials, link, galleryImage];
 const documents = [
@@ -35,6 +36,7 @@ const documents = [
    gallery,
    club,
    occupation,
+   newsCategory,
 ];
 
 export const schemaTypes = [...objects, ...documents];

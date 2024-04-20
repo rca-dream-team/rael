@@ -9,8 +9,10 @@ const newsFields = `
     content,
     "author": author->{name, image},
     "image": image.asset->url,
-    category,
+    "category": category->{name,_id}
 `;
+
+export const fetchNewsCategories = sanityClient.fetch(`*[_type == "news-category"]`);
 
 export const fetchNewsQuery = groq`*[_type == "news"] | order(date desc) {
     ${newsFields}
