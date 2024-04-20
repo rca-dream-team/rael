@@ -6,7 +6,7 @@ import { News } from '@/types/news';
 import { useLocalStorage } from '@mantine/hooks';
 import NewsList from './news/NewsList';
 import NewsTile from './news/NewsTile';
-import { fetchNewsByCategory } from '@/sanity/queries/news';
+// import { fetchNewsByCategory } from '@/sanity/queries/news';
 import CategoryChanger from '../ui/CategoryChanger';
 import { useRouter } from 'next13-progressbar';
 import { useEffect } from 'react';
