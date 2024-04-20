@@ -1,8 +1,7 @@
 'use client';
+import Footer from '@/components/shared/Footer';
 import React from 'react';
 import Header from '../../components/shared/Header';
-import NavBar from '../../components/shared/navbar';
-import Footer from '@/components/shared/Footer';
 
 interface MainAppLayoutProps {
    children: React.ReactNode;
@@ -10,12 +9,12 @@ interface MainAppLayoutProps {
 
 const MainAppLayout = ({ children }: MainAppLayoutProps) => {
    return (
-      <main className="flex dark:bg-black w-full dark:text-white min-h-screen flex-col items-center gap-y-6 px-[5%]">
+      <main className="flex dark:bg-black pb-20 overflow-y-auto h-screen bg-white w-full dark:text-white min-h-screen flex-col items-center gap-y-6 px-[5%]">
          <Header />
          {children}
-         {/* <div className="flex fixed bottom-0"> */}
-         <Footer />
-         {/* </div> */}
+         <div className="flex  bg-white dark:bg-black fixed bottom-0 z-10 w-full">
+            <Footer hasDark />
+         </div>
       </main>
    );
 };

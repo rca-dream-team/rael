@@ -1,4 +1,5 @@
 'use client';
+import { misUrl } from '@/lib/constants';
 import axios from 'axios';
 import { setCookie } from 'cookies-next';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -44,7 +45,7 @@ export default function LoginForm() {
 
    const loginWithRCA = () => {
       setLoading(true);
-      window.location.href = `http://rcaproj.com:9099/auth/login?redirect=${window.location.href}&oauth=true`;
+      window.location.href = `${misUrl}/auth/login?redirect=${window.location.href}&oauth=true`;
    };
 
    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -58,6 +59,7 @@ export default function LoginForm() {
          <button
             type="submit"
             onClick={loginWithRCA}
+            disabled={loading}
             className="bg-black border-2 border-white hover:border-black truncate stylbtn text-white rounded-[3em] py-3 px-8"
          >
             {loading ? <LuLoader2 className=" animate-spin" /> : <p className="z-50 relative">Login With MIS</p>}

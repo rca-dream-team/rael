@@ -55,7 +55,7 @@ const ChronoTimeline: FC<TimelineProps> = ({ data }) => {
          {!loading ? (
             <Chrono
                slideShow
-               items={[...timeLineData, ...timeLineData, ...timeLineData]}
+               items={timeLineData}
                mode="VERTICAL_ALTERNATING"
                darkMode={isDarkTheme}
                theme={{

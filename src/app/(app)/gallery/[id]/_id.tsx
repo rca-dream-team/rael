@@ -13,6 +13,7 @@ export function GalleryIdIndex({ gallery }: Props) {
       const colSpan = i % 3 === 0 ? 'md:col-span-2' : 'col-span-1';
       return {
          id: g.title ?? i,
+         index: i, // to be used in gallery viewer
          content: (
             <div>
                <p className="font-bold text-4xl text-white">{g.title}</p>
@@ -28,7 +29,7 @@ export function GalleryIdIndex({ gallery }: Props) {
 
    return (
       <div className=" py-11 w-full">
-         <LayoutGrid cards={cards} />
+         <LayoutGrid cards={cards} gallery={gallery} />
       </div>
    );
 }

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
    openGraph: {
       type: 'website',
       locale: 'en_IE',
-      url: 'https://rael.vercel.app/',
+      url: 'http://194.163.167.131:2024/',
       siteName: 'RAEL',
       description: 'All you need to know about RCA and the RCA community during the years',
    },

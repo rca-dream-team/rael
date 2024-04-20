@@ -9,7 +9,7 @@ const newsFields = `
     content,
     "author": author->{name, image},
     "image": image.asset->url,
-    "category": category->name,
+    category,
 `;
 
 export const fetchNewsQuery = groq`*[_type == "news"] | order(date desc) {
@@ -28,7 +28,7 @@ export const fetchNewsBySlug = (slug: string) => sanityClient.fetch(fetchNewsByS
 export const fetchNewsSlugsQuery = groq`*[_type == "news" && defined(slug.current)][].slug.current`;
 export const fetchNewsSlugs = sanityClient.fetch(fetchNewsSlugsQuery);
 
-export const fetchNewsByAuthorQuery = groq`*[_type == "news" && references(^._id)] | order(date desc){
+export const fetchNewsByAuthorQuery = groq`*[_type == "news" && author._ref == $id]{
     ${newsFields}
 }`;
 export const fetchNewsByCategoryQuery = groq`*[_type == "news" && category._ref == $id | order(date desc){

@@ -14,9 +14,10 @@ export const revalidate = 15;
 export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
    if (!props.params?.id) return { title: 'Gallery' };
    const data: Gallery = await fetchGalleryById(props.params?.id);
+   if (!data) return notFound();
    return {
-      title: data.name,
-      description: data.description,
+      title: data?.name,
+      description: data?.description,
       openGraph: {
          images: [
             {

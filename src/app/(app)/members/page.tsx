@@ -1,4 +1,4 @@
-import { getAllStudentsQuery } from '@/sanity/queries/student.query';
+import { getAllStudentsQuery } from '@/sanity/queries/member.query';
 import { sanityClient } from '@/sanity/sanity.client';
 import { Metadata } from 'next';
 import Members from './_members';

@@ -20,5 +20,5 @@ export interface Image {
    image: ImageAsset;
    title: any;
    caption: any;
-   shotBy: any;
+   shotBy?: any;
 }

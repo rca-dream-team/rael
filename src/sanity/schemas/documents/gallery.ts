@@ -22,6 +22,8 @@ export default defineType({
          name: 'coverImage',
          title: 'Cover Image',
          type: 'image',
+         description: 'Cover image of the gallery',
+         validation: (Rule) => Rule.required(),
       },
       {
          name: 'images',

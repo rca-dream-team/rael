@@ -3,6 +3,7 @@ import React from 'react';
 import { Card, Image, Text, Group } from '@mantine/core';
 import { News } from '@/types/news';
 import Link from 'next/link';
+import BlurImage from '@/components/ui/brul-image';
 
 interface NewsCardProps {
    data: News;
@@ -28,7 +29,9 @@ const NewsCard = ({ data }: NewsCardProps) => {
             </div>
             <div className=" px-3">
                <Group className=" justify-center" mt="md" mb="xs">
-                  <Text fw={500}>{data.title}</Text>
+                  <Text fw={500} className=" text-center">
+                     {data.title}
+                  </Text>
                </Group>
                <Text size="sm" c="dimmed" lineClamp={4}>
                   {data.excerpt}
