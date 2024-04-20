@@ -2,7 +2,7 @@
 import RText from '@/components/constants/RighteousText';
 import NewsCard from '@/components/page_comps/news/NewsCard';
 import LayoutChanger from '@/components/ui/LayoutChanger';
-import { News } from '@/types/news';
+import { News, NewsCategory } from '@/types/news';
 import { useLocalStorage } from '@mantine/hooks';
 import { useRouter } from 'next13-progressbar';
 import { useEffect, useState } from 'react';
@@ -13,16 +13,15 @@ import { useAuth } from '@/contexts/AuthProvider';
 
 interface RcaDailyPageProps {
    news: News[];
+   categories: NewsCategory[];
 }
 
-const RcaDailyPage = ({ news }: RcaDailyPageProps) => {
-   const { user } = useAuth();
-   const isStaff = user?._type !== 'student';
+const RcaDailyPage = ({ news, categories }: RcaDailyPageProps) => {
    const [layout, setLayout] = useLocalStorage<'grid' | 'list' | 'tile'>({
       key: 'layout',
       defaultValue: 'grid',
    });
-   const [category, setCategory] = useLocalStorage<'classified' | 'unclassified'>({
+   const [category, setCategory] = useLocalStorage<string>({
       key: 'category',
       defaultValue: 'unclassified',
    });
@@ -38,27 +37,29 @@ const RcaDailyPage = ({ news }: RcaDailyPageProps) => {
       setLayout(layout);
    };
 
-   const handleCategoryChange = (category: 'classified' | 'unclassified') => {
-      console.log(category);
-      setCategory(category);
+   const handleCategoryChange = (category: NewsCategory) => {
+      setCategory(category._id);
    };
 
    useEffect(() => {
-      let newsFiltered: News[] = [];
-      if (!isStaff) newsFiltered = news.filter((news) => (news?.category as string) == category);
-      else newsFiltered = news.filter((news) => (news?.category as string) == 'unclassified');
+      console.log('category', category);
+
+      let newsFiltered: News[] = news.filter((news) => news?.category._id === category);
+      console.log('newsFiltered', newsFiltered);
+      // if (!isStaff) newsFiltered = news.filter((news) => (news?.category as string) == category);
+      // else newsFiltered = news.filter((news) => (news?.category as string) == 'unclassified');
       console.log(newsFiltered);
       setNewsFiltered(newsFiltered);
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [category, news]);
 
-   // const news=fetchNewsByCategory()
+   console.log('news', news);
 
    return (
       <div className=" w-full lg:w-[80%] ">
          <div className="flex items-center justify-between w-full">
             <RText className="text-2xl">Rca News</RText>
-            {!isStaff && <CategoryChanger value={category} onChange={handleCategoryChange} />}
+            <CategoryChanger value={category} categories={categories} onChange={handleCategoryChange} />
             <LayoutChanger value={layout} onChange={handleLayoutChange} />
          </div>
          {/* <div>
@@ -74,13 +75,13 @@ const RcaDailyPage = ({ news }: RcaDailyPageProps) => {
             </div>
          ) : layout === 'list' ? (
             <div className="mt-5 flex flex-col gap-2">
-               {news.map((news) => (
+               {newsFiltered.map((news) => (
                   <NewsList key={news.slug.current} data={news} />
                ))}
             </div>
          ) : (
             <div className="mt-5 grid gap-2 lg:grid-cols-2">
-               {news.map((news) => (
+               {newsFiltered.map((news) => (
                   <NewsTile key={news.slug.current} data={news} />
                ))}
             </div>

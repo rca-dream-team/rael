@@ -5,12 +5,12 @@ export default defineType({
    title: 'Author',
    type: 'document',
    fields: [
-      defineField({
+      {
          name: 'author',
          title: 'Author',
          type: 'reference',
          to: [{ type: 'student' }, { type: 'staff' }],
-      }),
+      },
       defineField({
          name: 'image',
          title: 'Image',

@@ -1,4 +1,4 @@
-import { AsyncListInput } from '@/sanity/components/AsyncListInput';
+import { AsyncListInput } from '../../../sanity/components/AsyncListInput';
 import { groq } from 'next-sanity';
 import { ValidationContext, defineType } from 'sanity';
 import { sanityClient } from '../../sanity.client';
