@@ -29,7 +29,7 @@ export default defineType({
          name: 'images',
          title: 'Images',
          type: 'array',
-         of: [{ type: 'galleryImage' }],
+         of: [{ type: 'image' }],
          validation: (Rule) => Rule.required(),
       },
    ],

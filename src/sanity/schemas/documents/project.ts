@@ -44,12 +44,12 @@ export default defineType({
          title: 'Github',
          type: 'url',
       }),
-      defineField({
+      {
          name: 'tags',
          title: 'Tags',
          type: 'array',
          of: [{ type: 'string' }],
-      }),
+      },
       defineField({
          name: 'start',
          title: 'Start',

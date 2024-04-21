@@ -12,17 +12,16 @@ export function GalleryIdIndex({ gallery }: Props) {
    const cards = gallery.images.map((g, i) => {
       const colSpan = i % 3 === 0 ? 'md:col-span-2' : 'col-span-1';
       return {
-         id: g.title ?? i,
+         id: i,
          index: i, // to be used in gallery viewer
          content: (
             <div>
-               <p className="font-bold text-4xl text-white">{g.title}</p>
+               <p className="font-bold text-4xl text-white">{gallery.name}</p>
                <p className="font-normal text-base text-white"></p>
-               <p className="font-normal text-base my-4 max-w-lg text-neutral-200">{g.caption}</p>
             </div>
          ),
          className: colSpan,
-         thumbnail: urlFor(g.image).url(),
+         thumbnail: urlFor(g).url(),
       };
    });
    console.log('cards', cards);

@@ -11,7 +11,7 @@ export const BlurImage = ({ src, alt, className, width, height }: Props) => {
    return (
       <Image
          src={src}
-         height={Number(height) ?? '500'}
+         height={height ? Number(height) : '500'}
          width={'500'}
          onLoad={() => setLoaded(true)}
          className={cn(

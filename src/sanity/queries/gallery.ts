@@ -6,12 +6,7 @@ export const galleryFields = groq`
     name,
     description,
     coverImage,
-    images[]{
-        image,
-        title,
-        caption,
-        shotBy
-    }
+    images
 `;
 
 export const fetchGalleryQuery = groq`

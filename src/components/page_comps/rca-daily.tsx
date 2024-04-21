@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react';
 import CategoryChanger from '../ui/CategoryChanger';
 import NewsList from './news/NewsList';
 import NewsTile from './news/NewsTile';
-import { useAuth } from '@/contexts/AuthProvider';
 
 interface RcaDailyPageProps {
    news: News[];
@@ -23,7 +22,6 @@ const RcaDailyPage = ({ news, categories }: RcaDailyPageProps) => {
    });
    const [category, setCategory] = useLocalStorage<string>({
       key: 'category',
-      defaultValue: 'unclassified',
    });
    const router = useRouter();
    const [newsFiltered, setNewsFiltered] = useState<News[]>(news);

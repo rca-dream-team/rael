@@ -3,7 +3,7 @@ export interface Gallery {
    name: string;
    description: string;
    coverImage: ImageAsset;
-   images: Image[];
+   images: ImageAsset[];
 }
 
 export interface ImageAsset {
