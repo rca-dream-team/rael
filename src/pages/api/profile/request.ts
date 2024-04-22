@@ -10,11 +10,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       try {
          const { request, requester } = req.body;
          if (!request || !requester) {
-            return res.json({ message: 'Enter all required parameters' });
+            return res.status(400).json({ message: 'Enter all required parameters' });
+         }
+         if (!request.promotion) {
+            return res.status(400).json({ message: 'Enter promotion' });
          }
          const user = await getRequestUser(req, res);
          if (!user) {
-            return res.json({ message: 'Unauthorized' });
+            return res.status(400).json({ message: 'Unauthorized' });
          }
          const data = await requestProfile(request, requester);
          res.json({ data });

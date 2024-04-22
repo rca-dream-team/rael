@@ -9,7 +9,22 @@ export const requestProfile = async (request: any, requester: IStudent) => {
    console.log('existingRequest', existingRequest);
    const promotion = await fetchPromotionByName(request.promotion);
    console.log('existing promotion', promotion);
-   if (!existingRequest) {
+   if (existingRequest) {
+      console.log('request still exists');
+      const res = await sanityClient
+         .patch(existingRequest._id)
+         .set({
+            ...request,
+            promotion: {
+               _type: 'reference',
+               _ref: promotion._id,
+            },
+            email: requester.email,
+         })
+         .commit();
+      return res;
+   } else {
+      console.log('request does not exist. Creating new request');
       const res = await sanityClient.create({
          _type: 'profileRequest',
          ...request,
@@ -23,20 +38,6 @@ export const requestProfile = async (request: any, requester: IStudent) => {
          },
          email: requester.email,
       });
-      return res;
-   } else {
-      console.log('request still exists');
-      const res = await sanityClient
-         .patch(existingRequest._id)
-         .set({
-            ...request,
-            promotion: {
-               _type: 'reference',
-               _ref: promotion._id,
-            },
-            email: requester.email,
-         })
-         .commit();
       return res;
    }
 };
