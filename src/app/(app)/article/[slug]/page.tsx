@@ -1,7 +1,7 @@
 import { fetchNewsBySlug } from '@/sanity/queries/news';
 import { urlFor } from '@/sanity/sanity.client';
-import { News } from '@/types/news';
-import { PortableText } from '@portabletext/react';
+import { Children, Content, News } from '@/types/news';
+import { PortableText, PortableTextReactComponents } from '@portabletext/react';
 import { getImageDimensions } from '@sanity/asset-utils';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -57,11 +57,49 @@ const ArticlePage = async (props: any) => {
       );
    };
 
-   const components = {
+   const SpanElement = ({ child }: { child: Children }) => {
+      const { _key, _type, marks, text } = child;
+      const styles = {
+         textDecoration: marks.includes('underline') ? 'underline' : 'none',
+         fontWeight: marks.includes('strong') ? 'bold' : 'normal',
+         fontStyle: marks.includes('em') ? 'italic' : 'normal',
+      };
+
+      return (
+         <span key={_key} className={marks.join(' ')} style={styles}>
+            {text}
+         </span>
+      );
+   };
+
+   const components: Partial<PortableTextReactComponents> = {
       types: {
          image: ImageComponent,
          // Any other custom types you have in your content
          // Examples: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
+         block: ({ isInline, index, value }) => {
+            const c: Content = value;
+            if (value.listItem) {
+               return (
+                  <ul key={c._key} className="list-disc list-inside my-1">
+                     {c.children?.map((child) => {
+                        return (
+                           <li key={child._key}>
+                              <SpanElement child={child} />
+                           </li>
+                        );
+                     })}
+                  </ul>
+               );
+            }
+            return (
+               <div key={c._key} className=" my-1">
+                  {c.children?.map((child) => {
+                     return <SpanElement key={child._key} child={child} />;
+                  })}
+               </div>
+            );
+         },
       },
    };
 
@@ -71,7 +109,9 @@ const ArticlePage = async (props: any) => {
             <BiArrowBack />
             All news
          </Link>
-         <PortableText value={news.content} components={components} />
+         <div className="flex w-full flex-col font-poppins">
+            <PortableText value={news.content} components={components} />
+         </div>
       </div>
    );
 };

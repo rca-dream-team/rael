@@ -21,7 +21,7 @@ const NewsTile = ({ data }: NewsTileProps) => {
                alt={data.title}
                width={200}
                height={200}
-               className=" w-full"
+               className=" w-full h-full object-cover"
                objectFit="cover"
             />
          </div>

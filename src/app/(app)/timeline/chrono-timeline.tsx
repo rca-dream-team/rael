@@ -20,7 +20,7 @@ const ChronoTimeline: FC<TimelineProps> = ({ data }) => {
          title: dayjs(item.time).format('MMM D YYYY'),
          cardTitle: item.title,
          url: item.url,
-         cardSubtitle: item.description,
+         cardSubtitle: item.title,
          cardDetailedText: item.description,
          // imageUrl: item.image.asset.url,
          media: {
@@ -67,15 +67,31 @@ const ChronoTimeline: FC<TimelineProps> = ({ data }) => {
                   cardTitleColor: isDarkTheme ? 'white' : 'black',
                   cardSubtitleColor: isDarkTheme ? 'white' : 'black',
                   cardDetailsColor: isDarkTheme ? 'white' : 'black',
+                  // toolbarTextColor: isDarkTheme ? 'black' : 'white',
+                  toolbarBgColor: isDarkTheme ? 'black' : 'white',
+                  iconBackgroundColor: 'blue',
                }}
                classNames={{
                   cardTitle: 'hidden',
-                  cardSubTitle: 'timeDetail',
+                  cardSubTitle: 'timeDetail !px-5 !text-lg',
                   cardText: 'cardText',
-                  controls: isDarkTheme && 'my-controls',
+                  controls: isDarkTheme && 'dark-controls', // check app.css file for more
                }}
+               buttonTexts={{
+                  first: 'Jump to First',
+                  last: 'Jump to Last',
+                  next: 'Next',
+                  previous: 'Previous',
+               }}
+               mediaSettings={{ align: 'right', fit: 'contain' }}
+
                // className="hidden"
-            />
+            >
+               {/* <div className="chrono-icons">
+                  <img src="image1.svg" alt="image1" />
+                  <img src="image2.svg" alt="image2" />
+               </div> */}
+            </Chrono>
          ) : (
             <div className=" flex items-center dark:text-white justify-center h-full w-full">
                <h1 className="text-xl font-bold">Please Wait...</h1>

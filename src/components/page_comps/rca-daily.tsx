@@ -9,13 +9,14 @@ import { useEffect, useState } from 'react';
 import CategoryChanger from '../ui/CategoryChanger';
 import NewsList from './news/NewsList';
 import NewsTile from './news/NewsTile';
+import { fetchNews } from '@/sanity/queries/news';
 
 interface RcaDailyPageProps {
    news: News[];
    categories: NewsCategory[];
 }
 
-const RcaDailyPage = ({ news, categories }: RcaDailyPageProps) => {
+const RcaDailyPage = ({ categories }: RcaDailyPageProps) => {
    const [layout, setLayout] = useLocalStorage<'grid' | 'list' | 'tile'>({
       key: 'layout',
       defaultValue: 'grid',
@@ -23,12 +24,17 @@ const RcaDailyPage = ({ news, categories }: RcaDailyPageProps) => {
    const [category, setCategory] = useLocalStorage<string>({
       key: 'category',
    });
-   const router = useRouter();
+   const [news, setNews] = useState<News[]>([]);
    const [newsFiltered, setNewsFiltered] = useState<News[]>(news);
 
    useEffect(() => {
+      const getNews = async () => {
+         const news = await fetchNews;
+         setNews(news);
+      };
       console.log('I will infinitely repeat');
-   }, [router]);
+      getNews();
+   }, []);
 
    const handleLayoutChange = (layout: 'grid' | 'list' | 'tile') => {
       console.log(layout);
@@ -66,7 +72,7 @@ const RcaDailyPage = ({ news, categories }: RcaDailyPageProps) => {
             })}</p>
          </div> */}
          {layout === 'grid' ? (
-            <div className="mt-5 grid gap-6 flex-wrap lg:grid-cols-3 sm:grid-cols-2">
+            <div className="mt-5 grid gap-6 flex-wrap auto-rows-fr lg:grid-cols-3 sm:grid-cols-2">
                {newsFiltered.map((news) => (
                   <NewsCard key={news.slug.current} data={news} />
                ))}
@@ -78,7 +84,7 @@ const RcaDailyPage = ({ news, categories }: RcaDailyPageProps) => {
                ))}
             </div>
          ) : (
-            <div className="mt-5 grid gap-2 lg:grid-cols-2">
+            <div className="mt-5 grid auto-rows-fr gap-2 lg:grid-cols-2">
                {newsFiltered.map((news) => (
                   <NewsTile key={news.slug.current} data={news} />
                ))}

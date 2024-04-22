@@ -17,7 +17,7 @@ const NewsCard = ({ data }: NewsCardProps) => {
             padding="0"
             radius="md"
             withBorder
-            className="w-full h-fit  card hover:bg-gray-50 hover:dark:bg-gray-900 duration-300"
+            className="w-full h-full  card hover:bg-gray-50 hover:dark:bg-gray-900 duration-300"
          >
             <div className="imgCont overflow-hidden">
                <Image
