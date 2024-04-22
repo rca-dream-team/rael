@@ -16,10 +16,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                Authorization: `Bearer ${token}`,
             },
          });
-         console.log('_res', _res);
          const profile = _res.data.data;
+         console.log('_res', _res.data.data);
          if (!profile) return res.status(400).json({ message: 'user not found' });
-         const isStaff = _res.data?.data?.roles[0] !== 'STUDENT';
+         const role = _res.data?.data?.roles[0]?.roleName;
+         if (!role) return res.status(400).json({ message: 'MIS Role not found' });
+         const isStaff = role !== 'STUDENT';
          // console.log('profile', profile);
          const student = await sanityClient.fetch(`*[_type == '${isStaff ? 'staff' : 'student'}' && email == $email][0]`, {
             email: profile.user?.email,
@@ -40,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
          });
          return res.status(200).json(new Response({ profile, token: login_token }, undefined, 'Logged in', true));
       } catch (error: any) {
-         console.error('Error logging in', error);
+         console.error('Error logging in', error.response);
          return res.status(500).json(new Response(undefined, error, 'Error logging in'));
       }
    }
