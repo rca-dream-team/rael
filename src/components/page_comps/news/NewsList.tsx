@@ -1,10 +1,8 @@
-import PText from '@/components/constants/PoppinText';
 import RText from '@/components/constants/RighteousText';
 import BlurImage from '@/components/ui/brul-image';
 import { News } from '@/types/news';
 import { Text } from '@mantine/core';
 import Link from 'next/link';
-import React from 'react';
 
 interface NewsCardProps {
    data: News;
