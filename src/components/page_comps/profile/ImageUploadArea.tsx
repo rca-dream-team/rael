@@ -41,14 +41,16 @@ const ImageUploadArea: FC<{
          for (let i = 0; i < items.length; i++) {
             if (items[i].type.indexOf('image') !== -1) {
                const blob = items[i].getAsFile();
+               const randomName = Math.random().toString(36).substring(7) + Date.now().toString();
+               const file = new File([blob as Blob], `${randomName}`, { lastModified: Date.now() });
 
                const reader = new FileReader();
                reader.onload = () => {
                   setSelectedImages(!multiple ? [reader.result as string] : (prev) => [...prev, reader.result as string]);
                };
                if (blob) reader.readAsDataURL(blob);
-               onFilesSelected(multiple ? [...files, blob as File] : [blob as File]);
-               setFiles(multiple ? [...files, blob as File] : [blob as File]);
+               onFilesSelected(multiple ? [...files, file] : [file]);
+               setFiles(multiple ? [...files, file] : [file]);
                break;
             }
          }

@@ -6,7 +6,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       try {
          const user_type = (req.query.user_type as string) ?? req.cookies.user_type;
          const user = await getRequestUser(req, res, user_type);
-         console.log('user', user);
          if (!user) {
             return res.json({ message: 'Unauthorized' });
          }

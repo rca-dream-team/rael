@@ -1,13 +1,15 @@
 'use client';
+import RemoveImage from '@/components/page_comps/profile/RemoveImage';
+import UpdateProfilePic from '@/components/page_comps/profile/UpdateProfilePic';
+import UploadImages from '@/components/page_comps/profile/UploadImages';
 import { useAuth } from '@/contexts/AuthProvider';
-import { getImageUrl } from '@/sanity/sanity.client';
+import { getImageUrl, urlFor } from '@/sanity/sanity.client';
 import { ISocial } from '@/types/student.type';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import { ArrowRightIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 import { Input, Textarea } from '@mantine/core';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect } from 'react';
-import { FaUserCircle } from 'react-icons/fa';
+import { useEffect } from 'react';
 
 const ProfilePage = () => {
    const { user, getProfile } = useAuth();
@@ -28,20 +30,22 @@ const ProfilePage = () => {
             <ArrowRightIcon className="w-5" />
          </Link>
          <div className="relative flex flex-row align-middle mt-4">
-            <div className="flex w-[300px] aspect-square rounded-full overflow-hidden">
+            <div className="flex w-[300px] aspect-square relative rounded-full overflow-hidden">
                {user?.picture ? (
                   <Image
                      src={getImageUrl(user.picture)!}
                      width={300}
                      height={300}
-                     className="object-cover min-w-full"
+                     className="object-cover flex min-h-full w-full"
                      alt="member"
                   />
                ) : (
-                  <div className=" w-full aspect-square justify-center flex items-center">
-                     <FaUserCircle className=" text-3xl cursor-pointer" />
+                  <div className=" w-full aspect-square rounded-full border-2 justify-center flex items-center">
+                     {/* <FaUserCircle className=" text-7xl cursor-pointer" /> */}
+                     <UserCircleIcon className=" w-full dark:text-gray-400" />
                   </div>
                )}
+               {<UpdateProfilePic />}
             </div>
             <div className="flex flex-col p-3 h-fit  flex-1 gap-4 mt-4">
                <Input.Wrapper label="Names">
@@ -94,18 +98,26 @@ const ProfilePage = () => {
                   );
                })}
             </div>
-            {/* <div>
+            <div className="flex flex-col w-full mt-4">
                <h3 className="text-xl font-bold ">Other Images</h3>
-               <div className="flex items-center align-middle gap-4 cursor-pointer">
-                  <div className="flex flex-col p-2 mt-4 border rounded-sm w-[50%] first-letter text-center items-center h-40 justify-center align-middle">
-                     <FaUpload />
-                     <p>Drag & drop an image</p>
-                  </div>
-                  <ActionIcon variant="outline" className="rounded-full p-2 text-white bg-gray-400" size={'xl'}>
-                     <PlusIcon />
-                  </ActionIcon>
+               <p className="text-sm text-gray-500">You can add more images to your profile</p>
+               <div className="grid md:grid-cols-5 mt-3 sm:grid-cols-3 grid-cols-2 w-full gap-6">
+                  {user?.images?.map((im, i) => (
+                     <div className="w-full relative" key={i}>
+                        <Image
+                           src={urlFor(im).url()}
+                           alt="Alt"
+                           className="w-full rounded-xl overflow-hidden"
+                           width={300}
+                           height={300}
+                           quality={100}
+                        />
+                        <RemoveImage image={im} />
+                     </div>
+                  ))}
+                  <UploadImages />
                </div>
-            </div> */}
+            </div>
          </div>
          <div className="w-full flex justify-center">
             <Link

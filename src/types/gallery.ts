@@ -8,6 +8,7 @@ export interface Gallery {
 
 export interface ImageAsset {
    _type: string;
+   _key: string;
    asset: Asset;
 }
 

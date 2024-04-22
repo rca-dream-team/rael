@@ -1,12 +1,12 @@
 import MainModal from '@/components/shared/MainModal';
-import { PencilIcon, PlusIcon } from '@heroicons/react/24/outline';
-import { ActionIcon, Button, Progress } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import ImageUploadArea from './ImageUploadArea';
-import { useEffect, useState } from 'react';
-import { addStudentImage, updateProfilePicture } from '@/lib/actions';
 import { useAuth } from '@/contexts/AuthProvider';
+import { addStudentImages } from '@/lib/actions';
+import { PencilIcon, PlusIcon } from '@heroicons/react/24/outline';
+import { Button, Progress } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
+import { useEffect, useState } from 'react';
+import ImageUploadArea from './ImageUploadArea';
 
 const UploadImages = () => {
    const { user, getProfile } = useAuth();
@@ -24,17 +24,12 @@ const UploadImages = () => {
       if (selectFiles.length === 0 || !user) return;
       setLoading(true);
       try {
-         console.log('---user---', user);
-         //  const setFiles = new Set(selectFiles.map((file) => JSON.stringify(file)));
-         //  const newFiles = Array.from(setFiles).map((file) => JSON.parse(file));
-         //  console.log('newFiles', newFiles);
-         await Promise.all(
-            selectFiles.map(async (file, i) => {
-               const res = await addStudentImage(file, { docId: user._id });
-               console.log(`res ${i}`, res);
-               setProgress((prev) => prev + 1);
-            }),
-         );
+         await addStudentImages(selectFiles, {
+            docId: user._id,
+            handleProgress: (progress) => {
+               setProgress(progress);
+            },
+         });
          notifications.show({
             title: 'Profile Picture Updated',
             message: 'Profile Picture Updated Successfully',

@@ -1,5 +1,6 @@
 'use client';
 import PromFilter from '@/components/page_comps/members/PromFilter';
+import RemoveImage from '@/components/page_comps/profile/RemoveImage';
 import UpdateProfilePic from '@/components/page_comps/profile/UpdateProfilePic';
 import UploadImages from '@/components/page_comps/profile/UploadImages';
 import AsyncSelect from '@/components/profile/AsyncSelect';
@@ -61,6 +62,20 @@ const ProfileRequestPage = () => {
       setLoading(true);
       try {
          console.log('toRequest', profileData);
+         // validate social url if they are urls not any other string
+         if (!profileData.socials || !profileData.socials === undefined) return;
+         const isValidUrls = Object.keys(profileData.socials).every((key) => {
+            return profileData?.socials?.[key as keyof ISocial].url.match(/^https?:\/\/.*/) !== null;
+         });
+         if (!isValidUrls) {
+            notifications.show({
+               color: 'red',
+               title: 'Invalid Url',
+               message: 'Please enter a valid url for social links',
+            });
+            setLoading(false);
+            return;
+         }
          const res = await axios.put('/api/profile/request', {
             request: profileData,
             requester: user,
@@ -102,7 +117,10 @@ const ProfileRequestPage = () => {
 
    return (
       <div className="relativeflex flex-col mb-6 w-full max-w-[1000px]">
-         <Link href={'/profile'} className="z-10 w-fit text-black flex items-center gap-3 py-2 rounded-3xl  self-center mt-6 ">
+         <Link
+            href={'/profile'}
+            className="z-10 w-fit text-black dark:text-white flex items-center gap-3 py-2 rounded-3xl  self-center mt-6 "
+         >
             <ArrowLeftIcon className="w-5" />
             View Profile
          </Link>
@@ -270,15 +288,17 @@ const ProfileRequestPage = () => {
                <p className="text-sm text-gray-500">You can add more images to your profile</p>
                <div className="grid md:grid-cols-5 mt-3 sm:grid-cols-3 grid-cols-2 w-full gap-6">
                   {user?.images?.map((im, i) => (
-                     <Image
-                        src={urlFor(im).url()}
-                        alt="Alt"
-                        className="w-full rounded-xl overflow-hidden"
-                        key={i}
-                        width={300}
-                        height={300}
-                        quality={100}
-                     />
+                     <div className="w-full relative" key={i}>
+                        <Image
+                           src={urlFor(im).url()}
+                           alt="Alt"
+                           className="w-full rounded-xl overflow-hidden"
+                           width={300}
+                           height={300}
+                           quality={100}
+                        />
+                        <RemoveImage image={im} />
+                     </div>
                   ))}
                   <UploadImages />
                </div>
