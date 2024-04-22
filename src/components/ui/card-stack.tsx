@@ -2,6 +2,7 @@
 import { cn } from '@/lib/utils';
 import { urlFor } from '@/sanity/sanity.client';
 import { Gallery, Image as IImage, ImageAsset } from '@/types/gallery';
+import { Text, Tooltip } from '@mantine/core';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -98,7 +99,11 @@ export const CardStack = ({ gallery, offset, scaleFactor }: Props) => {
                            <div>
                               <p className="font-bold text-lg text-white">{gallery.name}</p>
                               <p className="font-normal text-base text-white"></p>
-                              <p className="font-normal text-base my-4 max-w-lg text-neutral-200">{gallery.description}</p>
+                              {/* <Tooltip label={gallery.description} withArrow> */}
+                              <Text lineClamp={4} className="font-normal text-base my-4 max-w-lg text-neutral-200">
+                                 {gallery.description}
+                              </Text>
+                              {/* </Tooltip> */}
                            </div>
                         </div>
                      </div>

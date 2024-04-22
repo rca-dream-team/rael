@@ -34,8 +34,14 @@ const UpdateProfilePic = () => {
          });
          getProfile();
          close();
-      } catch (error) {
+      } catch (error: any) {
          console.log('---errr----', error);
+         notifications.show({
+            title: 'Error',
+            message: error.message ?? 'Profile Picture Update Failed',
+            color: 'red',
+            icon: <PencilIcon className="w-6 h-6" />,
+         });
       }
       setLoading(false);
    };

@@ -13,6 +13,7 @@ export const revalidate = 15;
 export async function generateMetadata(props: PageProps): Promise<Metadata> {
    if (!props.params?.id) return { title: 'Gallery' };
    const data: Gallery = await fetchGalleryById(props.params?.id);
+   // console.log('data', data);
    if (!data) return notFound();
    return {
       title: data?.name,
@@ -26,7 +27,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
                alt: data.name,
             },
             ...data.images.map((image, i) => ({
-               url: urlFor(image).url(),
+               url: urlFor(image)?.url(),
                width: 800,
                height: 600,
                alt: `image ${i} of ${data.name}`,
@@ -47,7 +48,8 @@ const GalleryIdPage = async (props: PageProps) => {
             <BiArrowBack />
             Back to all gallery
          </Link>
-         <h1 className=" text-center text-lg">{gallery.name}</h1>
+         <h1 className=" capitalize text-center text-lg">{gallery.name}</h1>
+         <p className=" text-center text-sm font-poppins dark:text-gray-300">{gallery.description}</p>
          <GalleryIdIndex gallery={gallery} />
       </div>
    );

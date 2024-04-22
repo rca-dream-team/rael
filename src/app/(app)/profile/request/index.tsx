@@ -1,10 +1,11 @@
 'use client';
 import PromFilter from '@/components/page_comps/members/PromFilter';
 import UpdateProfilePic from '@/components/page_comps/profile/UpdateProfilePic';
+import UploadImages from '@/components/page_comps/profile/UploadImages';
 import AsyncSelect from '@/components/profile/AsyncSelect';
 import RequestModal from '@/components/profile/RequestModal';
 import { useAuth } from '@/contexts/AuthProvider';
-import { getImageUrl } from '@/sanity/sanity.client';
+import { getImageUrl, urlFor } from '@/sanity/sanity.client';
 import { ISocial, ProfileRequest } from '@/types/student.type';
 import useGet from '@/utils/hooks/useGet';
 import { ArrowLeftIcon, UserCircleIcon } from '@heroicons/react/24/outline';
@@ -97,6 +98,7 @@ const ProfileRequestPage = () => {
    }, []);
 
    console.log('occupations', occupations);
+   //    const canAddPics = userRequest ? userRequest.isApproved : true;
 
    return (
       <div className="relativeflex flex-col mb-6 w-full max-w-[1000px]">
@@ -121,7 +123,7 @@ const ProfileRequestPage = () => {
                      src={getImageUrl(user.picture)!}
                      width={300}
                      height={300}
-                     className="object-cover min-w-full"
+                     className="object-cover min-h-full min-w-full"
                      alt="member"
                   />
                ) : (
@@ -130,7 +132,7 @@ const ProfileRequestPage = () => {
                      <UserCircleIcon className=" w-full dark:text-gray-400" />
                   </div>
                )}
-               <UpdateProfilePic />
+               {<UpdateProfilePic />}
             </div>
             <div className="flex flex-col p-3 h-fit  flex-1 gap-4 mt-4">
                <Input.Wrapper label="Names">
@@ -185,6 +187,7 @@ const ProfileRequestPage = () => {
                   onChange={(value) => {
                      setProfileData({ ...profileData, occupation: value });
                   }}
+                  searchable
                   // disabled={ocLoading}
                />
             </div>
@@ -261,18 +264,25 @@ const ProfileRequestPage = () => {
                   />
                </Input.Wrapper>
             </div>
-            {/* <div>
+
+            <div className="flex flex-col w-full mt-4">
                <h3 className="text-xl font-bold ">Other Images</h3>
-               <div className="flex items-center align-middle gap-4 cursor-pointer">
-                  <div className="flex flex-col p-2 mt-4 border rounded-sm w-[50%] first-letter text-center items-center h-40 justify-center align-middle">
-                     <FaUpload />
-                     <p>Drag & drop an image</p>
-                  </div>
-                  <ActionIcon variant="outline" className="rounded-full p-2 text-white bg-gray-400" size={'xl'}>
-                     <PlusIcon />
-                  </ActionIcon>
+               <p className="text-sm text-gray-500">You can add more images to your profile</p>
+               <div className="grid md:grid-cols-5 mt-3 sm:grid-cols-3 grid-cols-2 w-full gap-6">
+                  {user?.images?.map((im, i) => (
+                     <Image
+                        src={urlFor(im).url()}
+                        alt="Alt"
+                        className="w-full rounded-xl overflow-hidden"
+                        key={i}
+                        width={300}
+                        height={300}
+                        quality={100}
+                     />
+                  ))}
+                  <UploadImages />
                </div>
-            </div> */}
+            </div>
          </div>
          <div className="w-full flex justify-center">
             <Button

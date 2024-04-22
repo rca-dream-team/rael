@@ -19,7 +19,7 @@ const MainModal = (props: MainModalProps) => {
    const { open, onClose, description, title, children, ...rest } = props;
    return (
       <ModalLayout keepMounted={false} open={open} onClose={onClose} {...rest}>
-         <div className={'flex bg-white dark:bg-black sticky top-0 justify-between w-full'}>
+         <div className={'flex bg-inherit sticky top-0 justify-between w-full'}>
             <div className={'flex flex-col gap-0'}>
                <h1 className={'text-xl font-bold'}>{title}</h1>
                <p className={'text-color-a2 text-sm font-semibold'}>{description}</p>
