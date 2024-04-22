@@ -52,7 +52,7 @@ export const CardStack = ({ gallery, offset, scaleFactor }: Props) => {
    };
 
    useEffect(() => {
-      const cards = gallery.images.slice(0, 3);
+      const cards = gallery.images?.slice(0, 3) || [];
       // cards.push(gallery as any); // add the gallery as a card, it may cause type error but it's fine for now
       // const newSet = new Set(cards.map((card) => JSON.stringify(card)));
       // const newCards = Array.from(newSet).map((card) => JSON.parse(card));
