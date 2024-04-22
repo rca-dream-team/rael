@@ -36,15 +36,12 @@ const ProfileRequestPage = () => {
    });
 
    const handleSocialChange = (social: keyof ISocial, value: string) => {
-      const newSocials = structuredClone(profileData.socials);
-      if (!newSocials) return;
-      // const
+      // console.log('social', social, 'value', value);
+      const newSocials = structuredClone(profileData.socials) || ({} as ISocial);
       newSocials[social] = { url: value, label: social };
-      console.log('newSocials', newSocials);
+      // console.log('newSocials', newSocials);
       setProfileData({ ...profileData, socials: newSocials });
    };
-
-   console.log('profileData', profileData);
 
    useEffect(() => {
       console.log('userRequest', userRequest);
