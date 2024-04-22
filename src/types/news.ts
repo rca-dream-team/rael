@@ -28,6 +28,7 @@ export interface NewsCategory {
    _id: string;
    classified: boolean;
    name: string;
+   order: number;
 }
 
 export interface Children {

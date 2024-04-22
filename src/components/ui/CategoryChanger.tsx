@@ -1,10 +1,8 @@
 import { useAuth } from '@/contexts/AuthProvider';
 import { sanityClient } from '@/sanity/sanity.client';
-import { News, NewsCategory } from '@/types/news';
+import { NewsCategory } from '@/types/news';
 import { Center, SegmentedControl } from '@mantine/core';
 import React, { useEffect } from 'react';
-
-type Category = 'classified' | 'unclassified';
 
 interface Props {
    // eslint-disable-next-line no-unused-vars
@@ -29,12 +27,19 @@ const CategoryChanger = ({ value, onChange }: Props) => {
    const getCategories = async () => {
       const data: NewsCategory[] = await sanityClient.fetch(`*[_type == "news-category"]`);
       const _data = isStaff ? data.filter((d) => !d.classified) : data;
-      setCategories(_data);
-      setValue(value ?? _data.find((d) => d.name === 'RCA News')?._id);
+      const ordered = _data.sort((a, b) => {
+         return (a.order ?? Infinity) - (b.order ?? Infinity);
+      });
+      console.log('ordered', ordered);
+      setCategories(ordered);
+      setValue(value ?? ordered[0]._id);
+      const oldCat = _data.find((cat) => cat._id === value);
+      onChange(oldCat ?? ordered[0]);
    };
 
    useEffect(() => {
       getCategories();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, []);
 
    return (

@@ -19,5 +19,11 @@ export default defineType({
          validation: (Rule) => Rule.required(),
          initialValue: false,
       },
+      {
+         name: 'order',
+         title: 'Order',
+         description: 'The order of the category on the news page.',
+         type: 'number',
+      },
    ],
 });

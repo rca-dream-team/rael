@@ -85,13 +85,6 @@ export default defineType({
          group: ['studentInformation'],
       },
       {
-         name: 'pictureUrls',
-         title: 'Picture URLs',
-         type: 'array',
-         of: [{ type: 'url' }],
-         group: ['pictures'],
-      },
-      {
          name: 'bio',
          title: 'Bio',
          type: 'string',

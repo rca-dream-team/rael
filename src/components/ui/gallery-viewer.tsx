@@ -1,7 +1,6 @@
 import { urlFor } from '@/sanity/sanity.client';
 import { Gallery } from '@/types/gallery';
 import { ArrowLeftIcon, MagnifyingGlassMinusIcon, MagnifyingGlassPlusIcon } from '@heroicons/react/24/outline';
-import { useIdle } from '@mantine/hooks';
 import { FastAverageColor } from 'fast-average-color';
 import React, { FC, useEffect, useState } from 'react';
 import BlurImage from './brul-image';
@@ -16,7 +15,7 @@ interface Props {
 const GalleryViewer: FC<Props> = ({ gallery, activeIndex, handleExit }) => {
    const [active, setActive] = useState<number>(activeIndex);
    const [zoom, setZoom] = useState<number>(1);
-   const idle = useIdle(3000);
+   // const idle = useIdle(3000);
 
    console.log('active', active);
 
@@ -80,7 +79,7 @@ const Item = ({ image, index, zoom }: { image: Gallery['images'][0]; index: numb
    const [color, setColor] = useState<string>('#000000');
    const getColor = async () => {
       console.log('getting color');
-      const src = urlFor(image.image).url();
+      const src = urlFor(image).url();
       const fac = new FastAverageColor();
       const color = await fac.getColorAsync(src);
       console.log('color', color);
@@ -101,7 +100,7 @@ const Item = ({ image, index, zoom }: { image: Gallery['images'][0]; index: numb
             className="p-1 h-full relative z-40  flex items-center object-center justify-center"
             style={{ transformOrigin: 'center', width: `${100 * zoom}%`, height: `${100 * zoom}%` }}
          >
-            <BlurImage className=" object-center w-full" src={urlFor(image.image).url()} alt={image.title} />
+            <BlurImage className=" object-center w-full" src={urlFor(image).url()} alt={'image.title'} />
             {/* <span className="text-4xl font-semibold">{index + 1}</span> */}
          </div>
       </CarouselItem>

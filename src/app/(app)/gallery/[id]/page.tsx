@@ -2,16 +2,15 @@ import { fetchGalleryById } from '@/sanity/queries/gallery';
 import { urlFor } from '@/sanity/sanity.client';
 import { PageProps } from '@/types';
 import { Gallery } from '@/types/gallery';
-import { Metadata, ResolvingMetadata } from 'next';
-import React from 'react';
-import { GalleryIdIndex } from './_id';
-import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { BiArrowBack } from 'react-icons/bi';
+import { GalleryIdIndex } from './_id';
 
 export const revalidate = 15;
 
-export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
    if (!props.params?.id) return { title: 'Gallery' };
    const data: Gallery = await fetchGalleryById(props.params?.id);
    if (!data) return notFound();
@@ -26,11 +25,11 @@ export async function generateMetadata(props: PageProps, parent: ResolvingMetada
                height: 600,
                alt: data.name,
             },
-            ...data.images.map((image) => ({
-               url: urlFor(image.image).url(),
+            ...data.images.map((image, i) => ({
+               url: urlFor(image).url(),
                width: 800,
                height: 600,
-               alt: image.title,
+               alt: `image ${i} of ${data.name}`,
             })),
          ],
       },

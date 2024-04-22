@@ -13,7 +13,7 @@ export function GalleryIndex({ gallery }: Props) {
 
    const cards = gallery.map((g, i) => {
       const colSpan = i % 3 === 0 ? 'md:col-span-2' : 'col-span-1';
-      const thumbnail = g.coverImage ? urlFor(g.coverImage).url() : g?.images?.[0] ? urlFor(g?.images?.[0]?.image).url() : null;
+      const thumbnail = g.coverImage ? urlFor(g.coverImage).url() : g?.images?.[0] ? urlFor(g?.images?.[0]).url() : null;
       return {
          id: g._id,
          content: (
@@ -66,6 +66,7 @@ export function GalleryIndex({ gallery }: Props) {
             ))} */}
             {cards.map((card) => {
                const g = gallery.find((g) => g._id === card.id);
+               console.log('g', g);
                if (!g) return null;
                return <CardStack key={card.id} gallery={g} />;
             })}
