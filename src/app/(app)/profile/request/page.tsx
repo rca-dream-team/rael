@@ -116,7 +116,7 @@ const ProfileRequestPage = () => {
          )}
          <div className="relative flex flex-row align-middle mt-4">
             <div className="flex w-[300px] aspect-square rounded-full overflow-hidden">
-               {user?.picture ? (
+               {!user?.picture ? (
                   <Image
                      src={getImageUrl(user.picture)!}
                      width={300}

@@ -22,7 +22,7 @@ const ProfilePage = () => {
          <h3 className="text-xl font-bold text-center">Personal profile</h3>
          <Link
             href={'/profile/request'}
-            className="z-10 w-fit ml-auto text-black flex items-center gap-3 py-2 rounded-3xl  self-center mt-6 "
+            className="z-10 w-fit ml-auto text-black dark:text-white flex items-center gap-3 py-2 rounded-3xl  self-center mt-6 "
          >
             Request Profile
             <ArrowRightIcon className="w-5" />
