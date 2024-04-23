@@ -9,7 +9,7 @@ interface Props {
 }
 
 export function GalleryIndex({ gallery }: Props) {
-   console.log('gallery', gallery);
+   // console.log('gallery', gallery);
 
    const cards = gallery.map((g, i) => {
       const colSpan = i % 3 === 0 ? 'md:col-span-2' : 'col-span-1';
@@ -66,7 +66,6 @@ export function GalleryIndex({ gallery }: Props) {
             ))} */}
             {cards.map((card) => {
                const g = gallery.find((g) => g._id === card.id);
-               console.log('g', g);
                if (!g) return null;
                return <CardStack key={card.id} gallery={g} />;
             })}

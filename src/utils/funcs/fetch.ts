@@ -1,6 +1,6 @@
 import { fetchPromotionByName } from '@/sanity/queries';
 import { sanityClient } from '@/sanity/sanity.client';
-import { IStudent } from '@/types/student.type';
+import { IStudent } from '@/types/member.type';
 
 export const requestProfile = async (request: any, requester: IStudent) => {
    const existingRequest = await sanityClient.fetch(`*[_type=='profileRequest' && email == $email][0]`, {

@@ -1,28 +1,29 @@
 'use client';
+import MembersDisplay from '@/components/page_comps/members/MembersDisplay';
 import PromFilter from '@/components/page_comps/members/PromFilter';
-import { getImageUrl } from '@/sanity/sanity.client';
-import { IStudent } from '@/types/student.type';
-import { Card, Input } from '@mantine/core';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams } from '@/lib/hooks/useSearchParams';
+import { IStaff, IStudent } from '@/types/member.type';
+import { Input } from '@mantine/core';
+import { useSearchParams as useNextParams } from 'next/navigation';
 import React, { FC, useEffect } from 'react';
-import { FaSearch, FaUserCircle } from 'react-icons/fa';
+import { FaSearch } from 'react-icons/fa';
 
 interface MembersProps {
    students: IStudent[];
-   staffs: any[];
+   staffs: IStaff[];
 }
 
 const Members: FC<MembersProps> = ({ staffs, students }) => {
-   const [tab, setTab] = React.useState('students');
+   const [tab, setTab] = React.useState<'students' | 'staffs'>('students');
    const [filter, setFilter] = React.useState('');
    const [filteredStudents, setFilteredStudents] = React.useState<IStudent[]>([]);
-   const searchParams = useSearchParams();
+   const [filteredStaffs, setFilteredStaffs] = React.useState<IStaff[]>([]);
+   const searchParams = useNextParams();
+   const { updateParam } = useSearchParams();
 
    useEffect(() => {
       if (!searchParams) return;
-      const tab = searchParams.get('tab');
+      const tab: any = searchParams.get('tab');
       if (tab) setTab(tab);
       const filter = searchParams.get('filter');
       if (filter) setFilter(filter);
@@ -33,7 +34,7 @@ const Members: FC<MembersProps> = ({ staffs, students }) => {
          if (filter) handlePromChange(filter);
          else setFilteredStudents(students);
       } else {
-         setFilteredStudents(staffs);
+         setFilteredStaffs(staffs);
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [tab, students, staffs]);
@@ -56,6 +57,7 @@ const Members: FC<MembersProps> = ({ staffs, students }) => {
             return json.toLowerCase().includes(e.toLowerCase());
          });
          setFilteredStudents(filtered);
+         updateParam('page', 1);
       } else {
          setFilteredStudents(students);
       }
@@ -64,7 +66,7 @@ const Members: FC<MembersProps> = ({ staffs, students }) => {
    return (
       <>
          <div className=" flex justify-between md:flex-row flex-col gap-2 items-center w-full">
-            <PromFilter handleChange={handlePromChange} label="Filter" />
+            {tab === 'students' ? <PromFilter handleChange={handlePromChange} label="Filter" /> : <div></div>}
             <div className=" border-2 bg-white dark:bg-black dark:border-slate-900/90 overflow-hidden flex items-center w-fit max-w-[300px] rounded-[3em]">
                <button
                   onClick={() => setTab('students')}
@@ -99,33 +101,7 @@ const Members: FC<MembersProps> = ({ staffs, students }) => {
                </Input.Wrapper>
             </div>
          </div>
-         <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-x-4 gap-y-6 w-full gap-2 mt-4">
-            {filteredStudents.map((student, i) => (
-               <Card padding={0} shadow="sm" key={i}>
-                  <Link href={`/members/${student._id}` as any} className=" w-full h-fit rounded-xl text-center">
-                     <div className=" w-full aspect-square overflow-hidden max-w-[300px] justify-center flex items-center">
-                        {student.picture ? (
-                           <Image
-                              src={getImageUrl(student.picture)!}
-                              width={200}
-                              height={200}
-                              className="object-cover min-w-full h-full"
-                              alt="member"
-                           />
-                        ) : (
-                           <FaUserCircle className=" text-3xl cursor-pointer" />
-                        )}
-                     </div>
-                     <div className="flex flex-col p-2">
-                        <p className="text-md text-center font-bold mt-1">{student.names}</p>
-                        <span className="text-sm text-center text-gray-600 w-full mx-auto justify-center flex">
-                           {student.leaderTitle}
-                        </span>
-                     </div>
-                  </Link>
-               </Card>
-            ))}
-         </div>
+         <MembersDisplay filteredStaffs={filteredStaffs} filteredStudents={filteredStudents} tab={tab} />
       </>
    );
 };

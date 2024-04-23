@@ -1,5 +1,5 @@
 import { authRoutes, whitelist } from '@/middleware';
-import { IStudent } from '@/types/student.type';
+import { IStudent } from '@/types/member.type';
 import { decodeToken } from '@/utils';
 import axios from 'axios';
 import { deleteCookie, getCookie } from 'cookies-next';

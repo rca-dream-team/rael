@@ -9,8 +9,9 @@ export const galleryFields = groq`
     images
 `;
 
+// exclude draft
 export const fetchGalleryQuery = groq`
-    *[_type == "gallery"] {
+    *[_type == "gallery" && !(_id in path("drafts.**"))] {
         ${galleryFields}
     }
 `;
@@ -20,7 +21,7 @@ export const fetchGallery = () => sanityClient.fetch(fetchGalleryQuery);
 export const fetchGalleryPaginated = (page: number, pageSize: number) => {
    return sanityClient.fetch(
       groq`
-            *[_type == "gallery"] | order(_createdAt desc) [${(page - 1) * pageSize}...${page * pageSize}] {
+            *[_type == "gallery"] | order(_createdAt desc) [${(page - 1) * pageSize}...${page * pageSize} && !(_id in path("drafts.**"))] {
                 ${galleryFields}
             }
         `,

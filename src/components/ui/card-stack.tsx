@@ -60,13 +60,6 @@ export const CardStack = ({ gallery, offset, scaleFactor }: Props) => {
       setCards(cards);
    }, [gallery]);
 
-   useEffect(() => {
-      console.log(
-         'cards',
-         cards.map((card) => card?.asset._ref),
-      );
-   }, [cards]);
-
    return (
       <div className="relative flex  aspect-[4/5] w-full">
          {cards.map((card, index) => {
@@ -122,8 +115,8 @@ const BlurImage = ({ image }: { image: string }) => {
          src={image}
          style={{ height: '100%' }}
          alt="gallery"
-         layout="responsive"
-         objectFit="cover"
+         // layout="responsive"
+         // objectFit="cover"
          className={cn('object-cover flex !h-full w-full', loaded ? 'blur-none' : 'blur-md border-red-600')}
          onLoad={() => setLoaded(true)}
          width={800}

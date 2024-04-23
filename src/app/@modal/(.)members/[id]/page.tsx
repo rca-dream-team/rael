@@ -2,7 +2,7 @@ import Member from '@/app/(app)/members/[id]/member';
 import Modal from '@/components/shared/Modal';
 import { getStudentByIdQuery } from '@/sanity/queries/member.query';
 import { sanityClient } from '@/sanity/sanity.client';
-import { IStudent } from '@/types/student.type';
+import { IStudent } from '@/types/member.type';
 import { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 

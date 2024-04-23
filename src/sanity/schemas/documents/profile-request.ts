@@ -62,6 +62,16 @@ export default defineType({
          initialValue: false,
       },
       {
+         name: 'status',
+         title: 'Status',
+         type: 'string',
+         options: {
+            list: ['Pending', 'Approved', 'Declined'],
+         },
+         group: ['mainInfo'],
+         initialValue: 'Pending',
+      },
+      {
          name: 'email',
          title: 'Email',
          type: 'email',

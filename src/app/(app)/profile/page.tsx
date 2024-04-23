@@ -4,7 +4,7 @@ import UpdateProfilePic from '@/components/page_comps/profile/UpdateProfilePic';
 import UploadImages from '@/components/page_comps/profile/UploadImages';
 import { useAuth } from '@/contexts/AuthProvider';
 import { getImageUrl, urlFor } from '@/sanity/sanity.client';
-import { ISocial } from '@/types/student.type';
+import { ISocial } from '@/types/member.type';
 import { ArrowRightIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 import { Input, Textarea } from '@mantine/core';
 import Image from 'next/image';

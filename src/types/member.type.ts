@@ -28,6 +28,14 @@ export interface ProfileRequest extends ICommon {
    isApproved: boolean;
 }
 
+export interface IStaff {
+   _id: string;
+   names: string;
+   image: string;
+   role: string;
+   email: string;
+}
+
 export interface ISocial {
    github: SocialLink;
    portfolio: SocialLink;

@@ -14,12 +14,12 @@ const newsFields = `
 
 export const fetchNewsCategories = sanityClient.fetch(`*[_type == "news-category"]`);
 
-export const fetchNewsQuery = groq`*[_type == "news"] | order(date desc) {
+export const fetchNewsQuery = groq`*[_type == "news" && !(_id in path("drafts.**"))] | order(date desc) {
     ${newsFields}
 }`;
 export const fetchNews = sanityClient.fetch(fetchNewsQuery);
 
-export const fetchLatestNewsQuery = groq`*[_type == "news"] | order(date desc) {
+export const fetchLatestNewsQuery = groq`*[_type == "news" && !(_id in path("drafts.**"))] | order(date desc) {
     ${newsFields}
 }[0...3]`;
 export const fetchLatestNews = sanityClient.fetch(fetchLatestNewsQuery);

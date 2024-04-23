@@ -3,7 +3,7 @@ import PText from '@/components/constants/PoppinText';
 import RText from '@/components/constants/RighteousText';
 import { MailIcon } from '@/components/icons';
 import { getImageUrl } from '@/sanity/sanity.client';
-import { IStudent } from '@/types/student.type';
+import { IStudent } from '@/types/member.type';
 import Image from 'next/image';
 import { FaLink, FaUserCircle } from 'react-icons/fa';
 import { IoLogoBehance, IoLogoFacebook, IoLogoGithub, IoLogoInstagram, IoLogoLinkedin } from 'react-icons/io5';

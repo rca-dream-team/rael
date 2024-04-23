@@ -7,7 +7,7 @@ import AsyncSelect from '@/components/profile/AsyncSelect';
 import RequestModal from '@/components/profile/RequestModal';
 import { useAuth } from '@/contexts/AuthProvider';
 import { getImageUrl, urlFor } from '@/sanity/sanity.client';
-import { ISocial, ProfileRequest } from '@/types/student.type';
+import { ISocial, ProfileRequest } from '@/types/member.type';
 import useGet from '@/utils/hooks/useGet';
 import { ArrowLeftIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 import { Button, Input, MultiSelect, Textarea } from '@mantine/core';

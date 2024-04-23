@@ -1,15 +1,24 @@
 import { groq } from 'next-sanity';
 
+const generalStudentFields = `
+  _id,
+  names,
+  email,
+  picture,
+  classes,
+  "promotion": promotion->name,
+  occupation,
+  leaderTitle,
+`;
+
+const generalStaffFields = `
+ ...,
+ "role": staffRole->name,
+`;
+
 export const getAllStudentsQuery = groq`
-  *[_type == 'student'] {
-    _id,
-    names,
-    email,
-    picture,
-    classes,
-    "promotion": promotion->name,
-    occupation,
-    leaderTitle,
+  *[_type == 'student' && !(_id in path("drafts.**"))] {
+    ${generalStudentFields}
   }
 `;
 
@@ -44,3 +53,9 @@ export const getStudentByIdQuery = groq`
         socials,
     }
     `;
+
+export const getAllStaffsQuery = groq`
+  *[_type == 'staff' && !(_id in path("drafts.**"))] {
+    ${generalStaffFields}
+  }
+`;
