@@ -29,20 +29,6 @@ export function GalleryIndex({ gallery }: Props) {
       };
    });
 
-   const cardsStacks = [
-      {
-         id: 0,
-         name: 'Manu Arora',
-         designation: 'Senior Software Engineer',
-         content: (
-            <p>
-               These cards are amazing, <Highlight highlight={'I want to use them'}>I want to use them</Highlight> in my project.
-               Framer motion is a godsend ngl tbh fam 🙏
-            </p>
-         ),
-      },
-   ];
-
    return (
       <div className=" py-11 flex flex-col w-full">
          <div className="w-full grid grid-cols-1 h-full lg:grid-cols-3 md:grid-cols-2 max-w-7xl mx-auto gap-4 gap-y-10 ">

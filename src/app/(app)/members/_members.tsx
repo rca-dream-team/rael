@@ -47,6 +47,7 @@ const Members: FC<MembersProps> = ({ staffs, students }) => {
       } else {
          setFilteredStudents(students);
       }
+      updateParam('page', 1);
    };
 
    const handleSearch = (e: string) => {

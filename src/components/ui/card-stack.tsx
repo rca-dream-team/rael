@@ -1,8 +1,8 @@
 'use client';
 import { cn } from '@/lib/utils';
 import { urlFor } from '@/sanity/sanity.client';
-import { Gallery, Image as IImage, ImageAsset } from '@/types/gallery';
-import { Text, Tooltip } from '@mantine/core';
+import { Gallery, ImageAsset } from '@/types/gallery';
+import { Text } from '@mantine/core';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';

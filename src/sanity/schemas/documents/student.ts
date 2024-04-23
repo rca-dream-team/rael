@@ -118,6 +118,14 @@ export default defineType({
          description: 'Ex: Chairman, Vice President of media club, etc.',
          group: ['extraCurricula'],
       },
+      // {
+      //    name: 'isMaintainer',
+      //    title: 'Is Maintainer',
+      //    type: 'boolean',
+      //    group: ['extraCurricula'],
+      //    description: 'Is this student a maintainer of the website?',
+      //    initialValue: false,
+      // },
       {
          name: 'clubs',
          title: 'Clubs',

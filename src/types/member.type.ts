@@ -21,6 +21,7 @@ export interface IStudent extends ICommon {
    picture: null;
    currentClass: null;
    images: any[];
+   // isMaintainer?: boolean;
 }
 
 export interface ProfileRequest extends ICommon {
