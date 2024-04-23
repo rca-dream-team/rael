@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { FaUserCircle } from 'react-icons/fa';
 import { RAELIcon } from '../constants/icons';
 import NewNavbar from './navbar/new-navbar';
+import { BiLogOut, BiLogOutCircle } from 'react-icons/bi';
 
 const Header = () => {
    const { toggleTheme, isDarkTheme } = useApp();
@@ -44,17 +45,22 @@ const Header = () => {
                   )}
                </Popover.Target>
                <Popover.Dropdown p={0} className=" border-gray-700 overflow-hidden">
-                  <div className="flex dark:bg-black flex-col">
-                     <Link href={'/profile'} className="text-sm font-poppins p-2 hover:text-white hover:bg-gray-600 font-bold">
+                  <div className="flex dark:bg-black flex-col p-1">
+                     <Link
+                        href={'/profile'}
+                        className="text-sm flex rounded-md font-poppins p-2 hover:text-white hover:bg-gray-600 font-bold"
+                     >
+                        <FaUserCircle className=" text-xl mr-2" />
                         Profile
                      </Link>
-                     <Link href={'#'} className="text-sm font-poppins p-2 hover:text-white hover:bg-gray-600 font-bold">
+                     {/* <Link href={'#'} className="text-sm rounded-md font-poppins p-2 hover:text-white hover:bg-gray-600 font-bold">
                         Settings
-                     </Link>
+                     </Link> */}
                      <Link
                         href={'/auth/logout'}
-                        className="text-sm font-poppins p-2 hover:text-white hover:bg-gray-600 font-bold"
+                        className="text-sm flex rounded-md font-poppins p-2 hover:text-white hover:bg-gray-600 font-bold"
                      >
+                        <BiLogOutCircle className=" text-xl mr-2" />
                         Logout
                      </Link>
                   </div>
