@@ -3,7 +3,14 @@ Rael website will be a website designed to contain RCA news, classified, a timel
 
 ## Getting Started
 
-First, run the development server:
+First, setup environment variables by creating a `.env.local` file in the root directory. Use the following command to create the file:
+
+```bash
+chmod +x scripts/create_env.sh
+./scripts/create_env.sh
+```
+
+Secondly, run the development server:
 
 ```bash
 npm run dev
@@ -13,7 +20,7 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:2023](http://localhost:2023) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
@@ -22,10 +29,6 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 ## Guidelines
 ### General
 - Use `yarn` to install packages.
-
-### Components
-- Use `Text` component for all text. `RText` is a wrapper around `Text` that sets the font to Righteous. `PText` is a wrapper around `Text` that sets the font to Poppins.
-
 
 ### Styling
 - Use `tailwindcss` for styling. You can use `className` prop to add classes to components.

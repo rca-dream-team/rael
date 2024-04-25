@@ -35,7 +35,7 @@ const IndexPage = ({ news }: Props) => {
       return (
          <Image
             src={urlFor(value)
-               .width(isInline ? 100 : 800)
+               .width(isInline ? 800 : 800)
                .fit('max')
                .auto('format')
                .url()}

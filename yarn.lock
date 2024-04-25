@@ -1078,11 +1078,6 @@
   resolved "https://registry.npmjs.org/@portabletext/types/-/types-2.0.8.tgz"
   integrity sha512-eiq9/kMX2bYezS4/kLFk3xNnruCFjCDdw6aYEv5ECHVKkYROiuLd3/AsP5d7tWF3+kPPy6tB0Wq8aqDG/URHGA==
 
-"@prisma/client@^5.10.2":
-  version "5.10.2"
-  resolved "https://registry.npmjs.org/@prisma/client/-/client-5.10.2.tgz"
-  integrity sha512-ef49hzB2yJZCvM5gFHMxSFL9KYrIP9udpT5rYo0CsHD4P9IKj473MbhU1gjKKftiwWBTIyrt9jukprzZXazyag==
-
 "@prisma/debug@5.10.2":
   version "5.10.2"
   resolved "https://registry.npmjs.org/@prisma/debug/-/debug-5.10.2.tgz"

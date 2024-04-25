@@ -15,7 +15,7 @@ export default async function Home() {
    console.log('res', res);
 
    return (
-      <div className=" px-[5%] flex flex-col items-center">
+      <div className=" px-[5%] w-full flex flex-col items-center">
          <RcaDailyPage news={res} categories={[]} />
       </div>
    );
