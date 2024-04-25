@@ -1,5 +1,6 @@
 import { useSearchParams } from '@/lib/hooks/useSearchParams';
 import { getImageUrl } from '@/sanity/sanity.client';
+import { ImageAsset } from '@/types/gallery';
 import { IStudent, IStaff } from '@/types/member.type';
 import { Card, Pagination } from '@mantine/core';
 import Image from 'next/image';
@@ -53,7 +54,7 @@ const MembersDisplay = (props: MembersProps) => {
                : filteredStaffs.map((staff) => (
                     <MemberCard
                        key={staff._id}
-                       image={staff.image}
+                       image={staff.picture}
                        names={staff.names}
                        description={staff.role}
                        type="staff"
@@ -71,7 +72,7 @@ const MembersDisplay = (props: MembersProps) => {
 };
 
 type CardProps = {
-   image?: string | null;
+   image?: string | null | ImageAsset;
    names: string;
    description: string;
    type: 'student' | 'staff';

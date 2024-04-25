@@ -15,7 +15,7 @@ const GalleryPage = async () => {
 
    return (
       <>
-         <div className=" w-[80%] flex flex-col ">
+         <div className=" w-[80%] flex flex-col">
             <RText className="text-2xl">RCA Gallery</RText>
             <GalleryIndex gallery={gallery} />
          </div>

@@ -16,6 +16,7 @@ export interface MemberProps {
 }
 
 const Member = ({ member }: MemberProps) => {
+   console.log('member', member);
    return (
       <div className="max-w-[1000px] pb-4 w-full rounded-xl bg-white dark:bg-[#060911] gap-y-11 px-11 flex-col flex">
          <div className="flex py-2 items-center justify-center">
@@ -23,7 +24,7 @@ const Member = ({ member }: MemberProps) => {
             <div className="flex w-[300px] aspect-square rounded-full border overflow-hidden">
                {member.picture ? (
                   <Image
-                     src={getImageUrl(member.picture)!}
+                     src={getImageUrl(member?.picture)!}
                      width={300}
                      height={300}
                      className="object-cover min-w-full"
@@ -37,8 +38,8 @@ const Member = ({ member }: MemberProps) => {
             </div>
             <div className="flex flex-col gap-y-7 w-full px-11">
                <div className="flex flex-col">
-                  <RText className=" text-xl uppercase">{member.names}</RText>
-                  <PText className=" font-medium uppercase">{member.leaderTitle}</PText>
+                  <RText className=" text-xl uppercase">{member?.names}</RText>
+                  <PText className=" font-medium uppercase">{member?.leaderTitle}</PText>
                </div>
                <div className="flex flex-col flex-wrap gap-2 h-20">
                   {member?.occupation?.map((ocu, i) => (

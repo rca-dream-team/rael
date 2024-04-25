@@ -27,7 +27,7 @@ const TimelinePage = async () => {
    const timeline = await getTimelineData();
 
    return (
-      <div className="flex flex-col">
+      <div className="flex flex-col px-[5%] items-center">
          {/* <MantineTimeline /> */}
          {<ChronoTimeline data={timeline} />}
       </div>

@@ -9,7 +9,7 @@ interface MainAppLayoutProps {
 
 const MainAppLayout = ({ children }: MainAppLayoutProps) => {
    return (
-      <main className="flex dark:bg-black pb-14 overflow-y-auto h-screen bg-white w-full dark:text-white min-h-screen flex-col items-center gap-y-6 px-[5%]">
+      <main className="flex dark:bg-black pb-14 overflow-y-auto h-screen bg-white w-full dark:text-white min-h-screen flex-col items-center">
          <Header />
          {children}
          <div className="flex  bg-white dark:bg-black fixed bottom-0 z-10 w-full">

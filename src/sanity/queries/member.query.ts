@@ -1,4 +1,5 @@
 import { groq } from 'next-sanity';
+import { sanityClient } from '../sanity.client';
 
 const generalStudentFields = `
   _id,
@@ -59,3 +60,19 @@ export const getAllStaffsQuery = groq`
     ${generalStaffFields}
   }
 `;
+
+export const getStaffByIdQuery = groq`
+    *[_type == 'staff' && _id == $id][0] {
+        ${generalStaffFields}
+    }
+`;
+
+export const getMember = async (id: string, type?: string) => {
+   if (type === 'student') {
+      return await sanityClient.fetch(getStudentByIdQuery, { id });
+   }
+   if (type === 'staff') {
+      return await sanityClient.fetch(getStaffByIdQuery, { id });
+   }
+   return await sanityClient.fetch(`*[_id == $id][0]`, { id });
+};

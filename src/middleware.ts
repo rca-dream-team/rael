@@ -17,6 +17,7 @@ export function middleware(request: NextRequest) {
          if (path === '/') {
             return false;
          }
+         console.log('whitePath', whitePath, 'path', path, whitePath.startsWith(path));
          return whitePath.startsWith(path);
       }) ||
       isStudio

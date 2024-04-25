@@ -41,3 +41,10 @@ export const requestProfile = async (request: any, requester: IStudent) => {
       return res;
    }
 };
+
+export const getImageBuffer = async (url: string) => {
+   const res = await fetch(url);
+   const blob = await res.blob();
+   const buffer = await blob.arrayBuffer();
+   return Buffer.from(buffer);
+};

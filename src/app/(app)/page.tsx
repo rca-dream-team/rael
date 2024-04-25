@@ -14,5 +14,9 @@ export default async function Home() {
    // const newCategories = await fetchNewsCategories;
    console.log('res', res);
 
-   return <RcaDailyPage news={res} categories={[]} />;
+   return (
+      <div className=" px-[5%] flex flex-col items-center">
+         <RcaDailyPage news={res} categories={[]} />
+      </div>
+   );
 }

@@ -1,7 +1,7 @@
 import Member from '@/app/(app)/members/[id]/member';
 import Modal from '@/components/shared/Modal';
-import { getStudentByIdQuery } from '@/sanity/queries/member.query';
-import { sanityClient } from '@/sanity/sanity.client';
+import { getMember, getStudentByIdQuery } from '@/sanity/queries/member.query';
+import { sanityClient, urlFor } from '@/sanity/sanity.client';
 import { IStudent } from '@/types/member.type';
 import { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -20,23 +20,23 @@ export async function generateMetadata(
    parent: ResolvingMetadata,
 ): Promise<Metadata> {
    const id = params.id;
-   // optionally access and extend (rather than replace) parent metadata
-   // const previousImages = (await parent).openGraph?.images || [];
-   const student: IStudent = await sanityClient.fetch(getStudentByIdQuery, { id });
+   const type = searchParams.type as string;
+   const student: IStudent = await getMember(id, type);
 
    return {
       title: `${student.names ?? 'RCA Member'} - RAEL`,
       description: student.bio,
-      // openGraph: {
-      //    images: [student.picture, ...[student?.images].map((it) => ({ url: it } as any))],
-      // },
+      openGraph: {
+         images: [student?.picture ? urlFor(student.picture).url() : ''],
+      },
    };
 }
 
-export default async function MemberModal({ params }: MemberModalPageProps) {
+export default async function MemberModal({ params, searchParams }: MemberModalPageProps) {
    const id = params?.id;
+   const type = searchParams?.type as string;
    if (!id) notFound();
-   const member = await sanityClient.fetch(getStudentByIdQuery, { id });
+   const member = await getMember(id, type);
 
    return (
       <Modal>

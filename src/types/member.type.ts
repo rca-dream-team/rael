@@ -1,3 +1,5 @@
+import { ImageAsset } from './gallery';
+
 export interface ICommon {
    _id: string;
    _type: string;
@@ -18,9 +20,9 @@ export interface IStudent extends ICommon {
    projects: null;
    pictureUrls: string[];
    names: string;
-   picture: null;
+   picture: ImageAsset;
    currentClass: null;
-   images: any[];
+   images: ImageAsset[];
    // isMaintainer?: boolean;
 }
 
@@ -32,7 +34,7 @@ export interface ProfileRequest extends ICommon {
 export interface IStaff {
    _id: string;
    names: string;
-   image: string;
+   picture: string;
    role: string;
    email: string;
 }

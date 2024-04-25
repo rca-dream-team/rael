@@ -18,12 +18,17 @@ export default defineType({
          validation: (Rule) => Rule.required(),
       },
       {
-         name: 'image',
-         title: 'Image',
+         name: 'picture',
+         title: 'Picture',
          type: 'image',
          options: {
             hotspot: true,
          },
+      },
+      {
+         name: 'bio',
+         title: 'Bio',
+         type: 'text',
       },
       {
          name: 'role',

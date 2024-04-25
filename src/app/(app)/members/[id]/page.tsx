@@ -1,5 +1,6 @@
-import { getStudentByIdQuery } from '@/sanity/queries/member.query';
-import { sanityClient } from '@/sanity/sanity.client';
+import { getMember } from '@/sanity/queries/member.query';
+import { urlFor } from '@/sanity/sanity.client';
+import { IStudent } from '@/types/member.type';
 import { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 import Member from './member';
@@ -17,22 +18,18 @@ export async function generateMetadata({ params, searchParams }: MemberPageProps
    const id = params.id;
    // optionally access and extend (rather than replace) parent metadata
    // const previousImages = (await parent).openGraph?.images || [];
-   const student = await sanityClient.fetch(getStudentByIdQuery, { id });
+   const student: IStudent = await getMember(id);
+   if (!student) notFound();
    console.log('student', student);
 
    return {
       title: `${student.names ?? 'RCA Member'} - RAEL`,
       description: student.bio,
-      // openGraph: {
-      //    images: [student.picture, ...[student?.images].map((it) => ({ url: it } as any))],
-      // },
+      openGraph: {
+         images: [{ url: student?.picture ? urlFor(student?.picture)?.url() : '' }],
+      },
    };
 }
-
-const getMember = async (id: string) => {
-   const member = await sanityClient.fetch(getStudentByIdQuery, { id });
-   return member;
-};
 
 const MemberPage = async ({ params }: MemberPageProps) => {
    const id = params?.id;
