@@ -46,7 +46,6 @@ const ChronoTimeline: FC<TimelineProps> = ({ data }) => {
 
    useEffect(() => {
       const newTimeLine = mapTimelineDataToModel(data);
-      console.log('newTimeLine', newTimeLine);
       setTimeLineData(newTimeLine);
    }, [data]);
    return (

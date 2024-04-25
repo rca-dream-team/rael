@@ -54,8 +54,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, []);
 
-   if (!loading && !user && !whitelist.some((path) => pathname?.includes(path))) {
-      router.push('/auth/login');
+   if (!loading && !user && !authRoutes.some((path) => pathname?.includes(path))) {
+      router.push(`/auth/login?redirect=${pathname}`);
       return null;
    }
 

@@ -16,7 +16,7 @@ export interface MemberProps {
 }
 
 const Member = ({ member }: MemberProps) => {
-   console.log('member', member);
+   // console.log('member', member);
    return (
       <div className="max-w-[1000px] pb-4 w-full rounded-xl bg-white dark:bg-[#060911] gap-y-11 px-11 flex-col flex">
          <div className="flex py-2 items-center justify-center">

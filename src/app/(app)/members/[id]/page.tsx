@@ -20,7 +20,6 @@ export async function generateMetadata({ params, searchParams }: MemberPageProps
    // const previousImages = (await parent).openGraph?.images || [];
    const student: IStudent = await getMember(id);
    if (!student) notFound();
-   console.log('student', student);
 
    return {
       title: `${student.names ?? 'RCA Member'} - RAEL`,
