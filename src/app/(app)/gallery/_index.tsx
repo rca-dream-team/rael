@@ -2,7 +2,6 @@
 import { CardStack } from '@/components/ui/card-stack';
 import { urlFor } from '@/sanity/sanity.client';
 import { Gallery } from '@/types/gallery';
-import { Highlight } from '@mantine/core';
 
 interface Props {
    gallery: Gallery[];
