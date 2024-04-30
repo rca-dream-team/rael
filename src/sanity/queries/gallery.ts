@@ -3,15 +3,18 @@ import { sanityClient } from '../sanity.client';
 
 export const galleryFields = groq`
     _id,
+    _createdAt,
+    _updatedAt,
+    date,
     name,
     description,
     coverImage,
     images
 `;
 
-// exclude draft
+// exclude draft and order by date
 export const fetchGalleryQuery = groq`
-    *[_type == "gallery" && !(_id in path("drafts.**"))] {
+    *[_type == "gallery" && !(_id in path("drafts.**"))] | order(_createdAt desc) {
         ${galleryFields}
     }
 `;

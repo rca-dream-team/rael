@@ -9,7 +9,10 @@ interface Props {
 
 export function GalleryIdIndex({ gallery }: Props) {
    console.log('gallery id', gallery);
-   const cards = gallery.images.map((g, i) => {
+   const galleryImages = gallery.images.filter((img) => {
+      return img.asset && !img._upload;
+   });
+   const cards = galleryImages.map((g, i) => {
       const colSpan = i % 3 === 0 ? 'md:col-span-2' : 'col-span-1';
       return {
          id: i,
@@ -24,7 +27,6 @@ export function GalleryIdIndex({ gallery }: Props) {
          thumbnail: urlFor(g).url(),
       };
    });
-   console.log('cards', cards);
 
    return (
       <div className=" py-11 w-full">

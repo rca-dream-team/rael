@@ -15,6 +15,9 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
    const data: Gallery = await fetchGalleryById(props.params?.id);
    // console.log('data', data);
    if (!data) return notFound();
+   const galleryImages = data.images.filter((img) => {
+      return img.asset && !img._upload;
+   });
    return {
       title: data?.name,
       description: data?.description,
@@ -26,7 +29,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
                height: 600,
                alt: data.name,
             },
-            ...data.images.map((image, i) => ({
+            ...galleryImages.map((image, i) => ({
                url: urlFor(image)?.url(),
                width: 800,
                height: 600,

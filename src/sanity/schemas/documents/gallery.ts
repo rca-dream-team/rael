@@ -13,6 +13,14 @@ export default defineType({
          validation: (Rule) => Rule.required(),
       },
       {
+         name: 'date',
+         title: 'Date',
+         type: 'date',
+         description: 'Date of the gallery',
+         validation: (Rule) => Rule.required(),
+         initialValue: () => new Date().toISOString(),
+      },
+      {
          name: 'description',
          title: 'Description',
          type: 'text',

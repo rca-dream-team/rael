@@ -41,6 +41,7 @@ export const CardStack = ({ gallery, offset, scaleFactor }: Props) => {
             if (first) {
                newArray.push(first);
             }
+            // console.log('newArray', newArray);
             return newArray;
          });
       }, 3000);
@@ -57,16 +58,25 @@ export const CardStack = ({ gallery, offset, scaleFactor }: Props) => {
       // cards.push(gallery as any); // add the gallery as a card, it may cause type error but it's fine for now
       // const newSet = new Set(cards.map((card) => JSON.stringify(card)));
       // const newCards = Array.from(newSet).map((card) => JSON.parse(card));
+      // console.log('cards', cards, gallery);
       setCards(cards);
    }, [gallery]);
 
    return (
       <div className="relative flex  aspect-[4/5] w-full">
          {cards.map((card, index) => {
-            const imageUrl = urlFor(!isFlipping && index === 0 ? gallery.coverImage : card).url() ?? '/images/mem1.png';
+            if (!card.asset && card._upload) {
+               // means upload not completed
+               // console.log('cards', cards, gallery);
+               return null;
+            }
+            // console.log(`card ${index}`, card);
+            const src = !isFlipping && index === 0 ? gallery.coverImage : card;
+            // console.log('src', src);
+            const imageUrl = urlFor(src)?.url() ?? '/images/mem1.png';
             return (
                <motion.div
-                  key={card.asset._ref ?? index}
+                  key={card?.asset?._ref ?? index}
                   className="absolute h-full dark:bg-black duration-200 bg-whit w-full rounded-3xl shadow-xl border border-neutral-200 dark:border-white/[0.1]  shadow-black/[0.1] dark:shadow-white/[0.05] flex flex-col justify-between"
                   style={{
                      transformOrigin: 'top center',
@@ -81,7 +91,7 @@ export const CardStack = ({ gallery, offset, scaleFactor }: Props) => {
                >
                   <Link
                      href={`/gallery/${gallery._id}`}
-                     key={card.asset._ref}
+                     key={card?.asset?._ref}
                      className={' w-full  rounded-lg h-full border shadow-sm'}
                   >
                      <div className="relative overflow-hidden w-full h-full gallery-card rounded-lg">

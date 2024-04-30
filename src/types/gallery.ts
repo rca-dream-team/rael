@@ -7,6 +7,7 @@ export interface Gallery {
 }
 
 export interface ImageAsset {
+   _upload: any;
    _type: string;
    _key: string;
    asset: Asset;
