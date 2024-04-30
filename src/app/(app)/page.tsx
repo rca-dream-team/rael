@@ -12,7 +12,7 @@ const getNews = async () => {
 export default async function Home() {
    const res: News[] = await getNews();
    // const newCategories = await fetchNewsCategories;
-   console.log('res', res);
+   // console.log('res', res);
 
    return (
       <div className=" px-[5%] w-full flex flex-col items-center">

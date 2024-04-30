@@ -1,7 +1,9 @@
 'use client';
 import { CardStack } from '@/components/ui/card-stack';
+import { fetchGallery } from '@/sanity/queries/gallery';
 import { urlFor } from '@/sanity/sanity.client';
 import { Gallery } from '@/types/gallery';
+import { useEffect } from 'react';
 
 interface Props {
    gallery: Gallery[];
@@ -28,6 +30,10 @@ export function GalleryIndex({ gallery }: Props) {
       };
    });
 
+   useEffect(() => {
+      fetchGallery();
+   }, []);
+
    return (
       <div className=" py-11 flex flex-col w-full">
          <div className="w-full grid grid-cols-1 h-full lg:grid-cols-3 md:grid-cols-2 max-w-7xl mx-auto gap-4 gap-y-10 ">
@@ -39,7 +45,6 @@ export function GalleryIndex({ gallery }: Props) {
                            src={card.thumbnail ?? '/images/mem1.png'}
                            alt="gallery"
                            layout="responsive"
-                           objectFit="cover"
                            className="object-cover h-full w-full"
                            width={800}
                            height={600}

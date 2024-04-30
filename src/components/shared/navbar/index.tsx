@@ -5,7 +5,7 @@ import React from 'react';
 
 export const links = [
    {
-      name: 'News Department',
+      name: 'RCA Daily',
       href: ['/'],
    },
    {

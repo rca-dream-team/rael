@@ -22,7 +22,6 @@ const NewsTile = ({ data }: NewsTileProps) => {
                width={200}
                height={200}
                className=" w-full h-full object-cover"
-               objectFit="cover"
             />
          </div>
          <div className="w-3/4 p-4 py-2 flex flex-col ">
