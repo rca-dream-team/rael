@@ -28,9 +28,11 @@ export function GalleryIdIndex({ gallery }: Props) {
       };
    });
 
+   const _gallery = { ...gallery, images: gallery?.images?.filter((im)=> !im._upload) }
+
    return (
       <div className=" py-11 w-full">
-         <LayoutGrid cards={cards} gallery={gallery} />
+         <LayoutGrid cards={cards} gallery={_gallery} />
       </div>
    );
 }
