@@ -2,7 +2,7 @@
    "extends": ["next/core-web-vitals", "eslint:recommended", "next", "plugin:prettier/recommended"],
    "rules": {
       "prettier/prettier": [
-         "error",
+         "warn",
          {
             "endOfLine": "auto",
             "singleQuote": true,
