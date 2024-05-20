@@ -73,7 +73,7 @@ export const CardStack = ({ gallery, offset, scaleFactor }: Props) => {
             // console.log(`card ${index}`, card);
             const src = !isFlipping && index === 0 ? gallery.coverImage : card;
             // console.log('src', src);
-            const imageUrl = urlFor(src)?.url() ?? '/images/mem1.png';
+            const imageUrl = urlFor(src)?.url();
             return (
                <motion.div
                   key={card?.asset?._ref ?? index}
