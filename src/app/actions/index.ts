@@ -7,6 +7,9 @@ import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 
 export const addComment = async (postId: string, formData: FormData) => {
+   if (!formData.get('body') || !postId || formData.get('body')?.toString().trim() === '') {
+      return null;
+   }
    const token = cookies().get('rael_token');
    if (!token) {
       console.log('no token', token);
