@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             },
          });
          const profile = _res.data.data;
-         console.log('_res', _res.data.data);
+         // console.log('_res', _res.data.data);
          if (!profile) return res.status(400).json({ message: 'user not found' });
          const role = _res.data?.data?.roles[0]?.roleName;
          if (!role) return res.status(400).json({ message: 'MIS Role not found' });
@@ -37,7 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             studentData = newStaff;
             console.log('new staff', newStaff);
          }
-         const login_token = jwt.sign({ email: studentData.email, id: studentData?.id }, process.env.JWT_SECRET!, {
+         const login_token = jwt.sign({ email: studentData.email, id: studentData?._id }, process.env.JWT_SECRET!, {
             expiresIn: '30d',
          });
          return res.status(200).json(new Response({ profile, token: login_token }, undefined, 'Logged in', true));

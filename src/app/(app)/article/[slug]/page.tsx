@@ -29,6 +29,9 @@ const getComments = async (id: string) => {
       where: {
          postId: id,
       },
+      orderBy: {
+         createdAt: 'desc',
+      },
    });
 };
 
@@ -36,10 +39,10 @@ const ArticlePage = async (props: any) => {
    if (!props?.params?.slug) return notFound();
    const news: News = await fetchNewsBySlug(props?.params?.slug);
    if (!news) return notFound();
-   // const comments = (await getComments(news._id)) ?? [];
+   const comments = (await getComments(news._id)) ?? [];
    // console.log('comments', comments);
 
-   return <IndexPage news={news} />;
+   return <IndexPage news={news} comments={comments} />;
 };
 
 export default ArticlePage;
