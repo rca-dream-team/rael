@@ -13,5 +13,12 @@
     "[css]": {
        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "cSpell.words": ["Behance", "dribbble", "Rael"]
+   "cSpell.words": [
+      "Behance",
+      "dribbble",
+      "Rael"
+   ],
+   "[prisma]": {
+      "editor.defaultFormatter": "Prisma.prisma"
+   }
  }

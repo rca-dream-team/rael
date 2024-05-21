@@ -1,13 +1,8 @@
 'use client';
+import RichContent from '@/components/shared/RichContent';
 import { urlFor } from '@/sanity/sanity.client';
-import { Children, Content, News } from '@/types/news';
-import { PortableText, PortableTextReactComponents } from '@portabletext/react';
-import { getImageDimensions } from '@sanity/asset-utils';
-import { FastAverageColor } from 'fast-average-color';
-import image from 'next/image';
-import Image from 'next/image';
+import { News } from '@/types/news';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 
 interface Props {
@@ -15,92 +10,7 @@ interface Props {
 }
 
 const IndexPage = ({ news }: Props) => {
-   const [color, setColor] = useState<string>('#000000');
-   const getColor = async () => {
-      console.log('getting color');
-      const src = urlFor(news.image).url();
-      const fac = new FastAverageColor();
-      const color = await fac.getColorAsync(src);
-      console.log('color', color);
-      setColor(color.hex);
-   };
-
-   useEffect(() => {
-      getColor();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, []);
-
-   const ImageComponent = ({ value, isInline }: any) => {
-      const { width, height } = getImageDimensions(value);
-      return (
-         <Image
-            src={urlFor(value)
-               .width(isInline ? 800 : 800)
-               .fit('max')
-               .auto('format')
-               .url()}
-            alt={value.alt || ' '}
-            loading="lazy"
-            width={width}
-            height={height}
-            className=" py-4 w-full"
-            style={{
-               // Display alongside text if image appears inside a block text span
-               display: isInline ? 'inline-block' : 'block',
-
-               // Avoid jumping around with aspect-ratio CSS property
-               aspectRatio: width / height,
-            }}
-         />
-      );
-   };
-
-   const SpanElement = ({ child }: { child: Children }) => {
-      const { _key, _type, marks, text } = child;
-      const styles = {
-         textDecoration: marks.includes('underline') ? 'underline' : 'none',
-         fontWeight: marks.includes('strong') ? 'bold' : 'normal',
-         fontStyle: marks.includes('em') ? 'italic' : 'normal',
-      };
-
-      return (
-         <span key={_key} className={marks.join(' ')} style={styles}>
-            {text}
-         </span>
-      );
-   };
-
-   const components: Partial<PortableTextReactComponents> = {
-      types: {
-         image: ImageComponent,
-         // Any other custom types you have in your content
-         // Examples: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
-         block: ({ isInline, index, value }) => {
-            const c: Content = value;
-            if (value.listItem) {
-               return (
-                  <ul key={c._key} className="list-disc list-inside my-1">
-                     {c.children?.map((child) => {
-                        return (
-                           <li key={child._key}>
-                              <SpanElement child={child} />
-                           </li>
-                        );
-                     })}
-                  </ul>
-               );
-            }
-            return (
-               <div key={c._key} className=" my-1">
-                  {c.children?.map((child) => {
-                     return <SpanElement key={child._key} child={child} />;
-                  })}
-               </div>
-            );
-         },
-      },
-   };
-
+   console.log('news', news);
    return (
       <div
          className={` w-full flex top-0 flex-col items-center min-hfull flex-1 bg-opacity-10 relative`}
@@ -113,7 +23,7 @@ const IndexPage = ({ news }: Props) => {
                All news
             </Link>
             <div className="flex w-full flex-col font-poppins">
-               <PortableText value={news.content} components={components} />
+               <RichContent content={news.content} />
             </div>
          </div>
       </div>
