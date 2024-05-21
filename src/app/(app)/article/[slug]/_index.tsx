@@ -1,3 +1,4 @@
+'use client';
 import { addComment } from '@/app/actions';
 import Comment from '@/components/shared/Comment';
 import RichContent from '@/components/shared/RichContent';
@@ -6,6 +7,7 @@ import { urlFor } from '@/sanity/sanity.client';
 import { News } from '@/types/news';
 import { Prisma } from '@prisma/client';
 import Link from 'next/link';
+import { useRef } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 
 interface Props {
@@ -14,6 +16,7 @@ interface Props {
 }
 
 const IndexPage = ({ news, comments }: Props) => {
+   const ref = useRef<HTMLFormElement>(null);
    // console.log('news', news);
    const onSubmit = addComment.bind(null, news._id);
    return (
@@ -31,7 +34,13 @@ const IndexPage = ({ news, comments }: Props) => {
                <RichContent content={news.content} />
                <h1 className="text-xl font-semibold mt-6">Comments ({comments.length})</h1>
                <span className="text-sm dark:text-gray-200">Comments are anonymous, so feel free to share your thoughts</span>
-               <form action={onSubmit} className="gap-3 mt-4 w-full flex flex-col items-start">
+               <form
+                  action={async (formData) => {
+                     await onSubmit(formData);
+                     ref.current?.reset();
+                  }}
+                  className="gap-3 mt-4 w-full flex flex-col items-start"
+               >
                   <textarea
                      name="body"
                      id="body"
