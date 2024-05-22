@@ -6,7 +6,13 @@ import { faker } from '@faker-js/faker';
 import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 
-export const addComment = async (postId: string, formData: FormData) => {
+type params = {
+   postId: string;
+   userId?: string;
+};
+
+export const addComment = async (params: params, formData: FormData) => {
+   const { postId, userId } = params;
    if (!formData.get('body') || !postId || formData.get('body')?.toString().trim() === '') {
       return null;
    }
@@ -15,11 +21,12 @@ export const addComment = async (postId: string, formData: FormData) => {
       console.log('no token', token);
       return null;
    }
+   console.log('userId', userId);
    const user = decodeToken(token.value);
    const comment = await prisma.comment.create({
       data: {
          postId,
-         userId: user.id,
+         userId: userId || user.id,
          name: faker.person.firstName() + ' ' + faker.person.lastName(),
          body: formData.get('body') as string,
       },

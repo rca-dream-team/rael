@@ -1,4 +1,5 @@
 export interface News {
+   commentQuestion: string;
    _id: string;
    title: string;
    slug: Slug;

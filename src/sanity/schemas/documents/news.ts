@@ -61,6 +61,12 @@ export default defineType({
          validation: (Rule) => Rule.required(),
       },
       {
+         name: 'commentQuestion',
+         title: 'Comment Question',
+         description: 'A question to ask users when commenting on the news article.',
+         type: 'string',
+      },
+      {
          name: 'author',
          title: 'Author',
          type: 'reference',
