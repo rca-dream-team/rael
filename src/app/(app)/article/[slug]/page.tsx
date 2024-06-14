@@ -8,8 +8,17 @@ import prisma from '@/lib/prisma';
 // export const revalidate = 15;
 export const dynamic = 'force-dynamic';
 
+const getNews = async (slug: string) => {
+   try {
+      return await fetchNewsBySlug(slug);
+   } catch (error) {
+      console.log('error', error);
+      return null;
+   }
+};
+
 export const generateMetadata = async ({ params }: any) => {
-   const news: News = params?.slug ? await fetchNewsBySlug(params?.slug) : null;
+   const news: News = params?.slug ? await getNews(params?.slug) : null;
 
    return {
       title: `${news?.title} | RAEL`,
@@ -37,7 +46,8 @@ const getComments = async (id: string) => {
 
 const ArticlePage = async (props: any) => {
    if (!props?.params?.slug) return notFound();
-   const news: News = await fetchNewsBySlug(props?.params?.slug);
+   const news: News = await getNews(props?.params?.slug);
+   console.log('news', news);
    if (!news) return notFound();
    const comments = (await getComments(news._id)) ?? [];
    // console.log('comments', comments);
