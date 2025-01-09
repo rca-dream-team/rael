@@ -9,4 +9,4 @@ export const OCCUPATIONS = [
    'Volleyball',
 ];
 
-export const misUrl = process.env.NEXT_PUBLIC_MIS_URL || 'http://194.163.167.131:9099';
+export const misUrl = process.env.NEXT_PUBLIC_MIS_URL || 'http://5.252.53.111:9099';
